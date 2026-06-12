@@ -1,0 +1,17 @@
+{
+  "extends": ["astro/tsconfigs/strict", "../../tsconfig.base.json"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@caletasuites/config":   ["../../packages/config/src/siteConfig.ts"],
+      "@caletasuites/config/*": ["../../packages/config/src/*"],
+      "@caletasuites/seo":      ["../../packages/seo/src/index.ts"],
+      "@caletasuites/seo/*":    ["../../packages/seo/src/*"]
+    }
+  },
+  "include": ["src", "../../packages/*/src"],
+  "exclude": [
+    "**/*.test.ts",
+    "../../packages/**/*.test.ts"
+  ]
+}

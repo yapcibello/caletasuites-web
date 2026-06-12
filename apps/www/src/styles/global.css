@@ -1,0 +1,29 @@
+/* Estilos globales base de Caleta Suites.
+   TODO F-Migra: los estilos visuales reales se extraerán del tema WordPress
+   (archub-child). Este archivo solo contiene utilidades de accesibilidad AAA
+   imprescindibles (skip link + foco visible) hasta esa extracción. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Foco visible AAA en todos los elementos interactivos (WCAG 2.4.7). */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Skip link: oculto hasta recibir foco con teclado. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: #000;
+}
+
+.skip-link:focus {
+  left: 0;
+}

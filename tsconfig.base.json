@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@caletasuites/config":   ["./packages/config/src/siteConfig.ts"],
+      "@caletasuites/config/*": ["./packages/config/src/*"],
+      "@caletasuites/seo":      ["./packages/seo/src/index.ts"],
+      "@caletasuites/seo/*":    ["./packages/seo/src/*"]
+    }
+  }
+}

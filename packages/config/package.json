@@ -1,0 +1,12 @@
+{
+  "name": "@caletasuites/config",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tailwind-preset": "./tailwind-preset.cjs",
+    "./tailwind.preset": "./tailwind.preset.cjs",
+    "./site": "./src/siteConfig.ts",
+    "./tokens": "./tokens/index.cjs"
+  }
+}

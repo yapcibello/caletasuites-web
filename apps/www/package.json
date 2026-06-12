@@ -1,0 +1,27 @@
+{
+  "name": "@caletasuites/www",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "catalog:",
+    "@astrojs/sitemap": "catalog:",
+    "@astrojs/tailwind": "catalog:",
+    "@caletasuites/config": "workspace:*",
+    "@caletasuites/seo": "workspace:*",
+    "astro": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "catalog:",
+    "@types/node": "^25.6.0"
+  }
+}

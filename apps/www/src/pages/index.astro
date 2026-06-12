@@ -1,0 +1,15 @@
+---
+// Página de inicio (EN, raíz) — skeleton.
+// El maquetado real se construirá replicando la home de caletasuitestenerife.com
+// en la fase de migración (réplica visual exacta, sin rediseño).
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../utils/siteConfig';
+---
+
+<Layout title={siteConfig.title} lang="en">
+  <section>
+    <h1>{siteConfig.name}</h1>
+    {/* TODO F-Migra: replicar el contenido real de la home WordPress. */}
+    <p>{siteConfig.description}</p>
+  </section>
+</Layout>

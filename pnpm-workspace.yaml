@@ -1,0 +1,13 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Versiones compartidas entre apps/packages (pnpm v9+). Usar `"astro": "catalog:"` en cada package.json.
+catalog:
+  astro: ^5.16.8
+  '@astrojs/sitemap': ^3.7.0
+  '@astrojs/tailwind': ^5.1.5
+  '@astrojs/check': ^0.9.6
+  tailwindcss: ^3.4.17
+  '@tailwindcss/typography': ^0.5.19
+  typescript: ^5.7.3

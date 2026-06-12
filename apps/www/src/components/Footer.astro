@@ -1,0 +1,19 @@
+---
+// Footer de Caleta Suites — esqueleto AAA.
+// El contenido real (enlaces legales, datos de contacto, iframe Icnea si aplica)
+// se replicará del tema WordPress en la fase de migración.
+import { siteConfig } from '../utils/siteConfig';
+interface Props {
+  /** Idioma activo: 'en' (raíz) | 'es' (/es/). */
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+const anyo = new Date().getFullYear();
+const direccion = `${siteConfig.location.locality}, ${siteConfig.location.municipality}, ${siteConfig.location.island}`;
+---
+
+<footer aria-label={lang === 'es' ? 'Pie de página' : 'Footer'}>
+  <p>{siteConfig.name} — {direccion}</p>
+  <p>&copy; {anyo} {siteConfig.name}</p>
+  {/* TODO F-Migra: replicar enlaces legales y contenido real del pie WordPress. */}
+</footer>

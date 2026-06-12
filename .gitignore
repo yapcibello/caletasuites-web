@@ -1,0 +1,13 @@
+node_modules/
+dist/
+apps/*/dist/
+.astro/
+apps/*/.astro/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.ypc/
+tmp/
+.DS_Store
