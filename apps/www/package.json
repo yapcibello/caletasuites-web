@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "catalog:",
+    "@astrojs/mdx": "^4",
     "@astrojs/sitemap": "catalog:",
     "@astrojs/tailwind": "catalog:",
     "@caletasuites/config": "workspace:*",

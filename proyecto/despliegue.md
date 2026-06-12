@@ -1,29 +1,30 @@
 # Despliegue — caletasuites-web
 
-<!-- Si el proyecto no tiene despliegue, indicar: "No aplica — proyecto local sin despliegue" -->
-
 ## Entorno de producción
 
-- **Plataforma**: {{DEPLOY_PLATAFORMA}}
-- **URL**: {{DEPLOY_URL}}
-- **Rama de deploy**: {{DEPLOY_RAMA}}
+- **Plataforma**: Hestia VPS (rsync+SSH, patrón logopedajessica-web) — decidido en discovery; scripts de deploy pendientes (fase 12 del workflow init-web-astro)
+- **URL**: https://caletasuitestenerife.com/ (actualmente sirve el WordPress origen; el cutover DNS/vhost se planificará en el plan F0)
+- **Rama de deploy**: main
 
 ## Requisitos previos
 
-- {{DEPLOY_REQUISITO}}
+- Alias SSH y ruta remota del Hestia VPS (pendiente de que el usuario los facilite — ver PENDIENTES.md)
+- `pnpm build:www` pasando con cobertura 100% de URLs del inventario
 
 ## Pasos de despliegue
 
 ```bash
-{{DEPLOY_PASOS}}
+# Pendiente — se generará en la fase deploy-baseline (12) del workflow:
+# pnpm build:www && rsync -avz --delete apps/www/dist/ <ssh_host>:<remote_dir>/
 ```
 
 ## Variables de entorno
 
 | Variable | Descripción | Origen |
 |----------|-------------|--------|
-| {{ENV_VAR}} | {{ENV_VAR_DESC}} | .env |
+| PUBLIC_GTM_ID | Container de Google Tag Manager (GTM-XXXXXX); si falta, el Layout omite GTM | .env |
 
 ## Verificación post-deploy
 
-- [ ] {{DEPLOY_VERIFICACION}}
+- [ ] Smoke con `auditoria-web-quick` + PSI/CrUX (GA4 423687681 ya mide el dominio)
+- [ ] Verificar muestreo de URLs antiguas (páginas, posts, assets) → 200 sin redirects

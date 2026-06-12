@@ -2,29 +2,44 @@
 
 ## Visión general
 
-{{ARQUITECTURA_DESCRIPCION}}
+Monorepo pnpm que replica el patrón probado de logopedajessica-web: una única app Astro estática (`apps/www`) que sirve la web bilingüe de Caleta Suites Tenerife, con paquetes compartidos para tokens de marca y SEO. El contenido proviene de una migración del WordPress actual (REST API → JSON → MDX en Content Collections), con la restricción de URLs de producción inmutables.
 
-<!-- Diagrama mermaid opcional -->
-<!--
 ```mermaid
 graph LR
-    A[Componente A] --> B[Componente B]
-    B --> C[Componente C]
+    WP[WordPress origen<br/>caletasuitestenerife.com] -->|REST API| EXP[scripts/migrate<br/>export JSON]
+    EXP --> MDX[Content Collections<br/>apartamentos · paginas · posts]
+    MDX --> WWW[apps/www · Astro 5 SSG]
+    CFG[packages/config<br/>tokens + preset Tailwind] --> WWW
+    SEO[packages/seo<br/>schemas JSON-LD] --> WWW
+    WWW -->|rsync+SSH| VPS[Hestia VPS]
 ```
--->
 
 ## Componentes
 
-### {{COMPONENTE_1}}
+### apps/www
 
-{{COMPONENTE_1_DESCRIPCION}}
+App Astro 5 SSG. i18n nativo: EN en raíz, ES bajo `/es/` (réplica WPML, x-default=en). `trailingSlash: 'always'`. Layout con GTM condicional (`PUBLIC_GTM_ID`), JSON-LD LodgingBusiness, OG/Twitter, canonical. Esqueleto AAA (skip links, focus visible).
 
-**Archivos clave**: `{{COMPONENTE_1_ARCHIVOS}}`
+**Archivos clave**: `apps/www/astro.config.mjs`, `apps/www/src/layouts/Layout.astro`, `apps/www/src/content/config.ts`, `apps/www/src/utils/siteConfig.ts`
+
+### packages/config
+
+Única superficie de tokens de marca (colores, tipografías, espaciados) consumida por el preset Tailwind. Tokens provisionales hasta extraer los reales del CSS del tema WP (archub).
+
+**Archivos clave**: `packages/config/tailwind.preset.cjs`, `packages/config/tokens/index.cjs`
+
+### packages/seo
+
+Esqueleto para schemas JSON-LD cross-app y helpers. Se poblará cuando una app consuma desde el shared.
+
+### scripts/migrate
+
+Pipeline de migración dirigido por scripts: `00-inventario` (sitemaps → inventario-urls.json), `01-export-wp` (REST API → tmp/wp-export/*.json), `02-to-mdx` (JSON → MDX), `03-download-assets` y `04-verify-urls` (pendientes de escribir/ejecutar).
 
 ## Flujo de datos
 
-{{FLUJO_DATOS_DESCRIPCION}}
+Contenido WP (páginas, posts EN/ES, media) → export JSON → transformación a MDX con frontmatter Zod (HTML de Elementor embebido sin convertir, iframes Icnea intactos) → rutas Astro con `getStaticPaths` que sirven cada URL exacta de producción → build estático → deploy rsync a Hestia.
 
 ## Decisiones de diseño
 
-Las decisiones de arquitectura se registran en la memoria persistente (`mem_save type=decision`).
+Las decisiones de arquitectura se registran en la memoria persistente (`mem_save type=decision`). Destacadas: URLs de producción inmutables (topic `seo/urls-inmutables`); HTML Elementor embebido en MDX para preservar el maquetado exacto; tokens extraídos del CSS real en vez de paleta nueva.

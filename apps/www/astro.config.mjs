@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 // Configuración de la app www de Caleta Suites Tenerife.
 //
@@ -22,6 +23,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    mdx(),
     tailwind({
       applyBaseStyles: false,
     }),

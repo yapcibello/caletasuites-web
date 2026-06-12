@@ -1,0 +1,1151 @@
+{
+  "generadoEl": "2026-06-12T19:26:58.478Z",
+  "fuente": "REST API por idioma (link = URL inmutable). El sitemap Yoast solo lista EN.",
+  "resumen": {
+    "total": 126,
+    "porTipo": {
+      "page": 49,
+      "post": 77
+    },
+    "porIdioma": {
+      "en": 63,
+      "es": 63
+    }
+  },
+  "urls": [
+    {
+      "id": 2354,
+      "url": "https://caletasuitestenerife.com/",
+      "path": "/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "caleta-suites-tenerife",
+      "categoria": null
+    },
+    {
+      "id": 2350,
+      "url": "https://caletasuitestenerife.com/apartments/",
+      "path": "/apartments/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "apartments",
+      "categoria": null
+    },
+    {
+      "id": 3932,
+      "url": "https://caletasuitestenerife.com/blog/",
+      "path": "/blog/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "blog",
+      "categoria": null
+    },
+    {
+      "id": 5385,
+      "url": "https://caletasuitestenerife.com/booking-conditions/",
+      "path": "/booking-conditions/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "booking-conditions",
+      "categoria": null
+    },
+    {
+      "id": 4169,
+      "url": "https://caletasuitestenerife.com/common-areas/",
+      "path": "/common-areas/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "common-areas",
+      "categoria": null
+    },
+    {
+      "id": 5363,
+      "url": "https://caletasuitestenerife.com/cookie-policy/",
+      "path": "/cookie-policy/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "cookie-policy",
+      "categoria": null
+    },
+    {
+      "id": 257,
+      "url": "https://caletasuitestenerife.com/es/",
+      "path": "/es/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "caleta-suites-tenerife",
+      "categoria": null
+    },
+    {
+      "id": 1924,
+      "url": "https://caletasuitestenerife.com/es/apartamentos/",
+      "path": "/es/apartamentos/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "apartamentos",
+      "categoria": null
+    },
+    {
+      "id": 3913,
+      "url": "https://caletasuitestenerife.com/es/aticos/",
+      "path": "/es/aticos/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "aticos",
+      "categoria": null
+    },
+    {
+      "id": 5343,
+      "url": "https://caletasuitestenerife.com/es/aviso-legal/",
+      "path": "/es/aviso-legal/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "aviso-legal",
+      "categoria": null
+    },
+    {
+      "id": 2489,
+      "url": "https://caletasuitestenerife.com/es/blog/",
+      "path": "/es/blog/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "blog",
+      "categoria": null
+    },
+    {
+      "id": 5376,
+      "url": "https://caletasuitestenerife.com/es/condiciones-de-reserva/",
+      "path": "/es/condiciones-de-reserva/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "condiciones-de-reserva",
+      "categoria": null
+    },
+    {
+      "id": 3320,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-2-hab-planta-0-vista-mar/",
+      "path": "/es/galeria-apartamento-2-hab-planta-0-vista-mar/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-2-hab-planta-0-vista-mar",
+      "categoria": null
+    },
+    {
+      "id": 1787,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-2-hab-planta-0-vista-montana/",
+      "path": "/es/galeria-apartamento-2-hab-planta-0-vista-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-2-hab-planta-0-vista-montana",
+      "categoria": null
+    },
+    {
+      "id": 3329,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-2-hab-planta-1-vista-mar/",
+      "path": "/es/galeria-apartamento-2-hab-planta-1-vista-mar/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-2-hab-planta-1-vista-mar",
+      "categoria": null
+    },
+    {
+      "id": 3308,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-2-hab-planta-1-vista-montana/",
+      "path": "/es/galeria-apartamento-2-hab-planta-1-vista-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-2-hab-planta-1-vista-montana",
+      "categoria": null
+    },
+    {
+      "id": 3344,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-3-hab-planta-1-vista-mar/",
+      "path": "/es/galeria-apartamento-3-hab-planta-1-vista-mar/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-3-hab-planta-1-vista-mar",
+      "categoria": null
+    },
+    {
+      "id": 3338,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-3-hab-planta-1-vista-montana/",
+      "path": "/es/galeria-apartamento-3-hab-planta-1-vista-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-3-hab-planta-1-vista-montana",
+      "categoria": null
+    },
+    {
+      "id": 3350,
+      "url": "https://caletasuitestenerife.com/es/galeria-apartamento-4-hab-planta-1-vista-montana/",
+      "path": "/es/galeria-apartamento-4-hab-planta-1-vista-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-apartamento-4-hab-planta-1-vista-montana",
+      "categoria": null
+    },
+    {
+      "id": 3362,
+      "url": "https://caletasuitestenerife.com/es/galeria-atico-2-hab-gran-terraza-vista-mar-y-montana/",
+      "path": "/es/galeria-atico-2-hab-gran-terraza-vista-mar-y-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-atico-2-hab-gran-terraza-vista-mar-y-montana",
+      "categoria": null
+    },
+    {
+      "id": 3356,
+      "url": "https://caletasuitestenerife.com/es/galeria-atico-2-hab-gran-terraza-vista-montana/",
+      "path": "/es/galeria-atico-2-hab-gran-terraza-vista-montana/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-atico-2-hab-gran-terraza-vista-montana",
+      "categoria": null
+    },
+    {
+      "id": 3377,
+      "url": "https://caletasuitestenerife.com/es/galeria-atico-3-hab-gran-terraza-vista-mar/",
+      "path": "/es/galeria-atico-3-hab-gran-terraza-vista-mar/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-atico-3-hab-gran-terraza-vista-mar",
+      "categoria": null
+    },
+    {
+      "id": 3489,
+      "url": "https://caletasuitestenerife.com/es/galeria-renders/",
+      "path": "/es/galeria-renders/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria-renders",
+      "categoria": null
+    },
+    {
+      "id": 3385,
+      "url": "https://caletasuitestenerife.com/es/galeria/",
+      "path": "/es/galeria/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "galeria",
+      "categoria": null
+    },
+    {
+      "id": 4947,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/",
+      "path": "/es/gastronomia/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 4888,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/",
+      "path": "/es/gastronomia/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6043,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/coctelerias-en-el-sur-de-tenerife-para-despedir-el-ano/",
+      "path": "/es/gastronomia/coctelerias-en-el-sur-de-tenerife-para-despedir-el-ano/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "coctelerias-en-el-sur-de-tenerife-para-despedir-el-ano",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5955,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/da-la-bienvenida-al-ano-nuevo-en-el-restaurante-la-vieja/",
+      "path": "/es/gastronomia/da-la-bienvenida-al-ano-nuevo-en-el-restaurante-la-vieja/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "da-la-bienvenida-al-ano-nuevo-en-el-restaurante-la-vieja",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 4869,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/",
+      "path": "/es/gastronomia/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 4743,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/",
+      "path": "/es/gastronomia/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "la-mejor-combinacion-coctel-y-atardecer-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 4716,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/",
+      "path": "/es/gastronomia/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6207,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/matisse-coffee-brunch-desayunar-y-comer-bien-sin-salir-de-la-caleta/",
+      "path": "/es/gastronomia/matisse-coffee-brunch-desayunar-y-comer-bien-sin-salir-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "matisse-coffee-brunch-desayunar-y-comer-bien-sin-salir-de-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 4224,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/",
+      "path": "/es/gastronomia/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6243,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/restaurantes-italianos-en-el-sur-de-tenerife-que-no-te-puedes-perder/",
+      "path": "/es/gastronomia/restaurantes-italianos-en-el-sur-de-tenerife-que-no-te-puedes-perder/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "restaurantes-italianos-en-el-sur-de-tenerife-que-no-te-puedes-perder",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6171,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/restaurantes-michelin-en-costa-adeje-alta-gastronomia-cerca-de-caleta-suites/",
+      "path": "/es/gastronomia/restaurantes-michelin-en-costa-adeje-alta-gastronomia-cerca-de-caleta-suites/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "restaurantes-michelin-en-costa-adeje-alta-gastronomia-cerca-de-caleta-suites",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6277,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/rooftops-en-el-sur-de-tenerife-para-disfrutar-del-atardecer/",
+      "path": "/es/gastronomia/rooftops-en-el-sur-de-tenerife-para-disfrutar-del-atardecer/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "rooftops-en-el-sur-de-tenerife-para-disfrutar-del-atardecer",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5871,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/tres-restaurantes-de-pescado-en-la-caleta-que-no-te-puedes-perder/",
+      "path": "/es/gastronomia/tres-restaurantes-de-pescado-en-la-caleta-que-no-te-puedes-perder/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "tres-restaurantes-de-pescado-en-la-caleta-que-no-te-puedes-perder",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6639,
+      "url": "https://caletasuitestenerife.com/es/gastronomia/tres-restaurantes-en-el-sur-de-tenerife-donde-disfrutar-de-comida-canaria/",
+      "path": "/es/gastronomia/tres-restaurantes-en-el-sur-de-tenerife-donde-disfrutar-de-comida-canaria/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "tres-restaurantes-en-el-sur-de-tenerife-donde-disfrutar-de-comida-canaria",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 2541,
+      "url": "https://caletasuitestenerife.com/es/la-caleta/",
+      "path": "/es/la-caleta/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "la-caleta",
+      "categoria": null
+    },
+    {
+      "id": 5864,
+      "url": "https://caletasuitestenerife.com/es/noticias-que-hacer/proximamente-en-caleta-suites-un-nuevo-workspace-para-trabajar-desde-el-paraiso/",
+      "path": "/es/noticias-que-hacer/proximamente-en-caleta-suites-un-nuevo-workspace-para-trabajar-desde-el-paraiso/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "proximamente-en-caleta-suites-un-nuevo-workspace-para-trabajar-desde-el-paraiso",
+      "categoria": "to-do-news"
+    },
+    {
+      "id": 5355,
+      "url": "https://caletasuitestenerife.com/es/politica-de-cookies/",
+      "path": "/es/politica-de-cookies/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "politica-de-cookies",
+      "categoria": null
+    },
+    {
+      "id": 3,
+      "url": "https://caletasuitestenerife.com/es/politica-de-privacidad/",
+      "path": "/es/politica-de-privacidad/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "politica-de-privacidad",
+      "categoria": null
+    },
+    {
+      "id": 4787,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/",
+      "path": "/es/que-hacer/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 4928,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/",
+      "path": "/es/que-hacer/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "3-spas-en-la-caleta-donde-encontrar-el-mejor-relax",
+      "categoria": "to-do"
+    },
+    {
+      "id": 4839,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/",
+      "path": "/es/que-hacer/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 4968,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja/",
+      "path": "/es/que-hacer/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja",
+      "categoria": "to-do"
+    },
+    {
+      "id": 4815,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/4-playas-para-descubrir-la-caleta/",
+      "path": "/es/que-hacer/4-playas-para-descubrir-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "4-playas-para-descubrir-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5986,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/alojamiento-cerca-de-tenerife-top-training/",
+      "path": "/es/que-hacer/alojamiento-cerca-de-tenerife-top-training/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "alojamiento-cerca-de-tenerife-top-training",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6615,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/aticos-en-la-caleta-terrazas-vistas-y-lujo-tranquilo-en-caleta-suites/",
+      "path": "/es/que-hacer/aticos-en-la-caleta-terrazas-vistas-y-lujo-tranquilo-en-caleta-suites/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "aticos-en-la-caleta-terrazas-vistas-y-lujo-tranquilo-en-caleta-suites",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6330,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/beach-club-en-el-sur-de-tenerife-sol-musica-y-ambiente-frente-al-mar/",
+      "path": "/es/que-hacer/beach-club-en-el-sur-de-tenerife-sol-musica-y-ambiente-frente-al-mar/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "beach-club-en-el-sur-de-tenerife-sol-musica-y-ambiente-frente-al-mar",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6226,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/carnaval-en-tenerife-tradicion-color-y-donde-alojarse-para-descansar/",
+      "path": "/es/que-hacer/carnaval-en-tenerife-tradicion-color-y-donde-alojarse-para-descansar/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "carnaval-en-tenerife-tradicion-color-y-donde-alojarse-para-descansar",
+      "categoria": "to-do"
+    },
+    {
+      "id": 4909,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/conoce-las-fiestas-tradicionales-de-la-caleta/",
+      "path": "/es/que-hacer/conoce-las-fiestas-tradicionales-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "conoce-las-fiestas-tradicionales-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6313,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/deportes-acuaticos-en-costa-adeje-mar-y-actividad-durante-todo-el-ano/",
+      "path": "/es/que-hacer/deportes-acuaticos-en-costa-adeje-mar-y-actividad-durante-todo-el-ano/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "deportes-acuaticos-en-costa-adeje-mar-y-actividad-durante-todo-el-ano",
+      "categoria": "to-do"
+    },
+    {
+      "id": 2467,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/descubre-tenerife-7-experiencias-imperdibles-para-unas-vacaciones-de-lujo/",
+      "path": "/es/que-hacer/descubre-tenerife-7-experiencias-imperdibles-para-unas-vacaciones-de-lujo/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "descubre-tenerife-7-experiencias-imperdibles-para-unas-vacaciones-de-lujo",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6625,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/dia-de-canarias-tradicion-cultura-y-gastronomia-junto-al-mar/",
+      "path": "/es/que-hacer/dia-de-canarias-tradicion-cultura-y-gastronomia-junto-al-mar/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "dia-de-canarias-tradicion-cultura-y-gastronomia-junto-al-mar",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5847,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites-2/",
+      "path": "/es/que-hacer/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites-2/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites-2",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6060,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/invierno-en-tenerife-sur-el-mejor-momento-para-viajar-y-disfrutar-de-la-caleta/",
+      "path": "/es/que-hacer/invierno-en-tenerife-sur-el-mejor-momento-para-viajar-y-disfrutar-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "invierno-en-tenerife-sur-el-mejor-momento-para-viajar-y-disfrutar-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5859,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/la-caleta-costa-adeje-el-encanto-costero-mas-exclusivo-de-tenerife-sur/",
+      "path": "/es/que-hacer/la-caleta-costa-adeje-el-encanto-costero-mas-exclusivo-de-tenerife-sur/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "la-caleta-costa-adeje-el-encanto-costero-mas-exclusivo-de-tenerife-sur",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6289,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/la-caleta-un-refugio-tranquilo-durante-la-semana-santa-en-tenerife-sur/",
+      "path": "/es/que-hacer/la-caleta-un-refugio-tranquilo-durante-la-semana-santa-en-tenerife-sur/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "la-caleta-un-refugio-tranquilo-durante-la-semana-santa-en-tenerife-sur",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6018,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/navidad-en-tenerife-tradiciones-clima-y-planes-unicos/",
+      "path": "/es/que-hacer/navidad-en-tenerife-tradiciones-clima-y-planes-unicos/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "navidad-en-tenerife-tradiciones-clima-y-planes-unicos",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5883,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/planes-en-tenerife-en-otono-para-disfrutar-cerca-de-la-caleta/",
+      "path": "/es/que-hacer/planes-en-tenerife-en-otono-para-disfrutar-cerca-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "planes-en-tenerife-en-otono-para-disfrutar-cerca-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5971,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/rutas-de-senderismo-cerca-de-la-caleta-naturaleza-y-vistas-al-atlantico/",
+      "path": "/es/que-hacer/rutas-de-senderismo-cerca-de-la-caleta-naturaleza-y-vistas-al-atlantico/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "rutas-de-senderismo-cerca-de-la-caleta-naturaleza-y-vistas-al-atlantico",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6219,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/san-valentin-en-la-caleta-una-escapada-tranquila-frente-al-mar/",
+      "path": "/es/que-hacer/san-valentin-en-la-caleta-una-escapada-tranquila-frente-al-mar/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "san-valentin-en-la-caleta-una-escapada-tranquila-frente-al-mar",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5919,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/wellness-en-costa-adeje-donde-desconectar-cuerpo-y-mente/",
+      "path": "/es/que-hacer/wellness-en-costa-adeje-donde-desconectar-cuerpo-y-mente/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "wellness-en-costa-adeje-donde-desconectar-cuerpo-y-mente",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6353,
+      "url": "https://caletasuitestenerife.com/es/que-hacer/workation-en-tenerife-teletrabajar-frente-al-mar-en-la-caleta/",
+      "path": "/es/que-hacer/workation-en-tenerife-teletrabajar-frente-al-mar-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "workation-en-tenerife-teletrabajar-frente-al-mar-en-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5469,
+      "url": "https://caletasuitestenerife.com/es/resenas/",
+      "path": "/es/resenas/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "resenas",
+      "categoria": null
+    },
+    {
+      "id": 5777,
+      "url": "https://caletasuitestenerife.com/es/to-do/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites/",
+      "path": "/es/to-do/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites/",
+      "tipo": "post",
+      "idioma": "es",
+      "slug": "golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5718,
+      "url": "https://caletasuitestenerife.com/es/work-spaces-coworking-en-tenerife/",
+      "path": "/es/work-spaces-coworking-en-tenerife/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "work-spaces-coworking-en-tenerife",
+      "categoria": null
+    },
+    {
+      "id": 4124,
+      "url": "https://caletasuitestenerife.com/es/zonas-comunes/",
+      "path": "/es/zonas-comunes/",
+      "tipo": "page",
+      "idioma": "es",
+      "slug": "zonas-comunes",
+      "categoria": null
+    },
+    {
+      "id": 3520,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-apartment-floor-0-mountain-view/",
+      "path": "/gallery-2-bedrooms-apartment-floor-0-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-apartment-floor-0-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3518,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-apartment-floor-0-sea-view/",
+      "path": "/gallery-2-bedrooms-apartment-floor-0-sea-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-apartment-floor-0-sea-view",
+      "categoria": null
+    },
+    {
+      "id": 3526,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-apartment-floor-1-mountain-view/",
+      "path": "/gallery-2-bedrooms-apartment-floor-1-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-apartment-floor-1-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3522,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-apartment-floor-1-seaview/",
+      "path": "/gallery-2-bedrooms-apartment-floor-1-seaview/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-apartment-floor-1-seaview",
+      "categoria": null
+    },
+    {
+      "id": 3544,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-penthouse-large-terrace-mountain-view/",
+      "path": "/gallery-2-bedrooms-penthouse-large-terrace-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-penthouse-large-terrace-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3540,
+      "url": "https://caletasuitestenerife.com/gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view/",
+      "path": "/gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3532,
+      "url": "https://caletasuitestenerife.com/gallery-3-bedrooms-apartment-floor-1-mountain-view/",
+      "path": "/gallery-3-bedrooms-apartment-floor-1-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-3-bedrooms-apartment-floor-1-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3528,
+      "url": "https://caletasuitestenerife.com/gallery-3-bedrooms-apartment-floor-1-seaview/",
+      "path": "/gallery-3-bedrooms-apartment-floor-1-seaview/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-3-bedrooms-apartment-floor-1-seaview",
+      "categoria": null
+    },
+    {
+      "id": 3548,
+      "url": "https://caletasuitestenerife.com/gallery-3-bedrooms-penthouse-large-terrace-seaview/",
+      "path": "/gallery-3-bedrooms-penthouse-large-terrace-seaview/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-3-bedrooms-penthouse-large-terrace-seaview",
+      "categoria": null
+    },
+    {
+      "id": 3536,
+      "url": "https://caletasuitestenerife.com/gallery-4-rooms-apartment-floor-1-mountain-view/",
+      "path": "/gallery-4-rooms-apartment-floor-1-mountain-view/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery-4-rooms-apartment-floor-1-mountain-view",
+      "categoria": null
+    },
+    {
+      "id": 3975,
+      "url": "https://caletasuitestenerife.com/gallery/",
+      "path": "/gallery/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "gallery",
+      "categoria": null
+    },
+    {
+      "id": 5103,
+      "url": "https://caletasuitestenerife.com/gastronomy/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/",
+      "path": "/gastronomy/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5109,
+      "url": "https://caletasuitestenerife.com/gastronomy/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/",
+      "path": "/gastronomy/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6029,
+      "url": "https://caletasuitestenerife.com/gastronomy/cocktail-bars-south-of-tenerife/",
+      "path": "/gastronomy/cocktail-bars-south-of-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "cocktail-bars-south-of-tenerife",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5111,
+      "url": "https://caletasuitestenerife.com/gastronomy/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/",
+      "path": "/gastronomy/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6234,
+      "url": "https://caletasuitestenerife.com/gastronomy/italian-restaurants-south-tenerife/",
+      "path": "/gastronomy/italian-restaurants-south-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "italian-restaurants-south-tenerife",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5119,
+      "url": "https://caletasuitestenerife.com/gastronomy/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/",
+      "path": "/gastronomy/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "la-mejor-combinacion-coctel-y-atardecer-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5121,
+      "url": "https://caletasuitestenerife.com/gastronomy/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/",
+      "path": "/gastronomy/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6183,
+      "url": "https://caletasuitestenerife.com/gastronomy/matisse-coffee-brunch-la-caleta/",
+      "path": "/gastronomy/matisse-coffee-brunch-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "matisse-coffee-brunch-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6138,
+      "url": "https://caletasuitestenerife.com/gastronomy/michelin-starred-restaurants-in-costa-adeje-fine-dining-near-caleta-suites/",
+      "path": "/gastronomy/michelin-starred-restaurants-in-costa-adeje-fine-dining-near-caleta-suites/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "michelin-starred-restaurants-in-costa-adeje-fine-dining-near-caleta-suites",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5951,
+      "url": "https://caletasuitestenerife.com/gastronomy/new-year-dinner-la-vieja-caleta-suites/",
+      "path": "/gastronomy/new-year-dinner-la-vieja-caleta-suites/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "new-year-dinner-la-vieja-caleta-suites",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5123,
+      "url": "https://caletasuitestenerife.com/gastronomy/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/",
+      "path": "/gastronomy/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6268,
+      "url": "https://caletasuitestenerife.com/gastronomy/rooftops-sur-tenerife-atardecer/",
+      "path": "/gastronomy/rooftops-sur-tenerife-atardecer/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "rooftops-sur-tenerife-atardecer",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 5867,
+      "url": "https://caletasuitestenerife.com/gastronomy/seafood-restaurants-in-la-caleta/",
+      "path": "/gastronomy/seafood-restaurants-in-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "seafood-restaurants-in-la-caleta",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 6627,
+      "url": "https://caletasuitestenerife.com/gastronomy/three-restaurants-in-southern-tenerife-to-enjoy-canarian-cuisine/",
+      "path": "/gastronomy/three-restaurants-in-southern-tenerife-to-enjoy-canarian-cuisine/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "three-restaurants-in-southern-tenerife-to-enjoy-canarian-cuisine",
+      "categoria": "gastronomy"
+    },
+    {
+      "id": 3503,
+      "url": "https://caletasuitestenerife.com/la-caleta/",
+      "path": "/la-caleta/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "la-caleta",
+      "categoria": null
+    },
+    {
+      "id": 5351,
+      "url": "https://caletasuitestenerife.com/legal-notice/",
+      "path": "/legal-notice/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "legal-notice",
+      "categoria": null
+    },
+    {
+      "id": 3921,
+      "url": "https://caletasuitestenerife.com/penthouses/",
+      "path": "/penthouses/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "penthouses",
+      "categoria": null
+    },
+    {
+      "id": 5129,
+      "url": "https://caletasuitestenerife.com/privacy-policy/",
+      "path": "/privacy-policy/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "privacy-policy",
+      "categoria": null
+    },
+    {
+      "id": 3552,
+      "url": "https://caletasuitestenerife.com/renders-gallery/",
+      "path": "/renders-gallery/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "renders-gallery",
+      "categoria": null
+    },
+    {
+      "id": 5442,
+      "url": "https://caletasuitestenerife.com/reviews/",
+      "path": "/reviews/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "reviews",
+      "categoria": null
+    },
+    {
+      "id": 5861,
+      "url": "https://caletasuitestenerife.com/to-do-news/new-caleta-suites-workspace-tenerife/",
+      "path": "/to-do-news/new-caleta-suites-workspace-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "new-caleta-suites-workspace-tenerife",
+      "categoria": "to-do-news"
+    },
+    {
+      "id": 5117,
+      "url": "https://caletasuitestenerife.com/to-do/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/",
+      "path": "/to-do/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5105,
+      "url": "https://caletasuitestenerife.com/to-do/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/",
+      "path": "/to-do/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "3-spas-en-la-caleta-donde-encontrar-el-mejor-relax",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5113,
+      "url": "https://caletasuitestenerife.com/to-do/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/",
+      "path": "/to-do/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5100,
+      "url": "https://caletasuitestenerife.com/to-do/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja-ingles/",
+      "path": "/to-do/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja-ingles/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja-ingles",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5115,
+      "url": "https://caletasuitestenerife.com/to-do/4-playas-para-descubrir-la-caleta/",
+      "path": "/to-do/4-playas-para-descubrir-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "4-playas-para-descubrir-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5958,
+      "url": "https://caletasuitestenerife.com/to-do/accommodation-near-tenerife-top-training-caleta-suites/",
+      "path": "/to-do/accommodation-near-tenerife-top-training-caleta-suites/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "accommodation-near-tenerife-top-training-caleta-suites",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5876,
+      "url": "https://caletasuitestenerife.com/to-do/autumn-plans-in-tenerife-la-caleta/",
+      "path": "/to-do/autumn-plans-in-tenerife-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "autumn-plans-in-tenerife-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6321,
+      "url": "https://caletasuitestenerife.com/to-do/beach-clubs-south-tenerife/",
+      "path": "/to-do/beach-clubs-south-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "beach-clubs-south-tenerife",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6620,
+      "url": "https://caletasuitestenerife.com/to-do/canary-islands-day-traditions-tenerife-meta-description/",
+      "path": "/to-do/canary-islands-day-traditions-tenerife-meta-description/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "canary-islands-day-traditions-tenerife-meta-description",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6008,
+      "url": "https://caletasuitestenerife.com/to-do/christmas-in-tenerife-south/",
+      "path": "/to-do/christmas-in-tenerife-south/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "christmas-in-tenerife-south",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5107,
+      "url": "https://caletasuitestenerife.com/to-do/conoce-las-fiestas-tradicionales-de-la-caleta/",
+      "path": "/to-do/conoce-las-fiestas-tradicionales-de-la-caleta/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "conoce-las-fiestas-tradicionales-de-la-caleta",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6345,
+      "url": "https://caletasuitestenerife.com/to-do/digital-nomads-in-tenerife/",
+      "path": "/to-do/digital-nomads-in-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "digital-nomads-in-tenerife",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5127,
+      "url": "https://caletasuitestenerife.com/to-do/discover-tenerife-luxury-experiences/",
+      "path": "/to-do/discover-tenerife-luxury-experiences/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "discover-tenerife-luxury-experiences",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6285,
+      "url": "https://caletasuitestenerife.com/to-do/easter-south-tenerife-seaside-plans/",
+      "path": "/to-do/easter-south-tenerife-seaside-plans/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "easter-south-tenerife-seaside-plans",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5823,
+      "url": "https://caletasuitestenerife.com/to-do/golf-costa-adeje-caleta-suites/",
+      "path": "/to-do/golf-costa-adeje-caleta-suites/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "golf-costa-adeje-caleta-suites",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5957,
+      "url": "https://caletasuitestenerife.com/to-do/hiking-routes-near-la-caleta-nature-and-atlantic-views/",
+      "path": "/to-do/hiking-routes-near-la-caleta-nature-and-atlantic-views/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "hiking-routes-near-la-caleta-nature-and-atlantic-views",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5852,
+      "url": "https://caletasuitestenerife.com/to-do/la-caleta-costa-adeje-coastal-charm/",
+      "path": "/to-do/la-caleta-costa-adeje-coastal-charm/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "la-caleta-costa-adeje-coastal-charm",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6599,
+      "url": "https://caletasuitestenerife.com/to-do/penthouses-in-la-caleta-caleta-suites/",
+      "path": "/to-do/penthouses-in-la-caleta-caleta-suites/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "penthouses-in-la-caleta-caleta-suites",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6222,
+      "url": "https://caletasuitestenerife.com/to-do/tenerife-carnival-where-to-stay/",
+      "path": "/to-do/tenerife-carnival-where-to-stay/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "tenerife-carnival-where-to-stay",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6209,
+      "url": "https://caletasuitestenerife.com/to-do/valentines-day-la-caleta-couples/",
+      "path": "/to-do/valentines-day-la-caleta-couples/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "valentines-day-la-caleta-couples",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6308,
+      "url": "https://caletasuitestenerife.com/to-do/water-sports-costa-adeje/",
+      "path": "/to-do/water-sports-costa-adeje/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "water-sports-costa-adeje",
+      "categoria": "to-do"
+    },
+    {
+      "id": 5901,
+      "url": "https://caletasuitestenerife.com/to-do/wellness-in-costa-adeje-to-disconnect-body-and-mind/",
+      "path": "/to-do/wellness-in-costa-adeje-to-disconnect-body-and-mind/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "wellness-in-costa-adeje-to-disconnect-body-and-mind",
+      "categoria": "to-do"
+    },
+    {
+      "id": 6053,
+      "url": "https://caletasuitestenerife.com/to-do/winter-in-south-tenerife/",
+      "path": "/to-do/winter-in-south-tenerife/",
+      "tipo": "post",
+      "idioma": "en",
+      "slug": "winter-in-south-tenerife",
+      "categoria": "to-do"
+    },
+    {
+      "id": 3936,
+      "url": "https://caletasuitestenerife.com/under-construction/",
+      "path": "/under-construction/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "under-construction",
+      "categoria": null
+    },
+    {
+      "id": 5706,
+      "url": "https://caletasuitestenerife.com/work-spaces-coworking-in-tenerife/",
+      "path": "/work-spaces-coworking-in-tenerife/",
+      "tipo": "page",
+      "idioma": "en",
+      "slug": "work-spaces-coworking-in-tenerife",
+      "categoria": null
+    }
+  ]
+}
