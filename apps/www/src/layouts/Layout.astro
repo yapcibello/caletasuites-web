@@ -78,6 +78,45 @@ const jsonLd = {
     {/* JSON-LD LodgingBusiness */}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
+    {/*
+      Hojas de estilo del tema WordPress (archub + kit Elementor), servidas desde
+      /wp-assets/css/. ORDEN DE CARGA (la cascada importa para fidelidad visual):
+        1. Fuentes web (definen @font-face que el resto referencia).
+        2. Iconos (FontAwesome + Elementor icons): glyphs usados por header/footer.
+        3. Tema base (archub-style) y tipografía del tema.
+        4. Child theme (archub-child-style): overrides del tema base.
+        5. Base Elementor (elementor-custom-frontend) y utilidades (bootstrap, lqd).
+        6. Widgets Elementor concretos (heading, image, divider, social-icons).
+        7. theme-elementor.css: CSS compilado por página de Elementor (último, gana
+           sobre los anteriores por especificidad/orden — replica el sitio en vivo).
+    */}
+    {/* 1. Fuentes */}
+    <link rel="stylesheet" href="/wp-assets/css/font-bevietnampro.css" />
+    <link rel="stylesheet" href="/wp-assets/css/font-dmserifdisplay.css" />
+    <link rel="stylesheet" href="/wp-assets/css/font-librebaskerville.css" />
+    <link rel="stylesheet" href="/wp-assets/css/font-montserrat.css" />
+    <link rel="stylesheet" href="/wp-assets/css/font-sourceserif4.css" />
+    {/* 2. Iconos */}
+    <link rel="stylesheet" href="/wp-assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="/wp-assets/css/fontawesome-brands.css" />
+    <link rel="stylesheet" href="/wp-assets/css/elementor-icons.css" />
+    {/* 3. Tema base + tipografía del tema */}
+    <link rel="stylesheet" href="/wp-assets/css/archub-style.css" />
+    <link rel="stylesheet" href="/wp-assets/css/archub-typography.css" />
+    {/* 4. Child theme (overrides del tema base) */}
+    <link rel="stylesheet" href="/wp-assets/css/archub-child-style.css" />
+    {/* 5. Base Elementor + utilidades */}
+    <link rel="stylesheet" href="/wp-assets/css/elementor-custom-frontend.css" />
+    <link rel="stylesheet" href="/wp-assets/css/bootstrap-optimize.css" />
+    <link rel="stylesheet" href="/wp-assets/css/lqd-essentials.css" />
+    {/* 6. Widgets Elementor */}
+    <link rel="stylesheet" href="/wp-assets/css/elementor-widget-heading.css" />
+    <link rel="stylesheet" href="/wp-assets/css/elementor-widget-image.css" />
+    <link rel="stylesheet" href="/wp-assets/css/elementor-widget-divider.css" />
+    <link rel="stylesheet" href="/wp-assets/css/elementor-widget-social-icons.css" />
+    {/* 7. CSS compilado por página de Elementor (último por cascada). */}
+    <link rel="stylesheet" href="/wp-assets/css/theme-elementor.css" />
+
     {/* Google Tag Manager (placeholder vía import.meta.env.PUBLIC_GTM_ID) */}
     {gtmId && (
       <script is:inline define:vars={{ gtmId }}>

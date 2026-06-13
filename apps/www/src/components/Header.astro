@@ -1,24 +1,51 @@
 ---
-// Header de Caleta Suites — esqueleto AAA.
-// Incluye skip link (salto al contenido principal) para accesibilidad de teclado.
-// El diseño real (logo, layout) se replicará del tema WordPress en la migración.
-import Navbar from './Navbar.astro';
+// Header global de Caleta Suites — chrome real extraído del tema WordPress (archub + Elementor).
+//
+// El markup completo (logo, navegación, selector de idioma WPML) vive en
+// _chrome/header-{en,es}.html y se inyecta con set:html. Se importa el HTML crudo
+// vía import.meta.glob(?raw, eager) — mismo patrón robusto que usan index.astro y
+// [...ruta].astro para el contenido de Elementor.
+//
+// REGLA INNEGOCIABLE: las URLs de navegación son inmutables. NO se tocan los href
+// del menú; solo se normalizan, de forma defensiva, posibles URLs absolutas de
+// assets (uploads) al dominio local /wp-content/...
+import { fixUrlsChrome } from '../utils/chrome';
+
 interface Props {
   /** Idioma activo: 'en' (raíz) | 'es' (/es/). */
   lang?: 'en' | 'es';
 }
 const { lang = 'en' } = Astro.props;
-const base = lang === 'es' ? '/es/' : '/';
+
+// HTML crudo del chrome (eager para que esté disponible en build estático).
+const headersRaw = import.meta.glob('./_chrome/header-*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+// Selección por idioma a partir de la clave del glob (./_chrome/header-en.html).
+const claveHeader = lang === 'es' ? 'header-es' : 'header-en';
+const entradaHeader = Object.entries(headersRaw).find(([ruta]) => ruta.includes(claveHeader));
+if (!entradaHeader) {
+  throw new Error(`No se encontró el chrome del header para idioma="${lang}" (${claveHeader}).`);
+}
+
+// Normaliza URLs absolutas de assets a rutas locales (defensivo) y añade el
+// aria-label que falta al contenedor de navegación (role="navigation") para AAA.
+const etiquetaNav = lang === 'es' ? 'Navegación principal' : 'Main navigation';
+let htmlHeader = fixUrlsChrome(entradaHeader[1]);
+htmlHeader = htmlHeader.replace(
+  /(<div[^>]*\brole="navigation"(?![^>]*aria-label))/,
+  `$1 aria-label="${etiquetaNav}"`,
+);
+
+// Texto del skip link según idioma.
 const saltarTexto = lang === 'es' ? 'Saltar al contenido principal' : 'Skip to main content';
 ---
 
-{/* Skip link: visible solo al recibir foco (estilos en global.css). */}
+{/* Skip link: visible solo al recibir foco (estilos en global.css). Salta al landmark del contenido. */}
 <a href="#contenido-principal" class="skip-link">{saltarTexto}</a>
 
-<header>
-  <a href={base} aria-label={lang === 'es' ? 'Caleta Suites Tenerife — inicio' : 'Caleta Suites Tenerife — home'}>
-    {/* TODO F-Migra: sustituir por el logo real del tema WordPress. */}
-    <span>Caleta Suites Tenerife</span>
-  </a>
-  <Navbar lang={lang} />
-</header>
+{/* Chrome real del header (incluye su propio <header> landmark con menú y selector de idioma). */}
+<Fragment set:html={htmlHeader} />
