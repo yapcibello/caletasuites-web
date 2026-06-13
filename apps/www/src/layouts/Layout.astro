@@ -188,6 +188,21 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
     {/* 7. CSS compilado por página de Elementor (último por cascada). */}
     <link rel="stylesheet" href="/wp-assets/css/theme-elementor.css" />
 
+    {/*
+      Consent Mode v2 (RGPD) — DEBE cargarse ANTES del snippet GTM.
+      Inicializa dataLayer y fija el consent por defecto en 'denied' para
+      analytics/ads (sitio UE/España). GTM y GA4 (dentro del contenedor) respetan
+      este estado: con analytics_storage='denied' GA4 envía pings sin cookies
+      (datos modelados). El paso a 'granted' lo dispara el CMP/banner de cookies
+      cuando el usuario acepta — ver window.caletaConsentGranted() en analytics.ts.
+      'wait_for_update': 500 da margen al CMP para actualizar antes del primer hit.
+    */}
+    {gtmId && (
+      <script is:inline>
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','personalization_storage':'denied','security_storage':'granted','wait_for_update':500});`}
+      </script>
+    )}
+
     {/* Google Tag Manager (placeholder vía import.meta.env.PUBLIC_GTM_ID) */}
     {gtmId && (
       <script is:inline define:vars={{ gtmId }}>
@@ -213,5 +228,12 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
       <slot />
     </main>
     <Footer lang={lang} />
+
+    {/*
+      Listeners de eventos GA4 (reserva_click / contact_click) — script de cliente
+      no intrusivo, NO altera el DOM visible. Solo se incluye si hay GTM configurado.
+      Astro lo bundlea y carga diferido (type=module). Ver src/scripts/analytics.ts.
+    */}
+    {gtmId && <script>import '../scripts/analytics.ts';</script>}
   </body>
 </html>
