@@ -1,0 +1,85 @@
+---
+// Ruta catch-all de la migración WP -> Astro.
+//
+// REGLA INNEGOCIABLE: las URLs de producción son inmutables. Cada entrada de las
+// tres colecciones (apartamentos, paginas, posts) declara en su frontmatter el
+// campo `path` con el pathname EXACTO de producción (con trailing slash). Aquí
+// derivamos el slug de Astro a partir de ese `path` y NUNCA lo modificamos.
+//
+// Por que catch-all manual y no el enrutado i18n automatico de Astro:
+//   - El campo `path` ya contiene la URL completa, incluido el prefijo `/es/`
+//     donde corresponde. No necesitamos que Astro derive el prefijo de idioma.
+//   - El i18n nativo (prefixDefaultLocale:false) solo afecta a helpers de URL y a
+//     paginas .astro fisicas; NO genera estas paginas dinamicas. Manejarlo a mano
+//     con un unico catch-all garantiza que dist/<path>/index.html caiga EXACTO en
+//     el `path` del inventario, sin sorpresas de reescritura por locale.
+//   - La home (`path: "/"`) se sirve desde src/pages/index.astro (EN). Para evitar
+//     la colision de rutas, este catch-all EXCLUYE la entrada con path "/".
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// HTML crudo de Elementor (uploads ya reescritos a /wp-content/uploads/...).
+// Se casa por rawKey: la clave coincide con el nombre del fichero sin extension.
+const htmlPorRuta = import.meta.glob('../content/_raw/**/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+// Construye un indice rawKey -> HTML a partir de las rutas del glob.
+const htmlPorRawKey: Record<string, string> = {};
+for (const [ruta, html] of Object.entries(htmlPorRuta)) {
+  // ../content/_raw/<coleccion>/<rawKey>.html -> <rawKey>
+  const rawKey = ruta.split('/').pop()!.replace(/\.html$/, '');
+  htmlPorRawKey[rawKey] = html as string;
+}
+
+export async function getStaticPaths() {
+  // Itera las tres colecciones y unifica sus entradas para el routing.
+  const [apartamentos, paginas, posts] = await Promise.all([
+    getCollection('apartamentos'),
+    getCollection('paginas'),
+    getCollection('posts'),
+  ]);
+  const entradas = [...apartamentos, ...paginas, ...posts];
+
+  return entradas
+    // La home (path "/") la sirve index.astro -> se excluye del catch-all.
+    .filter((entrada) => entrada.data.path !== '/')
+    .map((entrada) => {
+      // Slug de Astro: el `path` inmutable sin slash inicial ni final.
+      // Ej.: "/es/galeria/" -> "es/galeria"; "/apartments/" -> "apartments".
+      const ruta = entrada.data.path.replace(/^\/+/, '').replace(/\/+$/, '');
+      return {
+        params: { ruta },
+        props: {
+          rawKey: entrada.data.rawKey,
+          title: entrada.data.title,
+          // Solo `paginas` y `posts` declaran `descripcion`; en apartamentos es undefined.
+          descripcion: 'descripcion' in entrada.data ? entrada.data.descripcion : undefined,
+          idioma: entrada.data.idioma,
+        },
+      };
+    });
+}
+
+interface Props {
+  rawKey: string;
+  title: string;
+  descripcion?: string;
+  idioma: 'en' | 'es';
+}
+
+const { rawKey, title, descripcion, idioma } = Astro.props as Props;
+
+// HTML crudo de la entrada. Si falta, es un error de datos (paramos el build).
+const html = htmlPorRawKey[rawKey];
+if (html === undefined) {
+  throw new Error(`No se encontro el HTML crudo para rawKey="${rawKey}" en _raw/.`);
+}
+---
+
+<Layout title={title} description={descripcion} lang={idioma}>
+  {/* Inyeccion del HTML migrado de Elementor (incluye iframes Icnea intactos). */}
+  <div set:html={html} />
+</Layout>

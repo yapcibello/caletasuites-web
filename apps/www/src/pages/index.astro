@@ -1,15 +1,38 @@
 ---
-// Página de inicio (EN, raíz) — skeleton.
-// El maquetado real se construirá replicando la home de caletasuitestenerife.com
-// en la fase de migración (réplica visual exacta, sin rediseño).
+// Home EN (path "/") de la migracion WP -> Astro.
+//
+// REGLA INNEGOCIABLE: path inmutable "/". La home se sirve aqui (y no desde el
+// catch-all [...ruta].astro, que la excluye) para evitar colision de rutas.
+// Renderiza el HTML crudo migrado de la home, no un placeholder.
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { siteConfig } from '../utils/siteConfig';
+
+// HTML crudo de Elementor (uploads ya reescritos). Mismo patron que el catch-all.
+const htmlPorRuta = import.meta.glob('../content/_raw/**/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const htmlPorRawKey: Record<string, string> = {};
+for (const [ruta, html] of Object.entries(htmlPorRuta)) {
+  const rawKey = ruta.split('/').pop()!.replace(/\.html$/, '');
+  htmlPorRawKey[rawKey] = html as string;
+}
+
+// Localiza la entrada de la home EN por su path inmutable "/".
+const paginas = await getCollection('paginas');
+const home = paginas.find((p) => p.data.path === '/');
+if (!home) {
+  throw new Error('No se encontro la entrada de la home (path "/") en la coleccion paginas.');
+}
+
+const html = htmlPorRawKey[home.data.rawKey];
+if (html === undefined) {
+  throw new Error(`No se encontro el HTML crudo para la home (rawKey="${home.data.rawKey}").`);
+}
 ---
 
-<Layout title={siteConfig.title} lang="en">
-  <section>
-    <h1>{siteConfig.name}</h1>
-    {/* TODO F-Migra: replicar el contenido real de la home WordPress. */}
-    <p>{siteConfig.description}</p>
-  </section>
+<Layout title={home.data.title} description={home.data.descripcion} lang={home.data.idioma}>
+  {/* Inyeccion del HTML migrado de la home (incluye iframes Icnea si los hubiera). */}
+  <div set:html={html} />
 </Layout>

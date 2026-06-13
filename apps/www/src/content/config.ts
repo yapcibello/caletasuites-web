@@ -13,7 +13,10 @@ const apartamentos = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
+    // Slug WPML de producción. Se llama `wpSlug` (no `slug`) porque en Astro 5 el
+    // campo `slug` está RESERVADO para colecciones `type: 'content'` y no puede
+    // declararse en el schema de usuario.
+    wpSlug: z.string(),
     // Pathname de producción INMUTABLE (con trailing slash). Fuente de verdad del
     // routing: el slug WPML no basta (la home usa slug propio pero path '/'). Es el
     // `link` REST normalizado y NUNCA se deriva ni modifica.
@@ -36,7 +39,8 @@ const paginas = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
+    // Slug WPML de producción — ver nota en apartamentos (campo reservado en Astro 5).
+    wpSlug: z.string(),
     // Pathname de producción INMUTABLE (con trailing slash) — ver nota en apartamentos.
     path: z.string(),
     // Clave del fichero HTML crudo de Elementor en src/content/_raw/paginas/<rawKey>.html.
@@ -51,7 +55,8 @@ const posts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
+    // Slug WPML de producción — ver nota en apartamentos (campo reservado en Astro 5).
+    wpSlug: z.string(),
     // Pathname de producción INMUTABLE (con trailing slash) — ver nota en apartamentos.
     path: z.string(),
     categoria: z.enum(['to-do', 'gastronomy', 'to-do-news']),

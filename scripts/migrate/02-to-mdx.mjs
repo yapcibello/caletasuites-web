@@ -26,6 +26,18 @@ const RAW = join(CONTENT, '_raw');
 
 const cargar = (f) => JSON.parse(readFileSync(join(TMP, f), 'utf-8'));
 
+// Inventario de URLs: fuente de verdad INMUTABLE del `path` de producción. Se cruza
+// por `id` de WP. Si una entrada no estuviera en el inventario, caemos a pathConSlash.
+const INVENTARIO = JSON.parse(
+  readFileSync(join(__dir, 'inventario-urls.json'), 'utf-8'),
+).urls;
+const PATH_POR_ID = new Map(INVENTARIO.map((u) => [u.id, u.path]));
+
+/** Path inmutable: prioriza el inventario (por id), fallback al `link` REST. */
+function pathInmutable(item) {
+  return PATH_POR_ID.get(item.id) || pathConSlash(item.link);
+}
+
 // --- helpers -------------------------------------------------------------
 
 /** Decodifica entidades HTML básicas para títulos/descripciones del frontmatter. */
@@ -119,8 +131,8 @@ function frontmatterApto(item) {
   const galeria = extraerGaleria(item.content.rendered);
   const lines = [
     `title: ${yaml(decode(item.title.rendered))}`,
-    `slug: ${yaml(slug)}`,
-    `path: ${yaml(pathConSlash(item.link))}`,
+    `wpSlug: ${yaml(slug)}`,
+    `path: ${yaml(pathInmutable(item))}`,
     `dormitorios: ${meta.dormitorios}`,
     `planta: ${yaml(meta.planta)}`,
     `vista: ${yaml(meta.vista)}`,
@@ -136,8 +148,8 @@ function frontmatterApto(item) {
 function frontmatterPagina(item) {
   return [
     `title: ${yaml(decode(item.title.rendered))}`,
-    `slug: ${yaml(item.slug)}`,
-    `path: ${yaml(pathConSlash(item.link))}`,
+    `wpSlug: ${yaml(item.slug)}`,
+    `path: ${yaml(pathInmutable(item))}`,
     `idioma: ${yaml(idiomaDeUrl(item.link))}`,
     `descripcion: ${yaml(textoExcerpt(item.excerpt?.rendered || item.yoast_head_json?.description || ''))}`,
   ].join('\n');
@@ -148,8 +160,8 @@ function frontmatterPost(item, media) {
   const hero = heroLocal(media, item.featured_media);
   const lines = [
     `title: ${yaml(decode(item.title.rendered))}`,
-    `slug: ${yaml(item.slug)}`,
-    `path: ${yaml(pathConSlash(item.link))}`,
+    `wpSlug: ${yaml(item.slug)}`,
+    `path: ${yaml(pathInmutable(item))}`,
     `categoria: ${yaml(cat)}`,
     `fecha: ${item.date.slice(0, 10)}`,
     `idioma: ${yaml(idiomaDeUrl(item.link))}`,
