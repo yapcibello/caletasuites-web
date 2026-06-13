@@ -4,49 +4,81 @@
 // Incluye: GTM (placeholder vía import.meta.env), JSON-LD LodgingBusiness,
 // meta OG/Twitter, canonical, lang dinámico EN/ES.
 import { siteConfig } from '../utils/siteConfig';
+import { lodgingBusiness } from '@caletasuites/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
-  /** Título de la página (se compone con la marca). */
+  /**
+   * Título visible de la página (<title>). Usa el seoTitle de Yoast si existe;
+   * si no, se compone arriba a partir del title genérico + la marca.
+   */
   title: string;
-  /** Meta description de la página. */
+  /** Meta description de la página. Fallback al genérico solo si falta. */
   description?: string;
   /** Idioma de la página: 'en' (raíz) | 'es' (/es/). */
   lang?: 'en' | 'es';
   /** Imagen para Open Graph / Twitter (ruta absoluta o relativa al sitio). */
   ogImage?: string;
+  /**
+   * Pathname de la traducción del otro idioma (hreflang). Si falta, la página solo
+   * declara su alternate self + x-default.
+   */
+  altPath?: string;
+  /** Bloques JSON-LD adicionales por página (Apartment, BlogPosting, BreadcrumbList…). */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title,
   description = siteConfig.description,
   lang = 'en',
-  ogImage = '/favicon.svg',
+  ogImage = siteConfig.defaultOgImage,
+  altPath,
+  jsonLd: jsonLdExtra = [],
 } = Astro.props;
 
 // GTM ID desde el .env de la app (placeholder GTM-XXXXXX en .env.example).
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 
-// Canonical: URL absoluta de la página actual (con trailing slash, regla inmutable).
+// Canonical: URL absoluta self-referencial de la página actual (con trailing slash,
+// regla inmutable). Astro.url.pathname ya respeta trailingSlash 'always'.
 const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 const ogImageUrl = new URL(ogImage, siteConfig.url).href;
 
-// JSON-LD LodgingBusiness para Caleta Suites (La Caleta, Adeje, Tenerife).
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LodgingBusiness',
-  name: siteConfig.name,
-  description: siteConfig.description,
+// --- hreflang ----------------------------------------------------------------
+// Cada página declara su propio alternate (self) y, si tiene par de traducción,
+// el del otro idioma. x-default apunta SIEMPRE al inglés:
+//   - si esta página es EN → x-default = self (canonical).
+//   - si esta página es ES → x-default = su par EN (altPath), si lo hay.
+const urlAlt = altPath ? new URL(altPath, siteConfig.url).href : null;
+
+// Construye la lista de alternates (idioma → URL) sin duplicar.
+const alternates: { hreflang: string; href: string }[] = [
+  { hreflang: lang, href: canonical },
+];
+if (urlAlt) {
+  alternates.push({ hreflang: lang === 'es' ? 'en' : 'es', href: urlAlt });
+}
+// x-default = la URL EN del par. Si esta página es EN, es la propia; si es ES, es altPath.
+const xDefault = lang === 'en' ? canonical : urlAlt;
+
+// --- JSON-LD -----------------------------------------------------------------
+// LodgingBusiness site-wide (todas las páginas) + bloques específicos por página.
+const lodging = lodgingBusiness({
+  nombre: siteConfig.name,
+  descripcion: siteConfig.description,
   url: siteConfig.url,
-  address: {
-    '@type': 'PostalAddress',
+  imagen: new URL(siteConfig.logo, siteConfig.url).href,
+  direccion: {
     addressLocality: siteConfig.location.locality,
     addressRegion: siteConfig.location.region,
     addressCountry: siteConfig.location.country,
   },
-};
+  sameAs: siteConfig.sameAs as unknown as string[],
+});
+const bloquesJsonLd = [lodging, ...jsonLdExtra];
 ---
 
 <!doctype html>
@@ -59,6 +91,12 @@ const jsonLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* hreflang: self + par de traducción (si existe) + x-default = inglés. */}
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
 
     {/* Open Graph */}
     <meta property="og:type" content="website" />
@@ -75,8 +113,10 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    {/* JSON-LD LodgingBusiness */}
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+    {/* JSON-LD: LodgingBusiness site-wide + bloques específicos de cada página. */}
+    {bloquesJsonLd.map((bloque) => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} is:inline />
+    ))}
 
     {/*
       Hojas de estilo del tema WordPress (archub + kit Elementor), servidas desde

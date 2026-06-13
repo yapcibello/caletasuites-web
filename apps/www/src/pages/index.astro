@@ -32,7 +32,13 @@ if (html === undefined) {
 }
 ---
 
-<Layout title={home.data.title} description={home.data.descripcion} lang={home.data.idioma}>
+<Layout
+  title={home.data.seoTitle ?? home.data.title}
+  description={home.data.seoDescription ?? home.data.descripcion}
+  lang={home.data.idioma}
+  ogImage={home.data.ogImage}
+  altPath={home.data.altPath}
+>
   {/* Inyeccion del HTML migrado de la home (incluye iframes Icnea si los hubiera). */}
   <div set:html={html} />
 </Layout>

@@ -17,6 +17,8 @@
 //     la colision de rutas, este catch-all EXCLUYE la entrada con path "/".
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../utils/siteConfig';
+import { apartment, blogPosting, breadcrumbList } from '@caletasuites/seo';
 
 // HTML crudo de Elementor (uploads ya reescritos a /wp-content/uploads/...).
 // Se casa por rawKey: la clave coincide con el nombre del fichero sin extension.
@@ -43,6 +45,12 @@ export async function getStaticPaths() {
   ]);
   const entradas = [...apartamentos, ...paginas, ...posts];
 
+  // Determina la colección de cada entrada para poder generar el JSON-LD correcto.
+  const colDe = new Map<unknown, 'apartamentos' | 'paginas' | 'posts'>();
+  for (const e of apartamentos) colDe.set(e, 'apartamentos');
+  for (const e of paginas) colDe.set(e, 'paginas');
+  for (const e of posts) colDe.set(e, 'posts');
+
   return entradas
     // La home (path "/") la sirve index.astro -> se excluye del catch-all.
     .filter((entrada) => entrada.data.path !== '/')
@@ -50,14 +58,28 @@ export async function getStaticPaths() {
       // Slug de Astro: el `path` inmutable sin slash inicial ni final.
       // Ej.: "/es/galeria/" -> "es/galeria"; "/apartments/" -> "apartments".
       const ruta = entrada.data.path.replace(/^\/+/, '').replace(/\/+$/, '');
+      const d = entrada.data as Record<string, unknown>;
       return {
         params: { ruta },
         props: {
-          rawKey: entrada.data.rawKey,
-          title: entrada.data.title,
+          rawKey: d.rawKey as string,
+          title: d.title as string,
           // Solo `paginas` y `posts` declaran `descripcion`; en apartamentos es undefined.
-          descripcion: 'descripcion' in entrada.data ? entrada.data.descripcion : undefined,
-          idioma: entrada.data.idioma,
+          descripcion: 'descripcion' in d ? (d.descripcion as string) : undefined,
+          idioma: d.idioma as 'en' | 'es',
+          path: d.path as string,
+          coleccion: colDe.get(entrada)!,
+          // Campos SEO de Yoast (pueden faltar; fallback en el Layout/JSON-LD).
+          seoTitle: d.seoTitle as string | undefined,
+          seoDescription: d.seoDescription as string | undefined,
+          ogImage: d.ogImage as string | undefined,
+          altPath: d.altPath as string | undefined,
+          // Campos específicos de colección para el JSON-LD por tipo.
+          dormitorios: d.dormitorios as number | undefined,
+          planta: d.planta as string | undefined,
+          vista: d.vista as string | undefined,
+          heroImage: d.heroImage as string | undefined,
+          fecha: d.fecha as Date | undefined,
         },
       };
     });
@@ -68,18 +90,101 @@ interface Props {
   title: string;
   descripcion?: string;
   idioma: 'en' | 'es';
+  path: string;
+  coleccion: 'apartamentos' | 'paginas' | 'posts';
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImage?: string;
+  altPath?: string;
+  dormitorios?: number;
+  planta?: string;
+  vista?: string;
+  heroImage?: string;
+  fecha?: Date;
 }
 
-const { rawKey, title, descripcion, idioma } = Astro.props as Props;
+const {
+  rawKey,
+  title,
+  descripcion,
+  idioma,
+  path,
+  coleccion,
+  seoTitle,
+  seoDescription,
+  ogImage,
+  altPath,
+  dormitorios,
+  planta,
+  vista,
+  heroImage,
+  fecha,
+} = Astro.props as Props;
 
 // HTML crudo de la entrada. Si falta, es un error de datos (paramos el build).
 const html = htmlPorRawKey[rawKey];
 if (html === undefined) {
   throw new Error(`No se encontro el HTML crudo para rawKey="${rawKey}" en _raw/.`);
 }
+
+// URL absoluta self-referencial de esta entrada (para los builders JSON-LD).
+const urlAbs = new URL(path, siteConfig.url).href;
+
+// Imagen absoluta para el JSON-LD (ogImage de Yoast o heroImage; pueden faltar).
+const imagenAbs = (() => {
+  const img = ogImage ?? heroImage;
+  return img ? new URL(img, siteConfig.url).href : undefined;
+})();
+
+// --- JSON-LD por tipo de colección -------------------------------------------
+const bloquesJsonLd: Record<string, unknown>[] = [];
+
+if (coleccion === 'apartamentos' && dormitorios !== undefined && planta && vista) {
+  // Apartment + BreadcrumbList (Inicio -> Apartamentos -> Unidad).
+  const apartamentosUrl = idioma === 'es' ? '/es/apartamentos/' : '/apartments/';
+  bloquesJsonLd.push(
+    apartment({
+      nombre: title,
+      url: urlAbs,
+      imagen: imagenAbs,
+      dormitorios,
+      planta,
+      vista,
+    }),
+    breadcrumbList([
+      { nombre: idioma === 'es' ? 'Inicio' : 'Home', url: new URL(idioma === 'es' ? '/es/' : '/', siteConfig.url).href },
+      { nombre: idioma === 'es' ? 'Apartamentos' : 'Apartments', url: new URL(apartamentosUrl, siteConfig.url).href },
+      { nombre: title, url: urlAbs },
+    ]),
+  );
+} else if (coleccion === 'posts') {
+  // BlogPosting + BreadcrumbList (Inicio -> Blog -> Artículo).
+  const blogUrl = idioma === 'es' ? '/es/blog/' : '/blog/';
+  bloquesJsonLd.push(
+    blogPosting({
+      titular: title,
+      url: urlAbs,
+      imagen: imagenAbs,
+      fechaPublicacion: fecha ? fecha.toISOString().slice(0, 10) : '',
+      descripcion: seoDescription ?? descripcion,
+    }),
+    breadcrumbList([
+      { nombre: idioma === 'es' ? 'Inicio' : 'Home', url: new URL(idioma === 'es' ? '/es/' : '/', siteConfig.url).href },
+      { nombre: 'Blog', url: new URL(blogUrl, siteConfig.url).href },
+      { nombre: title, url: urlAbs },
+    ]),
+  );
+}
 ---
 
-<Layout title={title} description={descripcion} lang={idioma}>
+<Layout
+  title={seoTitle ?? title}
+  description={seoDescription ?? descripcion}
+  lang={idioma}
+  ogImage={ogImage}
+  altPath={altPath}
+  jsonLd={bloquesJsonLd}
+>
   {/* Inyeccion del HTML migrado de Elementor (incluye iframes Icnea intactos). */}
   <div set:html={html} />
 </Layout>

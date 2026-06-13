@@ -30,6 +30,20 @@ export const siteConfig = {
     geoRegion: 'ES-CN',
   },
 
+  // Perfiles sociales propios (sameAs del JSON-LD). Extraídos del footer real del
+  // tema WordPress (_chrome/footer-*.html). Solo perfiles oficiales del negocio.
+  sameAs: [
+    'https://www.facebook.com/caletasuitestenerife',
+    'https://www.instagram.com/caletasuitestenerife/',
+  ],
+
+  // Logo oficial de marca (logo del JSON-LD LodgingBusiness).
+  logo: '/wp-content/uploads/2022/03/caltea-suites-logo-retina.webp',
+
+  // Imagen por defecto para Open Graph (fallback site-wide cuando una página no
+  // declara ogImage propio de Yoast).
+  defaultOgImage: '/wp-content/uploads/2024/03/apto-09-2.webp',
+
   // Analytics — GA4 existente (propiedad 423687681), conectado vía contenedor GTM.
   // El ID de GTM se inyecta desde apps/www/.env (PUBLIC_GTM_ID).
   analytics: {

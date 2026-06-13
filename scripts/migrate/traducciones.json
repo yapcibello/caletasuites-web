@@ -1,0 +1,504 @@
+{
+  "/": {
+    "idioma": "en",
+    "altPath": "/es/"
+  },
+  "/apartments/": {
+    "idioma": "en",
+    "altPath": "/es/apartamentos/"
+  },
+  "/blog/": {
+    "idioma": "en",
+    "altPath": "/es/blog/"
+  },
+  "/booking-conditions/": {
+    "idioma": "en",
+    "altPath": "/es/condiciones-de-reserva/"
+  },
+  "/common-areas/": {
+    "idioma": "en",
+    "altPath": "/es/zonas-comunes/"
+  },
+  "/cookie-policy/": {
+    "idioma": "en",
+    "altPath": "/es/politica-de-cookies/"
+  },
+  "/es/": {
+    "idioma": "es",
+    "altPath": "/"
+  },
+  "/es/apartamentos/": {
+    "idioma": "es",
+    "altPath": "/apartments/"
+  },
+  "/es/aticos/": {
+    "idioma": "es",
+    "altPath": "/penthouses/"
+  },
+  "/es/aviso-legal/": {
+    "idioma": "es",
+    "altPath": "/legal-notice/"
+  },
+  "/es/blog/": {
+    "idioma": "es",
+    "altPath": "/blog/"
+  },
+  "/es/condiciones-de-reserva/": {
+    "idioma": "es",
+    "altPath": "/booking-conditions/"
+  },
+  "/es/galeria-apartamento-2-hab-planta-0-vista-mar/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-apartment-floor-0-sea-view/"
+  },
+  "/es/galeria-apartamento-2-hab-planta-0-vista-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-apartment-floor-0-mountain-view/"
+  },
+  "/es/galeria-apartamento-2-hab-planta-1-vista-mar/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-apartment-floor-1-seaview/"
+  },
+  "/es/galeria-apartamento-2-hab-planta-1-vista-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-apartment-floor-1-mountain-view/"
+  },
+  "/es/galeria-apartamento-3-hab-planta-1-vista-mar/": {
+    "idioma": "es",
+    "altPath": "/gallery-3-bedrooms-apartment-floor-1-seaview/"
+  },
+  "/es/galeria-apartamento-3-hab-planta-1-vista-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-3-bedrooms-apartment-floor-1-mountain-view/"
+  },
+  "/es/galeria-apartamento-4-hab-planta-1-vista-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-4-rooms-apartment-floor-1-mountain-view/"
+  },
+  "/es/galeria-atico-2-hab-gran-terraza-vista-mar-y-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view/"
+  },
+  "/es/galeria-atico-2-hab-gran-terraza-vista-montana/": {
+    "idioma": "es",
+    "altPath": "/gallery-2-bedrooms-penthouse-large-terrace-mountain-view/"
+  },
+  "/es/galeria-atico-3-hab-gran-terraza-vista-mar/": {
+    "idioma": "es",
+    "altPath": "/gallery-3-bedrooms-penthouse-large-terrace-seaview/"
+  },
+  "/es/galeria-renders/": {
+    "idioma": "es",
+    "altPath": "/renders-gallery/"
+  },
+  "/es/galeria/": {
+    "idioma": "es",
+    "altPath": "/gallery/"
+  },
+  "/es/gastronomia/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/"
+  },
+  "/es/gastronomia/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/"
+  },
+  "/es/gastronomia/coctelerias-en-el-sur-de-tenerife-para-despedir-el-ano/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/cocktail-bars-south-of-tenerife/"
+  },
+  "/es/gastronomia/da-la-bienvenida-al-ano-nuevo-en-el-restaurante-la-vieja/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/new-year-dinner-la-vieja-caleta-suites/"
+  },
+  "/es/gastronomia/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/"
+  },
+  "/es/gastronomia/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/"
+  },
+  "/es/gastronomia/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/"
+  },
+  "/es/gastronomia/matisse-coffee-brunch-desayunar-y-comer-bien-sin-salir-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/matisse-coffee-brunch-la-caleta/"
+  },
+  "/es/gastronomia/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/"
+  },
+  "/es/gastronomia/restaurantes-italianos-en-el-sur-de-tenerife-que-no-te-puedes-perder/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/italian-restaurants-south-tenerife/"
+  },
+  "/es/gastronomia/restaurantes-michelin-en-costa-adeje-alta-gastronomia-cerca-de-caleta-suites/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/michelin-starred-restaurants-in-costa-adeje-fine-dining-near-caleta-suites/"
+  },
+  "/es/gastronomia/rooftops-en-el-sur-de-tenerife-para-disfrutar-del-atardecer/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/rooftops-sur-tenerife-atardecer/"
+  },
+  "/es/gastronomia/tres-restaurantes-de-pescado-en-la-caleta-que-no-te-puedes-perder/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/seafood-restaurants-in-la-caleta/"
+  },
+  "/es/gastronomia/tres-restaurantes-en-el-sur-de-tenerife-donde-disfrutar-de-comida-canaria/": {
+    "idioma": "es",
+    "altPath": "/gastronomy/three-restaurants-in-southern-tenerife-to-enjoy-canarian-cuisine/"
+  },
+  "/es/la-caleta/": {
+    "idioma": "es",
+    "altPath": "/la-caleta/"
+  },
+  "/es/noticias-que-hacer/proximamente-en-caleta-suites-un-nuevo-workspace-para-trabajar-desde-el-paraiso/": {
+    "idioma": "es",
+    "altPath": "/to-do-news/new-caleta-suites-workspace-tenerife/"
+  },
+  "/es/politica-de-cookies/": {
+    "idioma": "es",
+    "altPath": "/cookie-policy/"
+  },
+  "/es/politica-de-privacidad/": {
+    "idioma": "es",
+    "altPath": "/privacy-policy/"
+  },
+  "/es/que-hacer/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/"
+  },
+  "/es/que-hacer/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/": {
+    "idioma": "es",
+    "altPath": "/to-do/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/"
+  },
+  "/es/que-hacer/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/"
+  },
+  "/es/que-hacer/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja/": {
+    "idioma": "es",
+    "altPath": "/to-do/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja-ingles/"
+  },
+  "/es/que-hacer/4-playas-para-descubrir-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/4-playas-para-descubrir-la-caleta/"
+  },
+  "/es/que-hacer/alojamiento-cerca-de-tenerife-top-training/": {
+    "idioma": "es",
+    "altPath": "/to-do/accommodation-near-tenerife-top-training-caleta-suites/"
+  },
+  "/es/que-hacer/aticos-en-la-caleta-terrazas-vistas-y-lujo-tranquilo-en-caleta-suites/": {
+    "idioma": "es",
+    "altPath": "/to-do/penthouses-in-la-caleta-caleta-suites/"
+  },
+  "/es/que-hacer/beach-club-en-el-sur-de-tenerife-sol-musica-y-ambiente-frente-al-mar/": {
+    "idioma": "es",
+    "altPath": "/to-do/beach-clubs-south-tenerife/"
+  },
+  "/es/que-hacer/carnaval-en-tenerife-tradicion-color-y-donde-alojarse-para-descansar/": {
+    "idioma": "es",
+    "altPath": "/to-do/tenerife-carnival-where-to-stay/"
+  },
+  "/es/que-hacer/conoce-las-fiestas-tradicionales-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/conoce-las-fiestas-tradicionales-de-la-caleta/"
+  },
+  "/es/que-hacer/deportes-acuaticos-en-costa-adeje-mar-y-actividad-durante-todo-el-ano/": {
+    "idioma": "es",
+    "altPath": "/to-do/water-sports-costa-adeje/"
+  },
+  "/es/que-hacer/descubre-tenerife-7-experiencias-imperdibles-para-unas-vacaciones-de-lujo/": {
+    "idioma": "es",
+    "altPath": "/to-do/discover-tenerife-luxury-experiences/"
+  },
+  "/es/que-hacer/dia-de-canarias-tradicion-cultura-y-gastronomia-junto-al-mar/": {
+    "idioma": "es",
+    "altPath": "/to-do/canary-islands-day-traditions-tenerife-meta-description/"
+  },
+  "/es/que-hacer/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites-2/": {
+    "idioma": "es",
+    "altPath": "/to-do/golf-costa-adeje-caleta-suites/"
+  },
+  "/es/que-hacer/invierno-en-tenerife-sur-el-mejor-momento-para-viajar-y-disfrutar-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/winter-in-south-tenerife/"
+  },
+  "/es/que-hacer/la-caleta-costa-adeje-el-encanto-costero-mas-exclusivo-de-tenerife-sur/": {
+    "idioma": "es",
+    "altPath": "/to-do/la-caleta-costa-adeje-coastal-charm/"
+  },
+  "/es/que-hacer/la-caleta-un-refugio-tranquilo-durante-la-semana-santa-en-tenerife-sur/": {
+    "idioma": "es",
+    "altPath": "/to-do/easter-south-tenerife-seaside-plans/"
+  },
+  "/es/que-hacer/navidad-en-tenerife-tradiciones-clima-y-planes-unicos/": {
+    "idioma": "es",
+    "altPath": "/to-do/christmas-in-tenerife-south/"
+  },
+  "/es/que-hacer/planes-en-tenerife-en-otono-para-disfrutar-cerca-de-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/autumn-plans-in-tenerife-la-caleta/"
+  },
+  "/es/que-hacer/rutas-de-senderismo-cerca-de-la-caleta-naturaleza-y-vistas-al-atlantico/": {
+    "idioma": "es",
+    "altPath": "/to-do/hiking-routes-near-la-caleta-nature-and-atlantic-views/"
+  },
+  "/es/que-hacer/san-valentin-en-la-caleta-una-escapada-tranquila-frente-al-mar/": {
+    "idioma": "es",
+    "altPath": "/to-do/valentines-day-la-caleta-couples/"
+  },
+  "/es/que-hacer/wellness-en-costa-adeje-donde-desconectar-cuerpo-y-mente/": {
+    "idioma": "es",
+    "altPath": "/to-do/wellness-in-costa-adeje-to-disconnect-body-and-mind/"
+  },
+  "/es/que-hacer/workation-en-tenerife-teletrabajar-frente-al-mar-en-la-caleta/": {
+    "idioma": "es",
+    "altPath": "/to-do/digital-nomads-in-tenerife/"
+  },
+  "/es/resenas/": {
+    "idioma": "es",
+    "altPath": "/reviews/"
+  },
+  "/es/to-do/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites/": {
+    "idioma": "es"
+  },
+  "/es/work-spaces-coworking-en-tenerife/": {
+    "idioma": "es",
+    "altPath": "/work-spaces-coworking-in-tenerife/"
+  },
+  "/es/zonas-comunes/": {
+    "idioma": "es",
+    "altPath": "/common-areas/"
+  },
+  "/gallery-2-bedrooms-apartment-floor-0-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-2-hab-planta-0-vista-montana/"
+  },
+  "/gallery-2-bedrooms-apartment-floor-0-sea-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-2-hab-planta-0-vista-mar/"
+  },
+  "/gallery-2-bedrooms-apartment-floor-1-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-2-hab-planta-1-vista-montana/"
+  },
+  "/gallery-2-bedrooms-apartment-floor-1-seaview/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-2-hab-planta-1-vista-mar/"
+  },
+  "/gallery-2-bedrooms-penthouse-large-terrace-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-atico-2-hab-gran-terraza-vista-montana/"
+  },
+  "/gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-atico-2-hab-gran-terraza-vista-mar-y-montana/"
+  },
+  "/gallery-3-bedrooms-apartment-floor-1-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-3-hab-planta-1-vista-montana/"
+  },
+  "/gallery-3-bedrooms-apartment-floor-1-seaview/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-3-hab-planta-1-vista-mar/"
+  },
+  "/gallery-3-bedrooms-penthouse-large-terrace-seaview/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-atico-3-hab-gran-terraza-vista-mar/"
+  },
+  "/gallery-4-rooms-apartment-floor-1-mountain-view/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-apartamento-4-hab-planta-1-vista-montana/"
+  },
+  "/gallery/": {
+    "idioma": "en",
+    "altPath": "/es/galeria/"
+  },
+  "/gastronomy/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/4-lugares-donde-disfrutar-del-mejor-sushi-en-la-caleta/"
+  },
+  "/gastronomy/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/buscando-donde-tomar-algo-dulce-cuatro-pastelerias-cerca-de-la-caleta/"
+  },
+  "/gastronomy/cocktail-bars-south-of-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/coctelerias-en-el-sur-de-tenerife-para-despedir-el-ano/"
+  },
+  "/gastronomy/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/descubre-los-restaurantes-imprescindibles-para-disfrutar-de-una-buena-pizza-en-la-caleta/"
+  },
+  "/gastronomy/italian-restaurants-south-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/restaurantes-italianos-en-el-sur-de-tenerife-que-no-te-puedes-perder/"
+  },
+  "/gastronomy/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/la-mejor-combinacion-coctel-y-atardecer-en-la-caleta/"
+  },
+  "/gastronomy/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/los-mejores-sitios-para-disfrutar-de-un-buen-brunch-en-la-caleta/"
+  },
+  "/gastronomy/matisse-coffee-brunch-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/matisse-coffee-brunch-desayunar-y-comer-bien-sin-salir-de-la-caleta/"
+  },
+  "/gastronomy/michelin-starred-restaurants-in-costa-adeje-fine-dining-near-caleta-suites/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/restaurantes-michelin-en-costa-adeje-alta-gastronomia-cerca-de-caleta-suites/"
+  },
+  "/gastronomy/new-year-dinner-la-vieja-caleta-suites/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/da-la-bienvenida-al-ano-nuevo-en-el-restaurante-la-vieja/"
+  },
+  "/gastronomy/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/nuestros-6-restaurantes-favoritos-donde-cenar-en-la-caleta/"
+  },
+  "/gastronomy/rooftops-sur-tenerife-atardecer/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/rooftops-en-el-sur-de-tenerife-para-disfrutar-del-atardecer/"
+  },
+  "/gastronomy/seafood-restaurants-in-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/tres-restaurantes-de-pescado-en-la-caleta-que-no-te-puedes-perder/"
+  },
+  "/gastronomy/three-restaurants-in-southern-tenerife-to-enjoy-canarian-cuisine/": {
+    "idioma": "en",
+    "altPath": "/es/gastronomia/tres-restaurantes-en-el-sur-de-tenerife-donde-disfrutar-de-comida-canaria/"
+  },
+  "/la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/la-caleta/"
+  },
+  "/legal-notice/": {
+    "idioma": "en",
+    "altPath": "/es/aviso-legal/"
+  },
+  "/penthouses/": {
+    "idioma": "en",
+    "altPath": "/es/aticos/"
+  },
+  "/privacy-policy/": {
+    "idioma": "en",
+    "altPath": "/es/politica-de-privacidad/"
+  },
+  "/renders-gallery/": {
+    "idioma": "en",
+    "altPath": "/es/galeria-renders/"
+  },
+  "/reviews/": {
+    "idioma": "en",
+    "altPath": "/es/resenas/"
+  },
+  "/to-do-news/new-caleta-suites-workspace-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/noticias-que-hacer/proximamente-en-caleta-suites-un-nuevo-workspace-para-trabajar-desde-el-paraiso/"
+  },
+  "/to-do/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/3-rutas-de-senderismo-para-descubrir-los-encantos-de-la-caleta/"
+  },
+  "/to-do/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/3-spas-en-la-caleta-donde-encontrar-el-mejor-relax/"
+  },
+  "/to-do/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/4-deportes-al-aire-libre-ideales-para-hacer-en-la-caleta/"
+  },
+  "/to-do/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja-ingles/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/4-planes-romanticos-en-la-caleta-para-disfrutar-en-pareja/"
+  },
+  "/to-do/4-playas-para-descubrir-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/4-playas-para-descubrir-la-caleta/"
+  },
+  "/to-do/accommodation-near-tenerife-top-training-caleta-suites/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/alojamiento-cerca-de-tenerife-top-training/"
+  },
+  "/to-do/autumn-plans-in-tenerife-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/planes-en-tenerife-en-otono-para-disfrutar-cerca-de-la-caleta/"
+  },
+  "/to-do/beach-clubs-south-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/beach-club-en-el-sur-de-tenerife-sol-musica-y-ambiente-frente-al-mar/"
+  },
+  "/to-do/canary-islands-day-traditions-tenerife-meta-description/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/dia-de-canarias-tradicion-cultura-y-gastronomia-junto-al-mar/"
+  },
+  "/to-do/christmas-in-tenerife-south/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/navidad-en-tenerife-tradiciones-clima-y-planes-unicos/"
+  },
+  "/to-do/conoce-las-fiestas-tradicionales-de-la-caleta/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/conoce-las-fiestas-tradicionales-de-la-caleta/"
+  },
+  "/to-do/digital-nomads-in-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/workation-en-tenerife-teletrabajar-frente-al-mar-en-la-caleta/"
+  },
+  "/to-do/discover-tenerife-luxury-experiences/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/descubre-tenerife-7-experiencias-imperdibles-para-unas-vacaciones-de-lujo/"
+  },
+  "/to-do/easter-south-tenerife-seaside-plans/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/la-caleta-un-refugio-tranquilo-durante-la-semana-santa-en-tenerife-sur/"
+  },
+  "/to-do/golf-costa-adeje-caleta-suites/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/golf-costa-adeje-el-paraiso-del-golf-a-un-paso-de-caleta-suites-2/"
+  },
+  "/to-do/hiking-routes-near-la-caleta-nature-and-atlantic-views/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/rutas-de-senderismo-cerca-de-la-caleta-naturaleza-y-vistas-al-atlantico/"
+  },
+  "/to-do/la-caleta-costa-adeje-coastal-charm/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/la-caleta-costa-adeje-el-encanto-costero-mas-exclusivo-de-tenerife-sur/"
+  },
+  "/to-do/penthouses-in-la-caleta-caleta-suites/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/aticos-en-la-caleta-terrazas-vistas-y-lujo-tranquilo-en-caleta-suites/"
+  },
+  "/to-do/tenerife-carnival-where-to-stay/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/carnaval-en-tenerife-tradicion-color-y-donde-alojarse-para-descansar/"
+  },
+  "/to-do/valentines-day-la-caleta-couples/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/san-valentin-en-la-caleta-una-escapada-tranquila-frente-al-mar/"
+  },
+  "/to-do/water-sports-costa-adeje/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/deportes-acuaticos-en-costa-adeje-mar-y-actividad-durante-todo-el-ano/"
+  },
+  "/to-do/wellness-in-costa-adeje-to-disconnect-body-and-mind/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/wellness-en-costa-adeje-donde-desconectar-cuerpo-y-mente/"
+  },
+  "/to-do/winter-in-south-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/que-hacer/invierno-en-tenerife-sur-el-mejor-momento-para-viajar-y-disfrutar-de-la-caleta/"
+  },
+  "/under-construction/": {
+    "idioma": "en"
+  },
+  "/work-spaces-coworking-in-tenerife/": {
+    "idioma": "en",
+    "altPath": "/es/work-spaces-coworking-en-tenerife/"
+  }
+}
