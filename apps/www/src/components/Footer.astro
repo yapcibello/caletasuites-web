@@ -29,7 +29,34 @@ if (!entradaFooter) {
 }
 
 // Normaliza URLs absolutas de assets a rutas locales (defensivo).
-const htmlFooter = fixUrlsChrome(entradaFooter[1]);
+let htmlFooter = fixUrlsChrome(entradaFooter[1]);
+
+// --- Enlace a la declaración de accesibilidad (additivo, sin alterar el diseño) ---
+// La zona de enlaces legales del footer ya es una lista <ul> homogénea (Aviso Legal,
+// Privacidad, Condiciones, Cookies). Inyectamos un <li> adicional con EXACTAMENTE las
+// mismas clases que el resto de ítems legales, justo después del enlace de cookies,
+// para que el aspecto visual sea idéntico (réplica intacta) y la declaración quede
+// enlazada desde todas las páginas (requisito W3C WAI / RD 1112/2018). URLs nuevas con
+// trailing slash: ES → /accesibilidad/ · EN → /en/accessibility/.
+const urlAccesibilidad = lang === 'es' ? '/accesibilidad/' : '/en/accessibility/';
+const etiquetaAccesibilidad = lang === 'es' ? 'Accesibilidad' : 'Accessibility';
+const itemAccesibilidad = `
+							<li>
+								<a  href="${urlAccesibilidad}" >
+
+																		<span class="link-icon d-inline-flex hide-if-empty align-items-center left-icon icon-next-to-label"></span>
+
+																		${etiquetaAccesibilidad}
+																								</a>
+														</li>
+`;
+// El enlace de cookies es el último de la lista legal en ambos idiomas: insertamos
+// el nuevo <li> tras su cierre </li>, antes del </ul> de la lista. Reemplazo acotado
+// al primer cierre de la lista legal para no afectar a otras listas del footer.
+htmlFooter = htmlFooter.replace(
+  /(href="\/es\/politica-de-cookies\/"[\s\S]*?<\/a>\s*<\/li>)/,
+  `$1${itemAccesibilidad}`,
+);
 ---
 
 {/* Chrome real del footer (incluye su propio <footer> landmark con role WPFooter). */}

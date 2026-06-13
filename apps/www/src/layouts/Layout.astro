@@ -83,11 +83,37 @@ const lodging = lodgingBusiness({
   aggregateRating: siteConfig.aggregateRating,
   sameAs: siteConfig.sameAs as unknown as string[],
 });
-const bloquesJsonLd = [lodging, ...jsonLdExtra];
+// Propiedades de accesibilidad site-wide (Schema.org). Se añaden al LodgingBusiness
+// sin modificar el builder del paquete @caletasuites/seo. SOLO se declara lo que es
+// CIERTO del sitio (vocabulario cerrado de schema.org/accessibilityFeature):
+//   - alternativeText: las imágenes informativas llevan alt.
+//   - structuredNavigation: header/nav/main/footer + menús con role navigation.
+//   - readingOrder: el orden del DOM coincide con el orden de lectura visual.
+//   - highContrastDisplay: respeta los ajustes de alto contraste del sistema (sin CSS
+//     que impida el modo de contraste forzado del navegador).
+// NO se declara captions/audioDescription/transcript/taggedPDF/signLanguage porque el
+// sitio no tiene vídeo, audio ni PDFs accesibles asociados (no falsear — A12 del skill).
+const lodgingA11y = {
+  ...lodging,
+  accessibilityFeature: [
+    'alternativeText',
+    'structuredNavigation',
+    'readingOrder',
+    'highContrastDisplay',
+  ],
+  accessibilityHazard: 'none',
+  accessibilityControl: ['fullKeyboardControl', 'fullMouseControl'],
+  accessMode: ['textual', 'visual'],
+  accessibilitySummary:
+    lang === 'es'
+      ? 'Sitio estático navegable por teclado y ratón, con texto alternativo, navegación estructurada y orden de lectura coherente. Conformidad parcial WCAG 2.2 AA con objetivo AAA; consulte la declaración de accesibilidad en /accesibilidad/.'
+      : 'Static site operable by keyboard and mouse, with alternative text, structured navigation and a coherent reading order. Partial WCAG 2.2 AA conformance targeting AAA; see the accessibility statement at /en/accessibility/.',
+};
+const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

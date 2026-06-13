@@ -7,10 +7,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Foco visible AAA en todos los elementos interactivos (WCAG 2.4.7). */
+/* Foco visible AAA en todos los elementos interactivos (WCAG 2.4.7 + 1.4.11).
+   El indicador NO usa el azul de marca (#85A6C7, contraste 2.54:1 — insuficiente):
+   usa un outline oscuro neutro (#1a1a1a, contraste alto sobre fondos claros) con un
+   halo blanco intermedio (box-shadow) que garantiza visibilidad también sobre fondos
+   oscuros (patrón de halo dual). Es un añadido de accesibilidad: no altera ningún
+   color del contenido visible, solo el propio indicador de foco. */
 :focus-visible {
-  outline: 3px solid currentColor;
+  outline: 3px solid #1a1a1a;
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+  border-radius: 1px;
 }
 
 /* Skip link: oculto hasta recibir foco con teclado. */

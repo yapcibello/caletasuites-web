@@ -1,0 +1,175 @@
+---
+// Declaración de accesibilidad (ES) de Caleta Suites Tenerife.
+//
+// URL NUEVA: /accesibilidad/ (ampliación permitida — no modifica ninguna URL
+// existente). Sigue la plantilla W3C WAI de 10 secciones del skill wcag-aa-aaa.
+//
+// Estado real declarado: conformidad PARCIAL con WCAG 2.2 nivel AA, con objetivo
+// AAA. La limitación conocida es el contraste del azul de marca (#85A6C7), que no
+// se modifica para preservar la réplica visual exacta del sitio migrado: requiere
+// una decisión de diseño (ver sección "Contenido no accesible"). No se muestra el
+// logo W3C de conformidad porque, existiendo un fallo de contraste conocido, hacerlo
+// sería una declaración visual incoherente (skill wcag-aa-aaa, A12).
+import Layout from '../layouts/Layout.astro';
+
+// Fecha de la declaración (revisar en cada auditoría). Formato ISO para el JSON-LD.
+const fechaDeclaracion = '2026-06-13';
+const fechaLegible = '13 de junio de 2026';
+
+// JSON-LD WebPage específico de esta página (más rico que el LodgingBusiness del
+// Layout): declara la conformidad parcial y el resumen real de accesibilidad.
+const jsonLdPagina = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Declaración de accesibilidad — Caleta Suites Tenerife',
+  url: 'https://caletasuitestenerife.com/accesibilidad/',
+  inLanguage: 'es',
+  dateModified: fechaDeclaracion,
+  accessibilityFeature: ['alternativeText', 'structuredNavigation', 'readingOrder', 'highContrastDisplay'],
+  accessibilityHazard: 'none',
+  accessibilitySummary:
+    'Conformidad parcial con WCAG 2.2 nivel AA y objetivo AAA. Limitación conocida: el color azul de marca no alcanza el contraste mínimo para texto; pendiente de decisión de diseño.',
+};
+---
+
+<Layout
+  title="Declaración de accesibilidad — Caleta Suites Tenerife"
+  description="Declaración de accesibilidad de Caleta Suites Tenerife: estado de conformidad WCAG 2.2, limitaciones conocidas, contacto y procedimiento de reclamación."
+  lang="es"
+  altPath="/en/accessibility/"
+  jsonLd={[jsonLdPagina]}
+>
+  <article style="max-width:72ch;margin:0 auto;padding:2rem 1.25rem;line-height:1.6;">
+    <h1>Declaración de accesibilidad</h1>
+
+    {/* 1 — Compromiso */}
+    <section id="compromiso">
+      <h2>1. Nuestro compromiso</h2>
+      <p>
+        En Caleta Suites Tenerife queremos que cualquier persona pueda informarse y
+        reservar su alojamiento con independencia de sus capacidades o de la tecnología
+        que utilice. Por eso trabajamos para que este sitio web sea accesible conforme a
+        las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2.
+      </p>
+    </section>
+
+    {/* 2 — Estado de conformidad */}
+    <section id="estado">
+      <h2>2. Estado de conformidad</h2>
+      <p>
+        Este sitio web es <strong>parcialmente conforme</strong> con las Pautas WCAG 2.2
+        nivel <strong>AA</strong>, con el <strong>objetivo de alcanzar el nivel AAA</strong>.
+        «Parcialmente conforme» significa que la mayor parte del contenido cumple el nivel
+        AA, pero existe una limitación conocida que aún no se ha resuelto (ver sección 4).
+      </p>
+    </section>
+
+    {/* 3 — Medidas para apoyar la accesibilidad */}
+    <section id="medidas">
+      <h2>3. Medidas para apoyar la accesibilidad</h2>
+      <ul>
+        <li>Estructura semántica con regiones de página (cabecera, navegación, contenido y pie).</li>
+        <li>Enlace para saltar directamente al contenido principal con el teclado.</li>
+        <li>Indicador de foco visible y de alto contraste en todos los elementos interactivos.</li>
+        <li>Texto alternativo en las imágenes informativas y orden de lectura coherente.</li>
+        <li>Idioma de la página declarado para los lectores de pantalla.</li>
+      </ul>
+    </section>
+
+    {/* 4 — Contenido no accesible / limitaciones conocidas */}
+    <section id="contenido-no-accesible">
+      <h2>4. Contenido no accesible</h2>
+      <p>
+        Hemos identificado la siguiente limitación, que requiere una decisión de diseño
+        antes de resolverse para no alterar la identidad visual de la marca:
+      </p>
+      <ul>
+        <li>
+          <strong>Contraste del azul de marca (criterios 1.4.3 AA y 1.4.6 AAA).</strong>
+          El color azul corporativo no alcanza la relación de contraste mínima exigida para
+          texto pequeño sobre fondo claro, ni para el texto sobre los botones de ese color.
+          No lo hemos modificado para mantener la coherencia visual del sitio. Estamos
+          evaluando alternativas (oscurecer el tono, usar texto oscuro sobre los botones o
+          reservar el azul solo para elementos no textuales).
+        </li>
+      </ul>
+    </section>
+
+    {/* 5 — Alcance */}
+    <section id="alcance">
+      <h2>5. Alcance de esta declaración</h2>
+      <p>
+        Esta declaración cubre las páginas publicadas en el dominio
+        <code>caletasuitestenerife.com</code>. No cubre los contenidos servidos por
+        terceros (motor de reservas embebido, mapas o widgets externos), cuya accesibilidad
+        depende de sus proveedores.
+      </p>
+    </section>
+
+    {/* 6 — Metodología de evaluación */}
+    <section id="metodologia">
+      <h2>6. Metodología de evaluación</h2>
+      <p>La accesibilidad de este sitio se evalúa mediante:</p>
+      <ul>
+        <li>Análisis automático con axe-core y Lighthouse.</li>
+        <li>Inspección manual del árbol de accesibilidad y de la navegación por teclado.</li>
+        <li>Revisión según la metodología WCAG-EM 1.0.</li>
+      </ul>
+    </section>
+
+    {/* 7 — Compatibilidad */}
+    <section id="compatibilidad">
+      <h2>7. Compatibilidad con navegadores y tecnologías asistivas</h2>
+      <p>
+        El sitio está diseñado para funcionar con las versiones recientes de los navegadores
+        más utilizados (Chrome, Firefox, Safari y Edge) y con lectores de pantalla como NVDA
+        y VoiceOver. Es operable íntegramente con teclado.
+      </p>
+    </section>
+
+    {/* 8 — Contacto y retroalimentación */}
+    <section id="contacto">
+      <h2>8. Contacto y retroalimentación</h2>
+      <p>
+        ¿Has encontrado una barrera de accesibilidad o necesitas un contenido en un formato
+        alternativo? Escríbenos y te ayudaremos:
+      </p>
+      <ul>
+        <li>
+          Correo:
+          <a href="mailto:hola@caletasuites.com" aria-label="Enviar correo a hola@caletasuites.com">
+            hola@caletasuites.com
+          </a>
+        </li>
+        <li>
+          Teléfono:
+          <a href="tel:+34648789062" aria-label="Llamar al +34 648 789 062">
+            +34 648 789 062
+          </a>
+        </li>
+      </ul>
+      <p>Procuramos responder en un plazo máximo de 5 días hábiles.</p>
+    </section>
+
+    {/* 9 — Procedimiento de reclamación */}
+    <section id="reclamacion">
+      <h2>9. Procedimiento de reclamación</h2>
+      <p>
+        Si tras nuestra respuesta no quedas satisfecho, puedes presentar una queja o
+        reclamación al amparo del Real Decreto 1112/2018 y de la Directiva (UE) 2019/882
+        (European Accessibility Act, aplicable desde 2025) ante el organismo competente en
+        materia de accesibilidad digital.
+      </p>
+    </section>
+
+    {/* 10 — Metadatos */}
+    <section id="metadatos">
+      <h2>10. Información sobre esta declaración</h2>
+      <ul>
+        <li>Fecha de la declaración: {fechaLegible}.</li>
+        <li>Estándar aplicado: WCAG 2.2 (objetivo nivel AAA, conformidad actual parcial AA).</li>
+        <li>Responsable: Caleta Suites Tenerife.</li>
+      </ul>
+    </section>
+  </article>
+</Layout>
