@@ -36,6 +36,8 @@ interface Props {
    * css_print_method:internal). Se inyecta en el <head> para fidelidad visual.
    */
   pageCss?: string;
+  /** Header en modo overlay transparente (solo la home, que tiene hero). */
+  headerOverlay?: boolean;
 }
 
 const {
@@ -46,6 +48,7 @@ const {
   altPath,
   jsonLd: jsonLdExtra = [],
   pageCss = '',
+  headerOverlay = false,
 } = Astro.props;
 
 // GTM ID desde el .env de la app (placeholder GTM-XXXXXX en .env.example).
@@ -242,7 +245,7 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
       </noscript>
     )}
 
-    <Header lang={lang} />
+    <Header lang={lang} overlay={headerOverlay} />
     <main id="contenido-principal">
       <slot />
     </main>

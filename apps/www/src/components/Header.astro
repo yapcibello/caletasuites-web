@@ -1,51 +1,622 @@
 ---
-// Header global de Caleta Suites — chrome real extraído del tema WordPress (archub + Elementor).
+// Header global de Caleta Suites — componente Astro NATIVO y ligero.
 //
-// El markup completo (logo, navegación, selector de idioma WPML) vive en
-// _chrome/header-{en,es}.html y se inyecta con set:html. Se importa el HTML crudo
-// vía import.meta.glob(?raw, eager) — mismo patrón robusto que usan index.astro y
-// [...ruta].astro para el contenido de Elementor.
+// Reimplementa el header/menú del tema WordPress (archub + Elementor) SIN depender
+// del JavaScript de WordPress (jQuery, liquid JS). El markup original quedaba oculto
+// (visibility:collapse) sin ese JS; aquí se reconstruye con HTML semántico, CSS-first
+// y un script vanilla mínimo, manteniendo el ASPECTO del original:
+//   - Header fijo arriba; logo a la izquierda, menú horizontal a la derecha.
+//   - Transparente sobre el hero (texto claro); al hacer scroll pasa a fondo blanco
+//     con sombra sutil y enlaces en azul de marca (patrón sticky).
+//   - Dropdowns (mega-menú) accesibles por hover Y por teclado (focus-within).
+//   - Hamburguesa en móvil con panel de navegación colapsable accesible.
 //
-// REGLA INNEGOCIABLE: las URLs de navegación son inmutables. NO se tocan los href
-// del menú; solo se normalizan, de forma defensiva, posibles URLs absolutas de
-// assets (uploads) al dominio local /wp-content/...
-import { fixUrlsChrome } from '../utils/chrome';
+// REGLA INNEGOCIABLE: las URLs de navegación son inmutables — se copian EXACTAS de
+// los headers extraídos (_chrome/header-{en,es}.html). NO se renombran ni se inventan.
+
+interface SubItem {
+  label: string;
+  href: string;
+}
+interface MenuItem {
+  label: string;
+  href: string;
+  /** Submenú simple (lista plana de enlaces). */
+  sub?: SubItem[];
+}
 
 interface Props {
   /** Idioma activo: 'en' (raíz) | 'es' (/es/). */
   lang?: 'en' | 'es';
+  /**
+   * Header en modo overlay (transparente sobre un hero oscuro). Solo la home lo
+   * usa (tiene slider de fondo). En el resto de páginas el header es SÓLIDO
+   * (fondo blanco, texto oscuro) por defecto, para que el menú sea visible.
+   */
+  overlay?: boolean;
 }
-const { lang = 'en' } = Astro.props;
+const { lang = 'en', overlay = false } = Astro.props;
 
-// HTML crudo del chrome (eager para que esté disponible en build estático).
-const headersRaw = import.meta.glob('./_chrome/header-*.html', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-}) as Record<string, string>;
+// --- Datos de navegación (URLs inmutables, copiadas literal de los headers WP) ----
 
-// Selección por idioma a partir de la clave del glob (./_chrome/header-en.html).
-const claveHeader = lang === 'es' ? 'header-es' : 'header-en';
-const entradaHeader = Object.entries(headersRaw).find(([ruta]) => ruta.includes(claveHeader));
-if (!entradaHeader) {
-  throw new Error(`No se encontró el chrome del header para idioma="${lang}" (${claveHeader}).`);
-}
+const menuEn: MenuItem[] = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'Penthouses',
+    href: '/penthouses/',
+    sub: [
+      { label: '2 bedrooms Penthouse | large terrace | mountain view', href: '/gallery-2-bedrooms-penthouse-large-terrace-mountain-view/' },
+      { label: '3 bedrooms Penthouse | large terrace | Seaview', href: '/gallery-3-bedrooms-penthouse-large-terrace-seaview/' },
+      { label: '2 bedrooms Penthouse | large terrace | sea and mountain view', href: '/gallery-2-bedrooms-penthouse-large-terrace-sea-and-mountain-view/' },
+    ],
+  },
+  {
+    label: 'Apartments',
+    href: '/apartments/',
+    sub: [
+      { label: '2 bedrooms Apartment | floor 0 | mountain view', href: '/gallery-2-bedrooms-apartment-floor-0-mountain-view/' },
+      { label: '2 bedrooms Apartment | floor 0 | sea view', href: '/gallery-2-bedrooms-apartment-floor-0-sea-view/' },
+      { label: '2 bedrooms Apartment | floor 1 | Seaview', href: '/gallery-2-bedrooms-apartment-floor-1-seaview/' },
+      { label: '2 bedrooms Apartment | floor 1 | mountain view', href: '/gallery-2-bedrooms-apartment-floor-1-mountain-view/' },
+      { label: '3 bedrooms Apartment | floor 1 | Seaview', href: '/gallery-3-bedrooms-apartment-floor-1-seaview/' },
+      { label: '3 bedrooms Apartment | floor 1 | mountain view', href: '/gallery-3-bedrooms-apartment-floor-1-mountain-view/' },
+      { label: '4 rooms Apartment | floor 1 | mountain view', href: '/gallery-4-rooms-apartment-floor-1-mountain-view/' },
+    ],
+  },
+  { label: 'Work Spaces', href: '/work-spaces-coworking-in-tenerife/' },
+  {
+    label: 'Gallery',
+    href: '/gallery/',
+    sub: [
+      { label: 'Common Areas', href: '/common-areas/' },
+      { label: 'Renders', href: '/renders-gallery/' },
+      { label: 'Gallery', href: '/gallery/' },
+    ],
+  },
+  { label: 'La Caleta', href: '/la-caleta/' },
+  { label: 'Reviews', href: '/reviews/' },
+];
 
-// Normaliza URLs absolutas de assets a rutas locales (defensivo) y añade el
-// aria-label que falta al contenedor de navegación (role="navigation") para AAA.
-const etiquetaNav = lang === 'es' ? 'Navegación principal' : 'Main navigation';
-let htmlHeader = fixUrlsChrome(entradaHeader[1]);
-htmlHeader = htmlHeader.replace(
-  /(<div[^>]*\brole="navigation"(?![^>]*aria-label))/,
-  `$1 aria-label="${etiquetaNav}"`,
-);
+const menuEs: MenuItem[] = [
+  { label: 'Inicio', href: '/es/' },
+  {
+    label: 'Áticos',
+    href: '/es/aticos/',
+    sub: [
+      { label: 'Ático 2 hab | gran terraza | vista montaña', href: '/es/galeria-atico-2-hab-gran-terraza-vista-montana/' },
+      { label: 'Ático 2 hab | gran terraza | vista mar y montaña', href: '/es/galeria-atico-2-hab-gran-terraza-vista-mar-y-montana/' },
+      { label: 'Ático 3 hab | gran terraza | vista mar', href: '/es/galeria-atico-3-hab-gran-terraza-vista-mar/' },
+    ],
+  },
+  {
+    label: 'Apartamentos',
+    href: '/es/apartamentos/',
+    sub: [
+      { label: 'Apartamento 2 hab | planta 0 | vista montaña', href: '/es/galeria-apartamento-2-hab-planta-0-vista-montana/' },
+      { label: 'Apartamento 2 hab | planta 0 | vista mar', href: '/es/galeria-apartamento-2-hab-planta-0-vista-mar/' },
+      { label: 'Apartamento 2 hab | planta 1 | vista mar', href: '/es/galeria-apartamento-2-hab-planta-1-vista-mar/' },
+      { label: 'Apartamento 2 hab | planta 1 | vista montaña', href: '/es/galeria-apartamento-2-hab-planta-1-vista-montana/' },
+      { label: 'Apartamento 3 hab | planta 1 | vista montaña', href: '/es/galeria-apartamento-3-hab-planta-1-vista-montana/' },
+      { label: 'Apartamento 3 hab | planta 1 | vista mar', href: '/es/galeria-apartamento-3-hab-planta-1-vista-mar/' },
+      { label: 'Apartamento 4 hab | planta 1 | vista montaña', href: '/es/galeria-apartamento-4-hab-planta-1-vista-montana/' },
+    ],
+  },
+  { label: 'Work Spaces', href: '/es/work-spaces-coworking-en-tenerife/' },
+  {
+    label: 'Galería',
+    href: '/es/galeria/',
+    sub: [
+      { label: 'Zonas Comunes', href: '/es/zonas-comunes/' },
+      { label: 'Renders', href: '/es/galeria-renders/' },
+    ],
+  },
+  { label: 'La Caleta', href: '/es/la-caleta/' },
+  { label: 'Reseñas', href: '/es/resenas/' },
+];
 
-// Texto del skip link según idioma.
-const saltarTexto = lang === 'es' ? 'Saltar al contenido principal' : 'Skip to main content';
+const menu = lang === 'es' ? menuEs : menuEn;
+
+// Selector de idioma (switcher). Destino = home del otro idioma (cambio fino por
+// página queda fuera de alcance; aquí se usa la home como destino estable). URLs
+// inmutables — bandera servida desde el plugin WPML ya presente en public/.
+const langSwitch =
+  lang === 'es'
+    ? { href: '/', flag: '/wp-content/plugins/sitepress-multilingual-cms/res/flags/en.svg', label: 'English', title: 'Switch to English' }
+    : { href: '/es/', flag: '/wp-content/plugins/sitepress-multilingual-cms/res/flags/es.svg', label: 'Español', title: 'Cambiar a Español' };
+
+const logoHref = lang === 'es' ? '/es/' : '/';
+const logoSrc = '/wp-content/uploads/2022/03/caltea-suites-logo.webp';
+const logoSrcset = '/wp-content/uploads/2022/03/caltea-suites-logo-retina.webp 2x';
+
+// Textos i18n del propio chrome (skip link, aria-labels, hamburguesa).
+const t =
+  lang === 'es'
+    ? {
+        skip: 'Saltar al contenido principal',
+        nav: 'Navegación principal',
+        menuToggle: 'Abrir menú de navegación',
+        logoAlt: 'Caleta Suites',
+        expand: 'Mostrar submenú de',
+      }
+    : {
+        skip: 'Skip to main content',
+        nav: 'Main navigation',
+        menuToggle: 'Open navigation menu',
+        logoAlt: 'Caleta Suites',
+        expand: 'Show submenu of',
+      };
+
+// Chevron SVG (igual que el del tema: flecha hacia abajo).
+const chevron =
+  '<svg class="cs-chevron" xmlns="http://www.w3.org/2000/svg" width="21" height="32" viewBox="0 0 21 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.5 18.375l7.938-7.938c.562-.562 1.562-.562 2.125 0s.562 1.563 0 2.126l-9 9c-.563.562-1.5.625-2.063.062L.437 12.562C.126 12.25 0 11.876 0 11.5s.125-.75.438-1.063c.562-.562 1.562-.562 2.124 0z"></path></svg>';
 ---
 
-{/* Skip link: visible solo al recibir foco (estilos en global.css). Salta al landmark del contenido. */}
-<a href="#contenido-principal" class="skip-link">{saltarTexto}</a>
+{/* Skip link: visible solo al recibir foco (estilos en global.css). */}
+<a href="#contenido-principal" class="skip-link">{t.skip}</a>
 
-{/* Chrome real del header (incluye su propio <header> landmark con menú y selector de idioma). */}
-<Fragment set:html={htmlHeader} />
+<header class:list={["cs-header", { "cs-header--solid": !overlay }]} id="cs-header" itemscope itemtype="http://schema.org/WPHeader" data-cs-header>
+  <div class="cs-header__inner">
+    {/* Logo */}
+    <a class="cs-logo" href={logoHref} rel="home" aria-label={t.logoAlt}>
+      <img class="cs-logo__img" src={logoSrc} srcset={logoSrcset} alt={t.logoAlt} width="180" height="60" />
+    </a>
+
+    {/* Navegación principal (desktop) */}
+    <nav class="cs-nav" aria-label={t.nav}>
+      <ul class="cs-nav__list">
+        {menu.map((item) => (
+          <li class={`cs-nav__item${item.sub ? ' has-sub' : ''}`}>
+            {item.sub ? (
+              <Fragment>
+                {/* Enlace principal + toggle de submenú. El enlace navega; el botón
+                    expone aria-expanded para lectores de pantalla y abre con teclado. */}
+                <a class="cs-nav__link" href={item.href}>{item.label}</a>
+                <button
+                  type="button"
+                  class="cs-nav__toggle"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-label={`${t.expand} ${item.label}`}
+                  data-cs-toggle
+                >
+                  <Fragment set:html={chevron} />
+                </button>
+                <ul class="cs-submenu">
+                  {item.sub.map((s) => (
+                    <li class="cs-submenu__item">
+                      <a class="cs-submenu__link" href={s.href}>{s.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </Fragment>
+            ) : (
+              <a class="cs-nav__link" href={item.href}>{item.label}</a>
+            )}
+          </li>
+        ))}
+        {/* Selector de idioma */}
+        <li class="cs-nav__item cs-lang">
+          <a class="cs-nav__link cs-lang__link" href={langSwitch.href} title={langSwitch.title} aria-label={langSwitch.title}>
+            <img class="cs-lang__flag" src={langSwitch.flag} alt="" width="20" height="14" loading="lazy" />
+            <span class="cs-lang__text" lang={lang === 'es' ? 'en' : 'es'}>{langSwitch.label}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    {/* Botón hamburguesa (solo móvil) */}
+    <button
+      type="button"
+      class="cs-burger"
+      aria-expanded="false"
+      aria-controls="cs-mobile-nav"
+      aria-label={t.menuToggle}
+      data-cs-burger
+    >
+      <span class="cs-burger__bar"></span>
+      <span class="cs-burger__bar"></span>
+      <span class="cs-burger__bar"></span>
+    </button>
+  </div>
+
+  {/* Panel de navegación móvil (colapsable) */}
+  <nav class="cs-mobile" id="cs-mobile-nav" aria-label={t.nav} hidden>
+    <ul class="cs-mobile__list">
+      {menu.map((item) => (
+        <li class="cs-mobile__item">
+          <a class="cs-mobile__link" href={item.href}>{item.label}</a>
+          {item.sub && (
+            <ul class="cs-mobile__submenu">
+              {item.sub.map((s) => (
+                <li><a class="cs-mobile__sublink" href={s.href}>{s.label}</a></li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+      <li class="cs-mobile__item cs-mobile__lang">
+        <a class="cs-mobile__link" href={langSwitch.href} title={langSwitch.title} aria-label={langSwitch.title}>
+          <img class="cs-lang__flag" src={langSwitch.flag} alt="" width="20" height="14" loading="lazy" />
+          <span lang={lang === 'es' ? 'en' : 'es'}>{langSwitch.label}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* ===========================================================================
+     HEADER NATIVO — réplica visual del tema archub/Elementor sin su JS.
+     Tipografía y colores tomados del CSS del tema (header-{en,es}.html inline):
+       - Menú: Libre Baskerville, color base #2E3840.
+       - Sticky: fondo blanco; enlaces #7892A4; hover/activo #6996C4.
+       - Azul de marca para acentos: #6996C4 (equivalente al #85A6C7 del brief).
+     =========================================================================== */
+
+  .cs-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 1000;
+    width: 100%;
+    /* Estado overlay (sobre el hero): transparente. */
+    background: transparent;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  }
+
+  .cs-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 20px 40px;
+    transition: padding 0.3s ease;
+  }
+
+  /* --- Logo --- */
+  .cs-logo {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 5px 0;
+  }
+  .cs-logo__img {
+    display: block;
+    height: 60px;
+    width: auto;
+    transition: height 0.3s ease, filter 0.3s ease;
+  }
+  /* En overlay (hero oscuro) y no sticky, el logo se aclara sobre el fondo.
+     En modo sólido (páginas internas) el logo va a color, sin invertir. */
+  .cs-header:not(.is-sticky):not(.cs-header--solid) .cs-logo__img {
+    filter: brightness(0) invert(1);
+  }
+
+  /* --- Navegación desktop --- */
+  .cs-nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .cs-nav__list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cs-nav__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .cs-nav__link {
+    display: inline-block;
+    padding: 10px 0;
+    margin-inline: 18px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-decoration: none;
+    /* Overlay: texto claro sobre hero. */
+    color: #ffffff;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .cs-nav__link:hover,
+  .cs-nav__link:focus-visible {
+    color: #6996C4;
+  }
+
+  /* Toggle de submenú (chevron). No rompe el flujo; pequeño botón inline. */
+  .cs-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin-inline-start: -12px;
+    margin-inline-end: 4px;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .cs-chevron {
+    width: 0.7em;
+    height: 0.7em;
+    transition: transform 0.2s ease;
+  }
+  .cs-nav__item.has-sub:hover .cs-chevron,
+  .cs-nav__item.has-sub:focus-within .cs-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* --- Submenú (dropdown) --- */
+  .cs-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 240px;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    /* Cerrado por defecto: invisible y no interactivo, pero SIN visibility:collapse
+       dependiente de JS — se controla con opacity + visibility de CSS puro. */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 10;
+  }
+  /* Abre con hover Y con foco dentro del item (teclado: Tab), o con .is-open (JS). */
+  .cs-nav__item.has-sub:hover > .cs-submenu,
+  .cs-nav__item.has-sub:focus-within > .cs-submenu,
+  .cs-nav__item.has-sub > .cs-submenu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .cs-submenu__link {
+    display: block;
+    padding: 0.55rem 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.35;
+    color: #2E3840;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+  .cs-submenu__link:hover,
+  .cs-submenu__link:focus-visible {
+    color: #6996C4;
+    background: #f5f8fb;
+  }
+
+  /* --- Selector de idioma --- */
+  .cs-lang__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .cs-lang__flag {
+    width: 20px;
+    height: 14px;
+    display: inline-block;
+  }
+  .cs-lang__text {
+    font-size: 16px;
+  }
+
+  /* ===========================================================================
+     ESTADO STICKY — al hacer scroll: fondo blanco, sombra, enlaces azules.
+     =========================================================================== */
+  .cs-header.is-sticky,
+  .cs-header--solid {
+    background: #ffffff;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+  .cs-header.is-sticky .cs-header__inner {
+    padding-block: 8px;
+  }
+  .cs-header.is-sticky .cs-logo__img {
+    height: 48px;
+  }
+  .cs-header.is-sticky .cs-nav__link,
+  .cs-header--solid .cs-nav__link {
+    color: #7892A4;
+  }
+  .cs-header.is-sticky .cs-nav__link:hover,
+  .cs-header.is-sticky .cs-nav__link:focus-visible,
+  .cs-header--solid .cs-nav__link:hover,
+  .cs-header--solid .cs-nav__link:focus-visible {
+    color: #6996C4;
+  }
+
+  /* --- Hamburguesa (oculta en desktop) --- */
+  .cs-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .cs-burger__bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  }
+  .cs-header.is-sticky .cs-burger__bar {
+    background: #2E3840;
+  }
+  /* Animación a "X" cuando el menú móvil está abierto. */
+  .cs-burger[aria-expanded='true'] .cs-burger__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .cs-burger[aria-expanded='true'] .cs-burger__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .cs-burger[aria-expanded='true'] .cs-burger__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ===========================================================================
+     NAVEGACIÓN MÓVIL
+     =========================================================================== */
+  .cs-mobile {
+    display: none;
+    background: #ffffff;
+    border-top: 1px solid #eef2f6;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  .cs-mobile[hidden] {
+    display: none;
+  }
+  .cs-mobile.is-open {
+    display: block;
+  }
+  .cs-mobile__list,
+  .cs-mobile__submenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cs-mobile__item {
+    border-bottom: 1px solid #f1f4f8;
+  }
+  .cs-mobile__link {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    color: #2E3840;
+    text-decoration: none;
+  }
+  .cs-mobile__link:hover,
+  .cs-mobile__link:focus-visible {
+    color: #6996C4;
+  }
+  .cs-mobile__submenu {
+    background: #f7f9fc;
+  }
+  .cs-mobile__sublink {
+    display: block;
+    padding: 0.6rem 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #55606a;
+    text-decoration: none;
+  }
+  .cs-mobile__sublink:hover,
+  .cs-mobile__sublink:focus-visible {
+    color: #6996C4;
+  }
+  .cs-mobile__lang .cs-mobile__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ===========================================================================
+     RESPONSIVE — bajo 992px se colapsa el menú tras la hamburguesa.
+     (El tema original ocultaba el menú desktop en tablet/móvil: hidden-tablet.)
+     =========================================================================== */
+  @media (max-width: 991px) {
+    .cs-nav {
+      display: none;
+    }
+    .cs-burger {
+      display: flex;
+    }
+    .cs-header__inner {
+      padding: 12px 20px;
+    }
+    /* En móvil el panel desplegable es blanco: logo y burger oscuros para contraste. */
+    .cs-header .cs-logo__img {
+      filter: none;
+    }
+    .cs-header .cs-burger__bar {
+      background: #2E3840;
+    }
+  }
+
+  /* Respeta el usuario que prefiere menos movimiento. */
+  @media (prefers-reduced-motion: reduce) {
+    .cs-header,
+    .cs-header__inner,
+    .cs-logo__img,
+    .cs-nav__link,
+    .cs-submenu,
+    .cs-chevron,
+    .cs-burger__bar {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Script vanilla mínimo del header (sin jQuery). Tres responsabilidades:
+  //   1. Sticky: añade/quita .is-sticky según el scroll (umbral 60px).
+  //   2. Hamburguesa: abre/cierra el panel móvil con aria-expanded sincronizado.
+  //   3. Submenús de teclado: clic/Enter sobre el toggle abre/cierra; Escape cierra.
+  (() => {
+    const header = document.querySelector<HTMLElement>('[data-cs-header]');
+    if (!header) return;
+
+    // --- 1. Sticky al hacer scroll ---------------------------------------------
+    const STICKY_OFFSET = 60;
+    const onScroll = () => {
+      header.classList.toggle('is-sticky', window.scrollY > STICKY_OFFSET);
+    };
+    onScroll(); // estado inicial (recarga a mitad de página)
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // --- 2. Hamburguesa móvil --------------------------------------------------
+    const burger = header.querySelector<HTMLButtonElement>('[data-cs-burger]');
+    const mobile = header.querySelector<HTMLElement>('#cs-mobile-nav');
+    if (burger && mobile) {
+      burger.addEventListener('click', () => {
+        const abierto = burger.getAttribute('aria-expanded') === 'true';
+        burger.setAttribute('aria-expanded', String(!abierto));
+        if (abierto) {
+          mobile.classList.remove('is-open');
+          mobile.hidden = true;
+        } else {
+          mobile.hidden = false;
+          mobile.classList.add('is-open');
+        }
+      });
+    }
+
+    // --- 3. Submenús accesibles por teclado ------------------------------------
+    const toggles = header.querySelectorAll<HTMLButtonElement>('[data-cs-toggle]');
+    toggles.forEach((toggle) => {
+      const submenu = toggle.parentElement?.querySelector<HTMLElement>('.cs-submenu');
+      if (!submenu) return;
+      toggle.addEventListener('click', () => {
+        const abierto = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!abierto));
+        submenu.classList.toggle('is-open', !abierto);
+      });
+      // Escape cierra el submenú y devuelve el foco al toggle.
+      submenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          toggle.setAttribute('aria-expanded', 'false');
+          submenu.classList.remove('is-open');
+          toggle.focus();
+        }
+      });
+    });
+  })();
+</script>

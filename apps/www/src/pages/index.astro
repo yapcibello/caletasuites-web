@@ -51,6 +51,7 @@ if (html === undefined) {
   ogImage={home.data.ogImage}
   altPath={home.data.altPath}
   pageCss={cssPorRawKey[home.data.rawKey] ?? ''}
+  headerOverlay={true}
 >
   {/* Inyeccion del HTML migrado de la home (incluye iframes Icnea si los hubiera). */}
   <div set:html={html} />
