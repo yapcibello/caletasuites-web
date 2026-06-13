@@ -1,22 +1,33 @@
 # Pendientes — caletasuites-web
 
-## Prioritario
+> Workflow init-web-astro COMPLETADO (14 fases). Tareas restantes = camino a producción. Detalle completo en [planes/2026-06-13-f0-bootstrap-caletasuites/README.md](planes/2026-06-13-f0-bootstrap-caletasuites/README.md).
 
-- [ ] **Completar fase 4 (migración WP→Astro)** del run `init-web-astro-20260612-194558` — ver plan [planes/2026-06-12-continuacion-init-web-astro.md](planes/2026-06-12-continuacion-init-web-astro.md): ejecutar 02-to-mdx, iframes Icnea, assets, routing URLs 1:1, tokens reales, verify-urls
-- [ ] Fases 5-14 del workflow init-web-astro (blueprint definitivo, skills, baselines SEO/GEO/AAA/GTM/deploy, verificación, plan F0)
-- [ ] Obtener del usuario: alias SSH y ruta remota del Hestia VPS para el deploy
+## Prioritario (bloquean producción)
 
-## Mejoras
+- [ ] Facilitar acceso al Hestia VPS: `WWW_SSH_HOST` + `WWW_REMOTE_DIR` en `.env` raíz
+- [ ] Decidir contraste del azul de marca #85A6C7 (falla AA 2.54:1) — oscurecer / texto oscuro / solo no-texto
+- [ ] Decidir CMP / banner de cookies (Consent Mode está en 'denied'; gancho listo)
+- [ ] Verificar contenedor GTM-KBCWRTFS (tag GA4 423687681, triggers de eventos)
 
-- [ ] Instalar `gh` CLI (el push ya funciona por SSH; gh facilitará PRs/issues)
-- [ ] Confirmar GTM container para la nueva web (GA4 423687681 ya existe)
+## Antes del cutover
+
+- [ ] html-diff visual página a página vs producción WP
+- [ ] Self-host de Montserrat (ahora Google Fonts)
+- [ ] Smoke de reservas Icnea en el dominio nuevo
+
+## Cutover y post-deploy
+
+- [ ] Deploy a Hestia (`pnpm deploy:www`) + cutover DNS/vhost (WP como rollback)
+- [ ] PSI/CrUX post-deploy + reenviar sitemap en Search Console + monitor GA4
 
 ## Ideas
 
-- [ ] Mejora editorial de textos página a página tras la migración (sin tocar maquetado)
-- [ ] Revisión SEM de landing pages para campañas
+- [ ] Mejora editorial de textos página a página (sin tocar maquetado) + SEO on-page
+- [ ] Bloques visibles GEO (cita rápida, FAQ) — requieren decisión de maquetado
+- [ ] SEM: landings para campañas Google Ads
+- [ ] Migrar en el valle estacional (mayo-junio) para minimizar riesgo
 
 ## Deuda técnica
 
-- [ ] Tokens de `packages/config/tokens/index.cjs` provisionales (8 marcados `TODO F-Migra`) — sustituir por valores extraídos del CSS real del tema archub
-- [ ] Colecciones de contenido vacías hasta completar la migración (warnings glob-loader en build, esperados)
+- [ ] `spacing.section` en tokens sigue provisional (TODO F-Migra)
+- [ ] Instalar `gh` CLI (opcional; push ya funciona por SSH)
