@@ -34,6 +34,19 @@ export interface DatosLodging {
   imagen: string;
   /** Dirección postal. */
   direccion: DatosDireccion;
+  /** Teléfono de contacto en formato internacional. Opcional. */
+  telephone?: string;
+  /** Email de contacto. Opcional. */
+  email?: string;
+  /** Coordenadas geográficas { latitude, longitude }. Opcional. */
+  geo?: { latitude: number; longitude: number };
+  /** Idiomas que atiende el negocio (BCP47). Opcional. */
+  knowsLanguage?: readonly string[];
+  /**
+   * Valoración agregada real { ratingValue, reviewCount, bestRating }. Opcional.
+   * Solo incluir si procede de reseñas reales publicadas en el sitio.
+   */
+  aggregateRating?: { ratingValue: number; reviewCount: number; bestRating?: number };
   /** Perfiles sociales propios (sameAs). Opcional. */
   sameAs?: string[];
 }
@@ -97,6 +110,24 @@ export function lodgingBusiness(d: DatosLodging) {
       addressRegion: d.direccion.addressRegion,
       addressCountry: d.direccion.addressCountry,
     },
+    ...(d.telephone ? { telephone: d.telephone } : {}),
+    ...(d.email ? { email: d.email } : {}),
+    ...(d.geo
+      ? { geo: { '@type': 'GeoCoordinates', latitude: d.geo.latitude, longitude: d.geo.longitude } }
+      : {}),
+    ...(d.knowsLanguage && d.knowsLanguage.length
+      ? { knowsLanguage: [...d.knowsLanguage] }
+      : {}),
+    ...(d.aggregateRating
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: d.aggregateRating.ratingValue,
+            reviewCount: d.aggregateRating.reviewCount,
+            ...(d.aggregateRating.bestRating ? { bestRating: d.aggregateRating.bestRating } : {}),
+          },
+        }
+      : {}),
     ...(d.sameAs && d.sameAs.length ? { sameAs: d.sameAs } : {}),
   };
 }

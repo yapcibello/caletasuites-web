@@ -1,0 +1,42 @@
+# Caleta Suites Tenerife
+
+> Caleta Suites Tenerife is a holiday rental (vacation rental) accommodation located in La Caleta, in the municipality of Adeje, in the south of the island of Tenerife (Canary Islands, Spain). It offers self-catering apartments and penthouses with sea and mountain views, within walking distance of the beach.
+
+Caleta Suites Tenerife rents fully furnished apartments and penthouses for short-term holiday stays. The property is in La Caleta, a quiet former fishing village in Costa Adeje, southern Tenerife. Bookings are managed online through the Icnea reservation engine (caletasuitestenerife.icnea.net), embedded directly on the apartments and penthouses pages.
+
+## Accommodation
+
+- Apartments and penthouses with 2, 3 and 4 bedrooms.
+- Located on floor 0 and floor 1; penthouses include a large terrace.
+- Views: sea view, mountain view, or combined sea and mountain view (depending on the unit).
+- Self-catering holiday rentals, walking distance to the beach in La Caleta, Adeje (Tenerife).
+- Guest reviews: average rating 4.89 out of 5 across 35 published reviews (as shown on the Reviews page).
+
+## Location
+
+- Locality: La Caleta
+- Municipality: Adeje (Costa Adeje)
+- Island: Tenerife
+- Region: Canary Islands (Islas Canarias), Spain
+- Coordinates region: ES-CN
+
+## Key pages
+
+- [Apartments](https://caletasuitestenerife.com/apartments/): 2-4 bedroom apartments with online booking via Icnea.
+- [Penthouses](https://caletasuitestenerife.com/penthouses/): penthouses with large terraces and panoramic views.
+- [La Caleta](https://caletasuitestenerife.com/la-caleta/): guide to the village of La Caleta in Adeje, southern Tenerife.
+- [Reviews](https://caletasuitestenerife.com/reviews/): guest reviews (average 4.89/5 across 35 reviews).
+- [Work Spaces / Coworking](https://caletasuitestenerife.com/work-spaces-coworking-in-tenerife/): coworking and remote-work facilities for digital nomads and hybrid workers in Tenerife.
+- [Common Areas](https://caletasuitestenerife.com/common-areas/): shared areas of the property.
+- [Blog](https://caletasuitestenerife.com/blog/): guides to La Caleta and southern Tenerife (gastronomy, activities, things to do).
+
+## Contact and booking
+
+- Bookings: online via the Icnea reservation engine (https://caletasuitestenerife.icnea.net), embedded on the Apartments and Penthouses pages.
+- Phone: +34 648 789 062
+- Email: hola@caletasuites.com
+- Social: https://www.facebook.com/caletasuitestenerife · https://www.instagram.com/caletasuitestenerife/
+
+## Languages
+
+This site is available in English (default, at the root domain) and Spanish (under /es/). See the Spanish version of this file at /es/llms.txt.

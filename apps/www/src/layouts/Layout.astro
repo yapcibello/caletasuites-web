@@ -76,6 +76,11 @@ const lodging = lodgingBusiness({
     addressRegion: siteConfig.location.region,
     addressCountry: siteConfig.location.country,
   },
+  telephone: siteConfig.contact.telephone,
+  email: siteConfig.contact.email,
+  geo: { latitude: siteConfig.location.latitude, longitude: siteConfig.location.longitude },
+  knowsLanguage: siteConfig.knowsLanguage,
+  aggregateRating: siteConfig.aggregateRating,
   sameAs: siteConfig.sameAs as unknown as string[],
 });
 const bloquesJsonLd = [lodging, ...jsonLdExtra];

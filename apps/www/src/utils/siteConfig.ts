@@ -20,6 +20,13 @@ export const siteConfig = {
     xDefault: 'en',
   },
 
+  // Contacto real del negocio (extraído del footer del tema WordPress
+  // _chrome/footer-*.html). NAP consistente entre footer, JSON-LD y GBP.
+  contact: {
+    telephone: '+34 648 789 062',
+    email: 'hola@caletasuites.com',
+  },
+
   // Ubicación real (alquiler vacacional).
   location: {
     locality: 'La Caleta',
@@ -28,6 +35,22 @@ export const siteConfig = {
     island: 'Tenerife',
     country: 'ES',
     geoRegion: 'ES-CN',
+    // Coordenadas de La Caleta, Adeje (sur de Tenerife).
+    latitude: 28.0921,
+    longitude: -16.7635,
+  },
+
+  // Idiomas que el negocio atiende (knowsLanguage del JSON-LD).
+  knowsLanguage: ['en', 'es'] as const,
+
+  // Valoración agregada real de huéspedes, extraída de la página de reseñas
+  // (_raw/paginas/reviews-en.html): 35 reseñas publicadas con widget de estrellas
+  // Elementor; media calculada 4,89 sobre 5 (32 de 5★ + 3 de 4★). Dato verificable,
+  // NO inventado. Si cambian las reseñas, recalcular y actualizar aquí.
+  aggregateRating: {
+    ratingValue: 4.89,
+    reviewCount: 35,
+    bestRating: 5,
   },
 
   // Perfiles sociales propios (sameAs del JSON-LD). Extraídos del footer real del

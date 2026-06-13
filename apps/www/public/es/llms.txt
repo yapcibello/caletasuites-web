@@ -1,0 +1,41 @@
+# Caleta Suites Tenerife
+
+> Caleta Suites Tenerife es un alojamiento de alquiler vacacional situado en La Caleta, en el municipio de Adeje, al sur de la isla de Tenerife (Islas Canarias, España). Ofrece apartamentos y áticos con cocina propia, vistas al mar y a la montaña, a pocos pasos de la playa.
+
+Caleta Suites Tenerife alquila apartamentos y áticos totalmente equipados para estancias vacacionales de corta duración. La propiedad está en La Caleta, un tranquilo antiguo pueblo pesquero de Costa Adeje, al sur de Tenerife. Las reservas se gestionan online mediante el motor de reservas Icnea (caletasuitestenerife.icnea.net), integrado directamente en las páginas de apartamentos y áticos.
+
+## Alojamiento
+
+- Apartamentos y áticos de 2, 3 y 4 dormitorios.
+- Ubicados en planta 0 y planta 1; los áticos incluyen una gran terraza.
+- Vistas: vista al mar, vista a la montaña o vista combinada mar y montaña (según la unidad).
+- Alquiler vacacional con cocina propia, a pie de playa en La Caleta, Adeje (Tenerife).
+- Reseñas de huéspedes: valoración media de 4,89 sobre 5 en 35 reseñas publicadas (según la página de Reseñas).
+
+## Ubicación
+
+- Localidad: La Caleta
+- Municipio: Adeje (Costa Adeje)
+- Isla: Tenerife
+- Región: Islas Canarias, España
+- Código de región: ES-CN
+
+## Páginas clave
+
+- [Apartamentos](https://caletasuitestenerife.com/es/apartamentos/): apartamentos de 2-4 dormitorios con reserva online vía Icnea.
+- [Áticos](https://caletasuitestenerife.com/es/aticos/): áticos con grandes terrazas y vistas panorámicas.
+- [La Caleta](https://caletasuitestenerife.com/es/la-caleta/): guía del pueblo de La Caleta en Adeje, sur de Tenerife.
+- [Reseñas](https://caletasuitestenerife.com/es/resenas/): reseñas de huéspedes (media 4,89/5 en 35 reseñas).
+- [Espacios de trabajo / Coworking](https://caletasuitestenerife.com/es/work-spaces-coworking-en-tenerife/): instalaciones de coworking y teletrabajo para nómadas digitales y trabajo híbrido en Tenerife.
+- [Blog](https://caletasuitestenerife.com/es/blog/): guías de La Caleta y el sur de Tenerife (gastronomía, actividades, planes).
+
+## Contacto y reservas
+
+- Reservas: online mediante el motor de reservas Icnea (https://caletasuitestenerife.icnea.net), integrado en las páginas de Apartamentos y Áticos.
+- Teléfono: +34 648 789 062
+- Email: hola@caletasuites.com
+- Redes: https://www.facebook.com/caletasuitestenerife · https://www.instagram.com/caletasuitestenerife/
+
+## Idiomas
+
+Este sitio está disponible en inglés (idioma por defecto, en el dominio raíz) y español (bajo /es/). La versión en inglés de este fichero está en /llms.txt.
