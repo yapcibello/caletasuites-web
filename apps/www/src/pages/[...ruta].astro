@@ -36,6 +36,19 @@ for (const [ruta, html] of Object.entries(htmlPorRuta)) {
   htmlPorRawKey[rawKey] = html as string;
 }
 
+// CSS inline de Elementor especifico de cada pagina (extraido del <head> en vivo,
+// Elementor css_print_method:internal). Se casa por rawKey igual que el HTML.
+const cssPorRuta = import.meta.glob('../content/_raw_css/*.css', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const cssPorRawKey: Record<string, string> = {};
+for (const [ruta, css] of Object.entries(cssPorRuta)) {
+  const rawKey = ruta.split('/').pop()!.replace(/\.css$/, '');
+  cssPorRawKey[rawKey] = css as string;
+}
+
 export async function getStaticPaths() {
   // Itera las tres colecciones y unifica sus entradas para el routing.
   const [apartamentos, paginas, posts] = await Promise.all([
@@ -127,6 +140,10 @@ if (html === undefined) {
   throw new Error(`No se encontro el HTML crudo para rawKey="${rawKey}" en _raw/.`);
 }
 
+// CSS inline especifico de esta pagina (puede faltar si la pagina no tenia
+// estilos Elementor propios; en ese caso queda vacio y no se inyecta nada).
+const pageCss = cssPorRawKey[rawKey] ?? '';
+
 // URL absoluta self-referencial de esta entrada (para los builders JSON-LD).
 const urlAbs = new URL(path, siteConfig.url).href;
 
@@ -184,6 +201,7 @@ if (coleccion === 'apartamentos' && dormitorios !== undefined && planta && vista
   ogImage={ogImage}
   altPath={altPath}
   jsonLd={bloquesJsonLd}
+  pageCss={pageCss}
 >
   {/* Inyeccion del HTML migrado de Elementor (incluye iframes Icnea intactos). */}
   <div set:html={html} />

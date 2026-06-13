@@ -8,6 +8,9 @@ import { lodgingBusiness } from '@caletasuites/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+// CSS inline GLOBAL de Elementor (igual en todas las páginas: global-styles,
+// liquid-base, elementor-frontend). Se extrajo una vez del <head> en vivo.
+import elementorGlobalInline from '../styles/elementor-global-inline.css?raw';
 
 interface Props {
   /**
@@ -28,6 +31,11 @@ interface Props {
   altPath?: string;
   /** Bloques JSON-LD adicionales por página (Apartment, BlogPosting, BreadcrumbList…). */
   jsonLd?: Record<string, unknown>[];
+  /**
+   * CSS inline de Elementor específico de la página (extraído del <head> en vivo,
+   * css_print_method:internal). Se inyecta en el <head> para fidelidad visual.
+   */
+  pageCss?: string;
 }
 
 const {
@@ -37,6 +45,7 @@ const {
   ogImage = siteConfig.defaultOgImage,
   altPath,
   jsonLd: jsonLdExtra = [],
+  pageCss = '',
 } = Astro.props;
 
 // GTM ID desde el .env de la app (placeholder GTM-XXXXXX en .env.example).
@@ -187,6 +196,16 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
     <link rel="stylesheet" href="/wp-assets/css/elementor-widget-social-icons.css" />
     {/* 7. CSS compilado por página de Elementor (último por cascada). */}
     <link rel="stylesheet" href="/wp-assets/css/theme-elementor.css" />
+
+    {/*
+      8. CSS inline de Elementor (css_print_method:internal del sitio origen):
+         - GLOBAL: estilos comunes a todas las páginas (global-styles, liquid-base,
+           elementor-frontend), extraído una vez del <head> en vivo.
+         - POR PÁGINA: estilos específicos de la página (elementor-post-<id>),
+           inyectados al final para que ganen por cascada igual que en producción.
+    */}
+    <style is:inline set:html={elementorGlobalInline} />
+    {pageCss && <style is:inline set:html={pageCss} />}
 
     {/*
       Consent Mode v2 (RGPD) — DEBE cargarse ANTES del snippet GTM.
