@@ -264,5 +264,13 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
       No-op en páginas sin contenedor de vídeo. Ver src/scripts/bg-video.ts.
     */}
     <script>import '../scripts/bg-video.ts';</script>
+
+    {/*
+      Carrusel nativo de testimonios (página de reseñas) — reemplaza el runtime de
+      Swiper, que no está presente en el sitio migrado. El script tiene un guard
+      interno: es no-op en páginas sin .elementor-main-swiper. Ver
+      src/scripts/reviews-carousel.ts (importa además su CSS scoped).
+    */}
+    <script>import '../scripts/reviews-carousel.ts';</script>
   </body>
 </html>

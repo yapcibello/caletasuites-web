@@ -1,0 +1,150 @@
+/*
+ * Carrusel nativo de testimonios (página de reseñas).
+ * Reemplaza el runtime de Swiper (no presente en el sitio migrado) usando solo
+ * CSS + scroll-snap nativo. Todos los selectores están "scoped" a
+ * .elementor-main-swiper para no afectar a otras páginas.
+ *
+ * Breakpoints (tarjetas visibles): 4 escritorio / 2 tablet (<=991px) / 1 móvil (<=767px).
+ */
+
+/* Variable local con el gap entre tarjetas: se usa en el cálculo del ancho. */
+.elementor-main-swiper {
+  --cs-carousel-gap: 24px;
+  position: relative; /* ancla las flechas posicionadas en absoluto */
+}
+
+/* Pista del carrusel: flex horizontal con scroll-snap y scrollbar oculta. */
+.elementor-main-swiper .swiper-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--cs-carousel-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* Oculta la scrollbar manteniendo el desplazamiento (Firefox / IE / WebKit). */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Pequeño respiro inferior para que el snap no recorte sombras de las tarjetas. */
+  padding-bottom: 4px;
+}
+
+.elementor-main-swiper .swiper-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tarjeta: 4 visibles en escritorio. El cálculo descuenta el gap proporcional. */
+.elementor-main-swiper .swiper-slide {
+  flex: 0 0 calc(25% - (var(--cs-carousel-gap) * 3 / 4));
+  scroll-snap-align: start;
+  height: auto; /* altura coherente entre tarjetas vía estiramiento del contenido */
+  display: flex;
+}
+
+/* El testimonio ocupa toda la altura de su slide para igualar tarjetas. */
+.elementor-main-swiper .swiper-slide .elementor-testimonial {
+  width: 100%;
+  height: 100%;
+}
+
+/* Tablet: 2 tarjetas visibles. */
+@media (max-width: 991px) {
+  .elementor-main-swiper .swiper-slide {
+    flex-basis: calc(50% - (var(--cs-carousel-gap) / 2));
+  }
+}
+
+/* Móvil: 1 tarjeta visible. */
+@media (max-width: 767px) {
+  .elementor-main-swiper {
+    --cs-carousel-gap: 16px;
+  }
+  .elementor-main-swiper .swiper-slide {
+    flex-basis: 100%;
+  }
+}
+
+/* --- Flechas de navegación ------------------------------------------------ */
+.elementor-main-swiper .elementor-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #222;
+  font-size: 18px;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.elementor-main-swiper .elementor-swiper-button:hover {
+  background: #fff;
+}
+
+.elementor-main-swiper .elementor-swiper-button:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
+}
+
+.elementor-main-swiper .elementor-swiper-button-prev {
+  left: 8px;
+}
+
+.elementor-main-swiper .elementor-swiper-button-next {
+  right: 8px;
+}
+
+/* Estado deshabilitado (en los extremos): se atenúa y deja de capturar clics. */
+.elementor-main-swiper .elementor-swiper-button[aria-disabled='true'] {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* --- Paginación (puntos) -------------------------------------------------- */
+.elementor-main-swiper .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.elementor-main-swiper .swiper-pagination .swiper-pagination-bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.elementor-main-swiper .swiper-pagination .swiper-pagination-bullet:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.elementor-main-swiper .swiper-pagination .swiper-pagination-bullet:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
+}
+
+.elementor-main-swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background: #222;
+  transform: scale(1.25);
+}
