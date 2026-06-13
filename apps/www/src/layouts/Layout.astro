@@ -257,5 +257,12 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
       Astro lo bundlea y carga diferido (type=module). Ver src/scripts/analytics.ts.
     */}
     {gtmId && <script>import '../scripts/analytics.ts';</script>}
+
+    {/*
+      Vídeo de fondo nativo para secciones Elementor con background_background:video
+      (la home tiene un hero con vídeo de YouTube). Reemplaza el runtime de Elementor.
+      No-op en páginas sin contenedor de vídeo. Ver src/scripts/bg-video.ts.
+    */}
+    <script>import '../scripts/bg-video.ts';</script>
   </body>
 </html>
