@@ -8,8 +8,9 @@
 @tailwind utilities;
 
 /* Foco visible AAA en todos los elementos interactivos (WCAG 2.4.7 + 1.4.11).
-   El indicador NO usa el azul de marca (#85A6C7, contraste 2.54:1 — insuficiente):
-   usa un outline oscuro neutro (#1a1a1a, contraste alto sobre fondos claros) con un
+   El indicador usa un neutro oscuro, no el azul de marca: aunque el azul se oscureció
+   a #37597C (7.29:1, AAA) por contraste, el foco mantiene un outline neutro
+   (#1a1a1a, contraste alto sobre fondos claros) por consistencia, con un
    halo blanco intermedio (box-shadow) que garantiza visibilidad también sobre fondos
    oscuros (patrón de halo dual). Es un añadido de accesibilidad: no altera ningún
    color del contenido visible, solo el propio indicador de foco. */

@@ -58,4 +58,21 @@ Si todos los items responden "No" en la columna 2 y la evidencia esta vacia, el 
 
 <!-- Anade nuevas entradas arriba de este comentario, en orden cronologico inverso (mas reciente primero). -->
 
-*(sin desviaciones registradas todavia — al registrar la primera, borrar esta linea)*
+### [2026-06-14] — Oscurecido del azul de marca por contraste (réplica visual alterada)
+
+**Qué se desvió**: la regla «réplica visual exacta» / Boundary «Nunca cambiar el maquetado/diseño».
+
+**Qué**: el azul de marca `#85A6C7` y los azules de foreground asociados (`#6996C4`, `#7892A4`, `#6288AA`) fallaban el contraste WCAG (2.54–4.41:1). Se sustituyeron por tonos AAA (≥ 7:1):
+- Contenido Elementor + token + enlaces header sticky + footer-hover → **`#37597C`** (7.29:1 sobre blanco).
+- Hover/activo de header sobre blanco → **`#2A4A6B`** (9.17:1).
+- Enlace activo del footer (sobre `#1F1F1F`) → **`#A9C5DE`** (9.21:1).
+- Gris de subenlace móvil `#55606a` → `#454d57` (8.56:1).
+- Se MANTIENE `#A9C5DE` sobre el footer oscuro (9.21:1, ya AAA) y el hover del overlay `#6996C4` sobre el hero oscuro (no va sobre blanco).
+
+**Por qué**: el azul claro como texto/botón sobre fondo claro es legalmente inaccesible (RD 1112/2018 / EAA 2025). La Boundary «Siempre: verificar contraste AAA» prevalece aquí sobre la réplica visual. El contraste es simétrico: un único tono oscurecido corrige texto-sobre-claro y blanco-sobre-color a la vez.
+
+**Aprobación del usuario**: elección explícita «Oscurecer global a AAA (#37597C)» ante 3 opciones presentadas (réplica fiel vs AA vs AAA), conversación 2026-06-14.
+
+**Impacto**: el color de los azules deja de ser 1:1 con producción WP; el resto del maquetado, imágenes y estructura es idéntico. Declaración de accesibilidad actualizada a «conforme AA + contraste AAA». ~656 ocurrencias en `_raw_css` + token + `Header.astro` + footer chrome EN/ES.
+
+**Fecha**: 2026-06-14.

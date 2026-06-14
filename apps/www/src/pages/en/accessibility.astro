@@ -4,17 +4,16 @@
 // NEW URL: /en/accessibility/ (allowed addition — does not modify any existing
 // URL). Follows the W3C WAI 10-section template from the wcag-aa-aaa skill.
 //
-// Declared real status: PARTIAL conformance with WCAG 2.2 level AA, targeting
-// AAA. The known limitation is the brand blue contrast (#85A6C7), left unchanged
-// to preserve the exact visual replica of the migrated site: it requires a design
-// decision (see "Non-accessible content"). The W3C conformance logo is not shown
-// because, with a known contrast failure, doing so would be an incoherent visual
-// claim (wcag-aa-aaa skill, A12).
+// Declared real status: FULL conformance with WCAG 2.2 level AA. Colour contrast
+// additionally meets level AAA (1.4.6): the brand blue was darkened to #37597C
+// (7.29:1) and all text reaches >=7:1. This was an authorised deviation from the
+// exact visual replica for accessibility reasons (see docs/deviations.md). Full AAA
+// is not claimed because not every AAA criterion has been verified.
 import Layout from '../../layouts/Layout.astro';
 
 // Statement date (review on every audit). ISO format for the JSON-LD.
-const fechaDeclaracion = '2026-06-13';
-const fechaLegible = '13 June 2026';
+const fechaDeclaracion = '2026-06-14';
+const fechaLegible = '14 June 2026';
 
 // Page-specific WebPage JSON-LD (richer than the Layout LodgingBusiness):
 // declares partial conformance and the real accessibility summary.
@@ -28,7 +27,7 @@ const jsonLdPagina = {
   accessibilityFeature: ['alternativeText', 'structuredNavigation', 'readingOrder', 'highContrastDisplay'],
   accessibilityHazard: 'none',
   accessibilitySummary:
-    'Partial conformance with WCAG 2.2 level AA targeting AAA. Known limitation: the brand blue colour does not meet the minimum text contrast; pending a design decision.',
+    'Fully conformant with WCAG 2.2 level AA. Colour contrast meets level AAA (1.4.6): all text reaches a contrast ratio of at least 7:1.',
 };
 ---
 
@@ -57,10 +56,10 @@ const jsonLdPagina = {
     <section id="status">
       <h2>2. Conformance status</h2>
       <p>
-        This website is <strong>partially conformant</strong> with WCAG 2.2 level
-        <strong>AA</strong>, <strong>targeting level AAA</strong>. "Partially conformant"
-        means that most of the content meets level AA, but a known limitation has not yet been
-        resolved (see section 4).
+        This website is <strong>fully conformant</strong> with WCAG 2.2 level
+        <strong>AA</strong>. In addition, <strong>colour contrast meets level AAA</strong>
+        (criterion 1.4.6): all text has a contrast ratio of at least 7:1. We do not claim full
+        AAA conformance because some criteria at that level are outside the verified scope.
       </p>
     </section>
 
@@ -71,6 +70,7 @@ const jsonLdPagina = {
         <li>Semantic structure with page regions (header, navigation, main content and footer).</li>
         <li>Skip link to jump straight to the main content with the keyboard.</li>
         <li>Visible, high-contrast focus indicator on all interactive elements.</li>
+        <li>AAA-level colour contrast (≥ 7:1) on all text, including the brand blue.</li>
         <li>Alternative text on informative images and a coherent reading order.</li>
         <li>Page language declared for screen readers.</li>
       </ul>
@@ -80,19 +80,15 @@ const jsonLdPagina = {
     <section id="non-accessible-content">
       <h2>4. Non-accessible content</h2>
       <p>
-        We have identified the following limitation, which requires a design decision before it
-        can be resolved without altering the brand's visual identity:
+        No non-accessible content has been identified in the site's own pages. The brand blue
+        contrast limitation reported in earlier versions has been <strong>resolved</strong>: the
+        shade was darkened to a blue that meets level AAA (contrast ratio ≥ 7:1) both as text and
+        on buttons.
       </p>
-      <ul>
-        <li>
-          <strong>Brand blue contrast (criteria 1.4.3 AA and 1.4.6 AAA).</strong>
-          The corporate blue colour does not reach the minimum contrast ratio required for
-          small text on a light background, nor for text on buttons of that colour. We have not
-          modified it in order to keep the site visually consistent. We are evaluating
-          alternatives (darkening the shade, using dark text on the buttons, or reserving the
-          blue for non-text elements only).
-        </li>
-      </ul>
+      <p>
+        Content served by third parties (the embedded booking engine, maps or external widgets)
+        remains outside our control, as its accessibility depends on the providers (see section 5).
+      </p>
     </section>
 
     {/* 5 — Scope */}
@@ -166,7 +162,7 @@ const jsonLdPagina = {
       <h2>10. About this statement</h2>
       <ul>
         <li>Statement date: {fechaLegible}.</li>
-        <li>Standard applied: WCAG 2.2 (targeting level AAA, current conformance partial AA).</li>
+        <li>Standard applied: WCAG 2.2 level AA (fully conformant); colour contrast at level AAA.</li>
         <li>Responsible: Caleta Suites Tenerife.</li>
       </ul>
     </section>

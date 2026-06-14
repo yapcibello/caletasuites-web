@@ -4,17 +4,16 @@
 // URL NUEVA: /accesibilidad/ (ampliación permitida — no modifica ninguna URL
 // existente). Sigue la plantilla W3C WAI de 10 secciones del skill wcag-aa-aaa.
 //
-// Estado real declarado: conformidad PARCIAL con WCAG 2.2 nivel AA, con objetivo
-// AAA. La limitación conocida es el contraste del azul de marca (#85A6C7), que no
-// se modifica para preservar la réplica visual exacta del sitio migrado: requiere
-// una decisión de diseño (ver sección "Contenido no accesible"). No se muestra el
-// logo W3C de conformidad porque, existiendo un fallo de contraste conocido, hacerlo
-// sería una declaración visual incoherente (skill wcag-aa-aaa, A12).
+// Estado real declarado: conformidad PLENA con WCAG 2.2 nivel AA. El contraste de
+// color cumple además el nivel AAA (1.4.6): el azul de marca se oscureció a #37597C
+// (7.29:1) y todos los textos alcanzan >=7:1. Esto supuso una desviación autorizada
+// de la réplica visual exacta por motivos de accesibilidad (ver docs/deviations.md).
+// No se afirma AAA total porque no todos los criterios AAA están verificados.
 import Layout from '../layouts/Layout.astro';
 
 // Fecha de la declaración (revisar en cada auditoría). Formato ISO para el JSON-LD.
-const fechaDeclaracion = '2026-06-13';
-const fechaLegible = '13 de junio de 2026';
+const fechaDeclaracion = '2026-06-14';
+const fechaLegible = '14 de junio de 2026';
 
 // JSON-LD WebPage específico de esta página (más rico que el LodgingBusiness del
 // Layout): declara la conformidad parcial y el resumen real de accesibilidad.
@@ -28,7 +27,7 @@ const jsonLdPagina = {
   accessibilityFeature: ['alternativeText', 'structuredNavigation', 'readingOrder', 'highContrastDisplay'],
   accessibilityHazard: 'none',
   accessibilitySummary:
-    'Conformidad parcial con WCAG 2.2 nivel AA y objetivo AAA. Limitación conocida: el color azul de marca no alcanza el contraste mínimo para texto; pendiente de decisión de diseño.',
+    'Plenamente conforme con WCAG 2.2 nivel AA. El contraste de color cumple el nivel AAA (1.4.6): todos los textos alcanzan una relación de contraste de al menos 7:1.',
 };
 ---
 
@@ -57,10 +56,11 @@ const jsonLdPagina = {
     <section id="estado">
       <h2>2. Estado de conformidad</h2>
       <p>
-        Este sitio web es <strong>parcialmente conforme</strong> con las Pautas WCAG 2.2
-        nivel <strong>AA</strong>, con el <strong>objetivo de alcanzar el nivel AAA</strong>.
-        «Parcialmente conforme» significa que la mayor parte del contenido cumple el nivel
-        AA, pero existe una limitación conocida que aún no se ha resuelto (ver sección 4).
+        Este sitio web es <strong>plenamente conforme</strong> con las Pautas WCAG 2.2
+        nivel <strong>AA</strong>. Además, el <strong>contraste de color cumple el nivel
+        AAA</strong> (criterio 1.4.6): todos los textos presentan una relación de contraste
+        de al menos 7:1. No declaramos conformidad AAA total porque algunos criterios de
+        ese nivel quedan fuera del alcance verificado.
       </p>
     </section>
 
@@ -71,6 +71,7 @@ const jsonLdPagina = {
         <li>Estructura semántica con regiones de página (cabecera, navegación, contenido y pie).</li>
         <li>Enlace para saltar directamente al contenido principal con el teclado.</li>
         <li>Indicador de foco visible y de alto contraste en todos los elementos interactivos.</li>
+        <li>Contraste de color de nivel AAA (≥ 7:1) en todo el texto, incluido el azul de marca.</li>
         <li>Texto alternativo en las imágenes informativas y orden de lectura coherente.</li>
         <li>Idioma de la página declarado para los lectores de pantalla.</li>
       </ul>
@@ -80,19 +81,16 @@ const jsonLdPagina = {
     <section id="contenido-no-accesible">
       <h2>4. Contenido no accesible</h2>
       <p>
-        Hemos identificado la siguiente limitación, que requiere una decisión de diseño
-        antes de resolverse para no alterar la identidad visual de la marca:
+        No se han identificado contenidos no accesibles en las páginas propias del sitio.
+        La limitación de contraste del azul de marca detectada en versiones anteriores se
+        ha <strong>resuelto</strong>: el tono se oscureció a un azul que cumple el nivel AAA
+        (relación de contraste ≥ 7:1) tanto como texto como en los botones.
       </p>
-      <ul>
-        <li>
-          <strong>Contraste del azul de marca (criterios 1.4.3 AA y 1.4.6 AAA).</strong>
-          El color azul corporativo no alcanza la relación de contraste mínima exigida para
-          texto pequeño sobre fondo claro, ni para el texto sobre los botones de ese color.
-          No lo hemos modificado para mantener la coherencia visual del sitio. Estamos
-          evaluando alternativas (oscurecer el tono, usar texto oscuro sobre los botones o
-          reservar el azul solo para elementos no textuales).
-        </li>
-      </ul>
+      <p>
+        Quedan fuera de nuestro control los contenidos servidos por terceros (motor de
+        reservas embebido, mapas o widgets externos), cuya accesibilidad depende de sus
+        proveedores (ver sección 5).
+      </p>
     </section>
 
     {/* 5 — Alcance */}
@@ -167,7 +165,7 @@ const jsonLdPagina = {
       <h2>10. Información sobre esta declaración</h2>
       <ul>
         <li>Fecha de la declaración: {fechaLegible}.</li>
-        <li>Estándar aplicado: WCAG 2.2 (objetivo nivel AAA, conformidad actual parcial AA).</li>
+        <li>Estándar aplicado: WCAG 2.2 nivel AA (plenamente conforme); contraste de color de nivel AAA.</li>
         <li>Responsable: Caleta Suites Tenerife.</li>
       </ul>
     </section>

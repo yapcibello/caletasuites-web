@@ -1,0 +1,238 @@
+---
+// Banner de consentimiento de cookies (CMP) — RGPD / AEPD.
+//
+// Conecta con el Consent Mode v2 declarado en Layout.astro (default 'denied').
+// El sitio solo usa medición (analytics) vía GTM/GA4; ad_storage permanece
+// 'denied' en todo momento (no se conceden cookies publicitarias).
+//
+// Cumplimiento AEPD/RGPD:
+//   - Rechazar es tan fácil y visible como aceptar (mismo nivel, mismo tamaño).
+//   - Antes de aceptar NO se cargan cookies de analítica (consent 'denied').
+//   - Enlace a la Política de Cookies completa.
+//   - Consentimiento revocable: window.caletaCookiePrefs() reabre el banner
+//     (lo puede invocar un enlace del footer o de la política de cookies).
+//
+// Accesibilidad (skill wcag-aa-aaa, patrón CookieScript AEPD):
+//   - role="dialog" con aria-labelledby (encabezado) y aria-describedby (texto).
+//   - NO usa aria-modal="true": es un banner NO bloqueante (sin focus-trap), así
+//     que declararlo modal mentiría al lector de pantalla. El foco solo se mueve
+//     al banner cuando se reabre por acción del usuario (caletaCookiePrefs).
+//   - Botones operables por teclado, área táctil >= 44px, contraste AAA.
+//
+// El consent por defecto es 'denied' en CADA carga de página (snippet del <head>),
+// así que la elección previa del usuario se restaura aquí en cada navegación.
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+// URLs inmutables de la política de cookies (1:1 con producción).
+const policyUrl = lang === 'es' ? '/es/politica-de-cookies/' : '/cookie-policy/';
+
+const t =
+  lang === 'es'
+    ? {
+        title: 'Cookies',
+        text: 'Usamos cookies propias y de terceros para analizar el uso del sitio web. Puedes aceptarlas, rechazarlas o leer más en nuestra',
+        policy: 'Política de Cookies',
+        accept: 'Aceptar',
+        reject: 'Rechazar',
+      }
+    : {
+        title: 'Cookies',
+        text: 'We use our own and third-party cookies to analyse website usage. You can accept them, reject them or read more in our',
+        policy: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject',
+      };
+---
+
+<section
+  id="caleta-cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-labelledby="caleta-cookie-title"
+  aria-describedby="caleta-cookie-desc"
+  hidden
+>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <h2 id="caleta-cookie-title" class="cookie-banner__title">{t.title}</h2>
+      <p id="caleta-cookie-desc" class="cookie-banner__text">
+        {t.text} <a href={policyUrl}>{t.policy}</a>.
+      </p>
+    </div>
+    <div class="cookie-banner__actions">
+      {/* Rechazar primero e igual de prominente que aceptar (AEPD). */}
+      <button type="button" id="caleta-cookie-reject" class="cookie-btn cookie-btn--secondary">
+        {t.reject}
+      </button>
+      <button type="button" id="caleta-cookie-accept" class="cookie-btn cookie-btn--primary">
+        {t.accept}
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Colores AAA: texto/botones #1a1a1a sobre blanco (y blanco sobre #1a1a1a).
+     NO se usa el azul de marca #85A6C7 (contraste 2.54:1, insuficiente). */
+  .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: #ffffff;
+    border-top: 3px solid #1a1a1a;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  .cookie-banner[hidden] {
+    display: none;
+  }
+  .cookie-banner__inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .cookie-banner__copy {
+    flex: 1 1 320px;
+  }
+  .cookie-banner__title {
+    margin: 0 0 0.25rem;
+    color: #1a1a1a;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .cookie-banner__text {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .cookie-banner__text a {
+    color: #1a1a1a;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .cookie-banner__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex: 0 0 auto;
+  }
+  .cookie-btn {
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #1a1a1a;
+    /* Área táctil mínima WCAG 2.5.5/2.5.8. */
+    min-height: 44px;
+  }
+  .cookie-btn--primary {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .cookie-btn--secondary {
+    background: #ffffff;
+    color: #1a1a1a;
+  }
+  @media (max-width: 560px) {
+    .cookie-banner__actions {
+      width: 100%;
+    }
+    .cookie-btn {
+      flex: 1;
+    }
+  }
+</style>
+
+{/*
+  Script inline (no module): debe ejecutarse de inmediato para restaurar el
+  consentimiento previo dentro de la ventana wait_for_update (500ms) del <head>.
+  No depende de analytics.ts (módulo diferido): hace el push de consent
+  directamente, y además invoca el gancho caletaConsentGranted() si ya está
+  disponible (al hacer clic, ya lo está).
+*/}
+<script is:inline>
+  (function () {
+    var KEY = 'caleta_consent';
+    var banner = document.getElementById('caleta-cookie-banner');
+    if (!banner) return;
+
+    function gtagPush() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(arguments);
+    }
+    // Concede analítica usando el gancho preparado (analytics.ts) si existe;
+    // si no, push directo equivalente. ad_storage NUNCA se concede aquí.
+    function grant() {
+      if (typeof window.caletaConsentGranted === 'function') {
+        window.caletaConsentGranted({ analytics: true, ads: false });
+      } else {
+        gtagPush('consent', 'update', { analytics_storage: 'granted' });
+      }
+    }
+    function deny() {
+      gtagPush('consent', 'update', { analytics_storage: 'denied' });
+    }
+    function hide() {
+      banner.hidden = true;
+    }
+    function show() {
+      banner.hidden = false;
+    }
+
+    // Restaurar elección previa (el consent por defecto es 'denied' en cada carga).
+    var prev = null;
+    try {
+      prev = localStorage.getItem(KEY);
+    } catch (e) {}
+    if (prev === 'granted') {
+      gtagPush('consent', 'update', { analytics_storage: 'granted' });
+      hide();
+    } else if (prev === 'denied') {
+      hide();
+    } else {
+      show();
+    }
+
+    var btnAccept = document.getElementById('caleta-cookie-accept');
+    var btnReject = document.getElementById('caleta-cookie-reject');
+    if (btnAccept) {
+      btnAccept.addEventListener('click', function () {
+        try {
+          localStorage.setItem(KEY, 'granted');
+        } catch (e) {}
+        grant();
+        hide();
+      });
+    }
+    if (btnReject) {
+      btnReject.addEventListener('click', function () {
+        try {
+          localStorage.setItem(KEY, 'denied');
+        } catch (e) {}
+        deny();
+        hide();
+      });
+    }
+
+    // API global para revocar/cambiar el consentimiento (RGPD: revocable).
+    // Un enlace del footer o de la política de cookies puede llamar a esta función.
+    window.caletaCookiePrefs = function () {
+      show();
+      if (btnAccept) btnAccept.focus();
+    };
+  })();
+</script>

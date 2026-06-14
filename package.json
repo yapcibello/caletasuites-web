@@ -14,7 +14,8 @@
     "verify:html-diff": "bash scripts/verify-no-html-diff.sh",
     "verify:sitemap-images": "node scripts/verify-sitemap-images.mjs",
     "test": "vitest run",
-    "hero:list": "node scripts/list-hero-photos.mjs"
+    "hero:list": "node scripts/list-hero-photos.mjs",
+    "fetch:montserrat": "bash scripts/fetch-montserrat.sh"
   },
   "devDependencies": {
     "vitest": "^4.1.5"

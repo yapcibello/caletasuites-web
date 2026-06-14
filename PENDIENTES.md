@@ -5,14 +5,14 @@
 ## Prioritario (bloquean producción)
 
 - [ ] Obtener credenciales FTP del panel Hestia (ver `.env.example`) y poblar `.env` raíz — sin esto no hay deploy
-- [ ] Decidir contraste del azul de marca #85A6C7 (falla AA 2.54:1) — oscurecer / texto oscuro / solo no-texto
-- [ ] Decidir CMP / banner de cookies (Consent Mode está en 'denied'; gancho listo)
-- [ ] Verificar contenedor GTM-KBCWRTFS (tag GA4 423687681, triggers de eventos)
+- [x] Contraste del azul de marca: oscurecido global a #37597C (AAA 7.29:1) — todo el texto ≥7:1; declaración actualizada a «AA + contraste AAA». Desviación de réplica registrada en `docs/deviations.md` (2026-06-14)
+- [x] CMP / banner de cookies RGPD/AEPD implementado (`CookieBanner.astro`, bilingüe, revocable, AAA) — conecta Consent Mode + `caletaConsentGranted()` (2026-06-14)
+- [ ] Verificar contenedor GTM-KBCWRTFS (tag GA4 423687681, triggers de eventos) — MCP GTM sin conexión en el entorno actual; ver checklist en `proyecto/api.md` / hacerlo desde máquina con red
 
 ## Antes del cutover
 
 - [ ] html-diff visual página a página vs producción WP
-- [ ] Self-host de Montserrat (ahora Google Fonts)
+- [ ] Self-host de Montserrat — OJO: `font-montserrat.css` apunta a woff2 locales que NO existen y NO hay `<link>` a Google Fonts → Montserrat NO carga (cae a system-ui). Hay que descargar los woff2 (requiere red; bloqueado en este entorno). Ver `scripts/fetch-montserrat.sh`
 - [ ] Smoke de reservas Icnea en el dominio nuevo
 
 ## Cutover y post-deploy

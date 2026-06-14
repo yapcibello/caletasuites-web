@@ -7,6 +7,7 @@ import { siteConfig } from '../utils/siteConfig';
 import { lodgingBusiness } from '@caletasuites/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 // CSS inline GLOBAL de Elementor (igual en todas las páginas: global-styles,
 // liquid-base, elementor-frontend). Se extrajo una vez del <head> en vivo.
@@ -118,8 +119,8 @@ const lodgingA11y = {
   accessMode: ['textual', 'visual'],
   accessibilitySummary:
     lang === 'es'
-      ? 'Sitio estático navegable por teclado y ratón, con texto alternativo, navegación estructurada y orden de lectura coherente. Conformidad parcial WCAG 2.2 AA con objetivo AAA; consulte la declaración de accesibilidad en /accesibilidad/.'
-      : 'Static site operable by keyboard and mouse, with alternative text, structured navigation and a coherent reading order. Partial WCAG 2.2 AA conformance targeting AAA; see the accessibility statement at /en/accessibility/.',
+      ? 'Sitio estático navegable por teclado y ratón, con texto alternativo, navegación estructurada y orden de lectura coherente. Plenamente conforme con WCAG 2.2 AA y con contraste de color de nivel AAA; consulte la declaración de accesibilidad en /accesibilidad/.'
+      : 'Static site operable by keyboard and mouse, with alternative text, structured navigation and a coherent reading order. Fully conformant with WCAG 2.2 AA with AAA-level colour contrast; see the accessibility statement at /en/accessibility/.',
 };
 const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
 ---
@@ -250,6 +251,13 @@ const bloquesJsonLd = [lodgingA11y, ...jsonLdExtra];
       <slot />
     </main>
     <Footer lang={lang} />
+
+    {/*
+      Banner de consentimiento de cookies (CMP) — RGPD/AEPD. Solo se incluye si hay
+      GTM configurado (sin medición no hay nada que consentir). Conecta con el
+      Consent Mode v2 del <head> y el gancho caletaConsentGranted() de analytics.ts.
+    */}
+    {gtmId && <CookieBanner lang={lang} />}
 
     {/*
       Listeners de eventos GA4 (reserva_click / contact_click) — script de cliente

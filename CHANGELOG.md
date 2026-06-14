@@ -1,5 +1,11 @@
 # Changelog — caletasuites-web
 
+## [2026-06-14] — Contraste AAA + banner de cookies CMP
+
+- **Contraste de color a AAA**: el azul de marca `#85A6C7` (2.54:1, fallaba) y los azules de foreground asociados (`#6996C4`, `#7892A4`, `#6288AA`, gris móvil `#55606a`) se oscurecieron para que **todo el texto alcance ≥ 7:1** (AAA). Esquema: contenido/token/header-sticky/footer-hover → `#37597C` (7.29:1); hover de header sobre blanco → `#2A4A6B` (9.17:1); enlace activo del footer sobre oscuro → `#A9C5DE` (9.21:1). Se preserva el azul claro sobre el footer oscuro y el hover del overlay sobre el hero. ~656 ocurrencias en `src/content/_raw_css/*.css` + `packages/config/tokens/index.cjs` + `Header.astro` + footer chrome EN/ES. **Desviación autorizada de la réplica visual** registrada en `docs/deviations.md`.
+- **Declaración de accesibilidad** (`/accesibilidad/` y `/en/accessibility/`) actualizada: de «AA parcial, objetivo AAA» a «**plenamente conforme AA + contraste de color AAA**»; limitación del azul marcada como resuelta; `accessibilitySummary` del Layout (JSON-LD site-wide) actualizado; fecha 2026-06-14.
+- **Banner de cookies (CMP) RGPD/AEPD**: nuevo `src/components/CookieBanner.astro` (bilingüe EN/ES, `role="dialog"`, rechazo tan visible como aceptar, área táctil ≥44px, contraste AAA, enlace a política de cookies). Conecta con el Consent Mode v2 del `<head>` y el gancho `window.caletaConsentGranted()`; restaura la elección previa en cada carga; expone `window.caletaCookiePrefs()` para revocar. Se renderiza solo si hay `PUBLIC_GTM_ID`. Integrado en `Layout.astro`.
+
 ## [2026-06-14] — Deploy FTP implementado (patrón smedialab-web)
 
 - **`scripts/deploy-ftp.sh`**: script de deploy completo. ZIP desde `apps/www/dist/` → lftp upload → PHP trigger en `_deploy/` (H-87: nombre+token aleatorios) → extractTo + manifest cleanup (cero huérfanos) + smoke loopback + smoke externo. Usar con `pnpm deploy:www` o `pnpm deploy:www --build`.

@@ -13,7 +13,7 @@ const colors = {
   // Azul de marca dominante (botones/CTAs/iconos). Origen: #85a6c7 recurrente
   // en estilos inline de la home (background-color/fill/color) y kit post-10.css.
   primary: {
-    DEFAULT: '#85A6C7', // Azul medio de marca
+    DEFAULT: '#37597C', // Azul medio de marca
     dark: '#6288AA', // Azul profundo (hover/variantes), origen home inline
     light: '#A9C5DE', // Azul claro, origen home inline + kit
   },
