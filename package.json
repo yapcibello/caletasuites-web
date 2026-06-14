@@ -9,7 +9,8 @@
   "scripts": {
     "dev:www": "pnpm --filter @caletasuites/www dev",
     "build:www": "pnpm --filter @caletasuites/www build",
-    "deploy:www": "bash scripts/deploy-www.sh",
+    "deploy:www": "bash scripts/deploy-ftp.sh",
+    "deploy:ftp-check": "bash scripts/ftp-check.sh",
     "verify:html-diff": "bash scripts/verify-no-html-diff.sh",
     "verify:sitemap-images": "node scripts/verify-sitemap-images.mjs",
     "test": "vitest run",

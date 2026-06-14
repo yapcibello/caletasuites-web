@@ -32,6 +32,9 @@
 
 | Herramienta | Propósito |
 |-------------|-----------|
-| pnpm scripts (`dev:www`, `build:www`, `verify:*`) | Desarrollo y verificación |
+| pnpm scripts (`dev:www`, `build:www`, `verify:*`, `deploy:www`, `deploy:ftp-check`) | Desarrollo, verificación y deploy |
 | scripts/migrate/*.mjs | Export WP → JSON → MDX + assets + verificación de URLs |
+| scripts/deploy-ftp.sh | Deploy producción via FTP (ZIP + lftp + PHP trigger) |
+| scripts/ftp-check.sh | Verificación de conexión FTP (anti-fail2ban) |
+| lftp, curl, openssl, zip | Herramientas locales requeridas para deploy FTP |
 | wget / curl | Mirror e inspección del sitio origen |

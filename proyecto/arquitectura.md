@@ -11,7 +11,7 @@ graph LR
     MDX --> WWW[apps/www · Astro 5 SSG]
     CFG[packages/config<br/>tokens + preset Tailwind] --> WWW
     SEO[packages/seo<br/>schemas JSON-LD] --> WWW
-    WWW -->|rsync+SSH| VPS[Hestia VPS]
+    WWW -->|ZIP+FTP+PHP trigger| VPS[Hestia VPS]
 ```
 
 ## Componentes
@@ -38,7 +38,7 @@ Pipeline de migración dirigido por scripts: `00-inventario` (sitemaps → inven
 
 ## Flujo de datos
 
-Contenido WP (páginas, posts EN/ES, media) → export JSON → transformación a MDX con frontmatter Zod (HTML de Elementor embebido sin convertir, iframes Icnea intactos) → rutas Astro con `getStaticPaths` que sirven cada URL exacta de producción → build estático → deploy rsync a Hestia.
+Contenido WP (páginas, posts EN/ES, media) → export JSON → transformación a MDX con frontmatter Zod (HTML de Elementor embebido sin convertir, iframes Icnea intactos) → rutas Astro con `getStaticPaths` que sirven cada URL exacta de producción → build estático → deploy FTP (ZIP + lftp + PHP trigger con manifest cleanup) a Hestia.
 
 ## Decisiones de diseño
 

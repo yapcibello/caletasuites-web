@@ -14,7 +14,7 @@
 - ✅ GEO: llms.txt EN/ES, JSON-LD enriquecido (aggregateRating 4.89/35 real, geo, NAP).
 - ✅ AAA: declaraciones /accesibilidad/ + /en/accessibility/, semántica y foco.
 - ✅ GTM-KBCWRTFS (real) + Consent Mode v2 denied + eventos reserva_click/contact_click.
-- ✅ Script deploy Hestia (rsync+SSH) preparado.
+- ✅ Script deploy Hestia via FTP (ZIP + lftp + PHP trigger, patrón smedialab-web) preparado.
 
 ## Tareas pendientes (humanas)
 
@@ -22,7 +22,7 @@
 
 | # | Tarea | Responsable | Detalle |
 |---|---|---|---|
-| 1 | Facilitar acceso al Hestia VPS | Usuario | `WWW_SSH_HOST` y `WWW_REMOTE_DIR` en `.env` raíz. ¿Mismo VPS que el WP actual? Convención Hestia: `/home/<user>/web/caletasuitestenerife.com/public_html` |
+| 1 | Obtener credenciales FTP del panel Hestia | Usuario | `FTP_HOST`, `FTP_USER`, `FTP_PASS`, `FTP_REMOTE_DIR` en `.env` raíz (ver `.env.example`). Convención Hestia: `/home/<user>/web/caletasuitestenerife.com/public_html/` |
 | 2 | Decidir contraste del azul de marca | Usuario | #85A6C7 falla AA (2.54:1) para texto/botones. Opciones: (a) oscurecer a ~#5a7d9e, (b) texto oscuro sobre botones azules, (c) reservar azul a no-texto. Afecta a la declaración de accesibilidad |
 | 3 | Decidir CMP / banner de cookies | Usuario | Consent Mode está en 'denied'; falta un banner visible para pasar a 'granted' (RGPD/AEPD). ¿Reusar el CMP del WP actual? El gancho `window.caletaConsentGranted()` ya está listo |
 | 4 | Verificar contenedor GTM-KBCWRTFS | Usuario/SMedialab | Confirmar tag GA4 (423687681), triggers para reserva_click/contact_click, variables dataLayer, Consent Mode dentro del contenedor |
@@ -40,7 +40,7 @@
 
 | # | Tarea | Detalle |
 |---|---|---|
-| 9 | Deploy a Hestia | `pnpm deploy:www` (tras tarea 1). Estrategia: carpeta paralela + swap para rollback rápido |
+| 9 | Deploy a Hestia | `pnpm deploy:www` (tras tarea 1). Flujo: ZIP apps/www/dist/ → lftp upload → PHP trigger en `_deploy/` → extractTo + manifest cleanup + smoke |
 | 10 | Cutover DNS/vhost | Apuntar caletasuitestenerife.com al build Astro. El WP queda como rollback |
 | 11 | Verificación oficial Google | PSI + CrUX post-deploy; reenviar sitemap en Search Console; vigilar cobertura 1-2 semanas |
 | 12 | Monitor de continuidad | GA4 423687681 — confirmar que el tráfico sigue midiéndose tras el cambio |

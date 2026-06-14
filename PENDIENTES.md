@@ -4,7 +4,7 @@
 
 ## Prioritario (bloquean producción)
 
-- [ ] Facilitar acceso al Hestia VPS: `WWW_SSH_HOST` + `WWW_REMOTE_DIR` en `.env` raíz
+- [ ] Obtener credenciales FTP del panel Hestia (ver `.env.example`) y poblar `.env` raíz — sin esto no hay deploy
 - [ ] Decidir contraste del azul de marca #85A6C7 (falla AA 2.54:1) — oscurecer / texto oscuro / solo no-texto
 - [ ] Decidir CMP / banner de cookies (Consent Mode está en 'denied'; gancho listo)
 - [ ] Verificar contenedor GTM-KBCWRTFS (tag GA4 423687681, triggers de eventos)

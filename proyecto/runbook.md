@@ -22,7 +22,25 @@ node scripts/migrate/02-to-mdx.mjs          # JSON → MDX en apps/www/src/conte
 
 ## Deploy / Rollback / Backup
 
-Pendiente — se documentará al crear los scripts de deploy (Hestia VPS, rsync+SSH). El rollback previsto es re-rsync del build anterior; el origen WordPress sigue intacto hasta el cutover DNS.
+```bash
+# Verificar conexión FTP antes del primer deploy
+bash scripts/ftp-check.sh
+
+# Build + deploy (primer deploy o tras cambios de código)
+pnpm deploy:www --build
+
+# Solo deploy (si dist/ ya está actualizado)
+pnpm deploy:www
+```
+
+**Rollback manual**: no hay rollback automático (manifiest cleanup no atómico). Si el smoke falla o se detecta un bug:
+
+```bash
+git revert <commit-del-cambio>
+pnpm deploy:www --build
+```
+
+El WordPress de origen sigue intacto hasta el cutover DNS — se puede deshacer el cutover DNS como rollback de emergencia. Ver [proyecto/despliegue.md](despliegue.md) para el flujo completo.
 
 ## Debug — Problemas comunes
 

@@ -1,5 +1,14 @@
 # Changelog — caletasuites-web
 
+## [2026-06-14] — Deploy FTP implementado (patrón smedialab-web)
+
+- **`scripts/deploy-ftp.sh`**: script de deploy completo. ZIP desde `apps/www/dist/` → lftp upload → PHP trigger en `_deploy/` (H-87: nombre+token aleatorios) → extractTo + manifest cleanup (cero huérfanos) + smoke loopback + smoke externo. Usar con `pnpm deploy:www` o `pnpm deploy:www --build`.
+- **`scripts/deploy-swap.php.template`**: plantilla PHP del trigger. Adapta el patrón smedialab: PHP en `_deploy/` (subdir temporal) en lugar de `api/` (static site sin backend PHP). Preserve list vacía (sin `api/config.local.php`). Smoke URLs: `/` (grep "Caleta"), `/apartments/`, `/sitemap-index.xml` (grep "sitemapindex").
+- **`scripts/ftp-check.sh`**: verificación de conexión FTP antes del primer deploy. Para en 1 fallo (anti-fail2ban).
+- **`.env.example`** actualizado con variables FTP (`FTP_HOST`, `FTP_USER`, `FTP_PASS`, `FTP_REMOTE_DIR`, `DEPLOY_BASE_URL`). Variables SSH eliminadas.
+- **`package.json`**: `deploy:www` → `bash scripts/deploy-ftp.sh`; añadido `deploy:ftp-check`.
+- **`proyecto/despliegue.md`**: documentación completa del flujo FTP, variables, smoke test, rollback y cutover DNS.
+
 ## [2026-06-13] — Workflow init-web-astro COMPLETADO (fases 4-14)
 
 - **Migración WP→Astro completa**: 126 URLs migradas 1:1 (49 páginas + 77 posts, EN raíz + ES /es/), HTML Elementor embebido (set:html), 811 assets servidos con paths inmutables, 4 iframes Icnea intactos. Routing catch-all sirviendo cada URL exacta. Tokens visuales reales extraídos del kit Elementor (azules + Montserrat).

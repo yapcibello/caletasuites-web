@@ -12,13 +12,14 @@ Migración WordPress → Astro de https://caletasuitestenerife.com/ (Caleta Suit
 - Tailwind con preset compartido (tokens extraídos del tema WP actual)
 - Content Collections API clásica (`type: 'content'`)
 - i18n: EN raíz + /es/ (réplica WPML actual, x-default=en)
-- Hosting destino: Hestia VPS (rsync+SSH); origen actual: WordPress 7.0 + Elementor sobre nginx/HestiaCP
+- Hosting destino: Hestia VPS (deploy FTP, patrón smedialab-web); origen actual: WordPress 7.0 + Elementor sobre nginx/HestiaCP
 
 ## Comandos
 
 - `pnpm dev:www` — desarrollo local
 - `pnpm build:www` — build de producción
-- `pnpm deploy:www` — deploy a Hestia VPS (pendiente de configurar)
+- `pnpm deploy:www` — deploy a Hestia via FTP (ZIP → lftp → PHP trigger)
+- `pnpm deploy:ftp-check` — verificar conexión FTP antes del primer deploy
 - `pnpm test` — tests
 
 ## Convenciones

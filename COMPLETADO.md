@@ -8,3 +8,4 @@
 - [2026-06-12] - [x] Estructura del monorepo Astro (apps/www + packages/config + packages/seo) con build pasando
 - [2026-06-12] - [x] Repo conectado y push inicial a github.com/yapcibello/caletasuites-web (rama main, remoto SSH)
 - [2026-06-12] - [x] Export del contenido WP vía REST API (páginas y posts EN/ES) a tmp/wp-export/
+- [2026-06-14] - [x] Scripts de deploy FTP implementados (deploy-ftp.sh + deploy-swap.php.template + ftp-check.sh, patrón smedialab-web)

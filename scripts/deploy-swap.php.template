@@ -1,0 +1,208 @@
+<?php
+// Deploy con manifest cleanup para caletasuitestenerife.com
+// Generado por scripts/deploy-ftp.sh — reemplaza placeholders (TOKEN/ZIP/SMOKE/BASE/PRESERVE) y se sube como _deploy/deploy-<rand>.php
+//
+// NOTA HISTÓRICA: este archivo implementó swap atómico de carpeta entera (rename ext4),
+// pero ese método NO funciona en Hestia cuando el target es el docroot configurado
+// (el segundo rename falla). Pivot a manifest cleanup: extractTo() directo + diff pre/post
+// + borrado explícito de huérfanos. No atómico (~5-10s ventana), pero cero huérfanos acumulados.
+//
+// Flujo:
+//   1. Auth timing-safe (H-87): token 32 hex via hash_equals()
+//   2. Auto-delete del propio PHP
+//   3. Construye manifest_pre: todos los archivos en public_html/ ANTES (recursivo)
+//   4. Abre ZIP, construye manifest_zip: paths de los archivos a extraer
+//   5. extractTo() ZIP a public_html/ en DOS FASES (páginas primero, sitemaps al final)
+//   6. Calcula huérfanos = manifest_pre - manifest_zip - PRESERVE_LIST
+//   7. Borra huérfanos archivo a archivo + dirs vacíos resultantes
+//   8. Borra ZIP staging
+//   9. Smoke test loopback (curl interno) a las URLs configuradas + grep patrones
+//  10. Si smoke FAIL: reporta FAIL al bash — NO hay rollback automático.
+//      Recovery: git revert + redeploy del commit anterior.
+
+declare(strict_types=1);
+
+$EXPECTED_TOKEN   = '__TOKEN__';
+$ZIP_FILENAME     = '__ZIP_FILENAME__';   // ej: dist-deploy-20260613_204500.zip
+$SMOKE_URLS_B64   = '__SMOKE_URLS_B64__'; // base64 del JSON con URLs+grep para smoke loopback
+$BASE_URL         = '__BASE_URL__';       // ej: https://caletasuitestenerife.com
+$PRESERVE_B64     = '__PRESERVE_B64__';   // base64 del JSON con paths a preservar del cleanup
+
+header('Content-Type: text/plain; charset=utf-8');
+
+// 1. Auth
+$provided = $_GET['token'] ?? '';
+if (!is_string($provided) || !hash_equals($EXPECTED_TOKEN, $provided)) {
+  http_response_code(403);
+  @unlink(__FILE__);
+  exit('Forbidden');
+}
+
+// 2. Auto-delete del propio PHP (está cargado en memoria, sigue ejecutando)
+@unlink(__FILE__);
+
+// Helpers
+function listFilesRecursive(string $base, string $relPrefix = ''): array {
+  $files = [];
+  $items = @scandir($base);
+  if ($items === false) return $files;
+  foreach ($items as $item) {
+    if ($item === '.' || $item === '..') continue;
+    $full = $base . '/' . $item;
+    $rel = $relPrefix === '' ? $item : $relPrefix . '/' . $item;
+    if (is_dir($full) && !is_link($full)) {
+      $files = array_merge($files, listFilesRecursive($full, $rel));
+    } else {
+      $files[] = $rel;
+    }
+  }
+  return $files;
+}
+
+function removeEmptyDirs(string $base): int {
+  $removed = 0;
+  $items = @scandir($base);
+  if (!$items) return 0;
+  foreach ($items as $item) {
+    if ($item === '.' || $item === '..') continue;
+    $full = $base . '/' . $item;
+    if (is_dir($full) && !is_link($full)) {
+      $removed += removeEmptyDirs($full);
+      // Re-check después de la recursión (los hijos vacíos ya borrados)
+      $sub = @scandir($full);
+      if ($sub && count($sub) === 2 && $full !== $base) {
+        if (@rmdir($full)) $removed++;
+      }
+    }
+  }
+  return $removed;
+}
+
+// Paths: el PHP está en _deploy/ (subdir temporal), public_html/ es su padre
+$apiDir = realpath(__DIR__);
+if ($apiDir === false) { echo "ERROR:realpath-failed"; exit(1); }
+$pubDir = dirname($apiDir);
+$zipPath = $pubDir . '/' . $ZIP_FILENAME;
+
+// 3. Validar ZIP
+if (!file_exists($zipPath)) { echo "ERROR:zip-missing:$zipPath"; exit(1); }
+
+// 4. Parsear preserve list (desde base64 → json)
+$preserveDecoded = @base64_decode($PRESERVE_B64, true);
+$preserveList = $preserveDecoded ? json_decode($preserveDecoded, true) : null;
+if (!is_array($preserveList)) $preserveList = [];
+$preserveSet = array_flip($preserveList);
+
+// 5. Construir manifest_pre (todos los archivos en public_html/ ANTES)
+$manifestPre = listFilesRecursive($pubDir);
+$manifestPreSet = array_flip($manifestPre);
+
+// 6. Abrir ZIP y construir manifest_zip + separar sitemaps del resto
+$zip = new ZipArchive;
+$res = $zip->open($zipPath);
+if ($res !== TRUE) { echo "ERROR:zip-open:$res"; exit(1); }
+$count = $zip->numFiles;
+$manifestZipSet = [];
+$mainEntries = [];      // todo excepto sitemap*.xml
+$sitemapEntries = [];   // sitemap*.xml (se extraen al final)
+for ($i = 0; $i < $count; $i++) {
+  $name = $zip->getNameIndex($i);
+  if ($name === false) continue;
+  // Excluir entradas que son dirs (acaban en /)
+  if (substr($name, -1) === '/') continue;
+  $manifestZipSet[$name] = true;
+  // Los sitemaps van en una segunda fase para que nunca apunten a páginas
+  // que aún no se han extraído (causa de "404-históricas" en GSC).
+  if (preg_match('#(^|/)sitemap[^/]*\.xml$#i', $name)) {
+    $sitemapEntries[] = $name;
+  } else {
+    $mainEntries[] = $name;
+  }
+}
+
+// 7. extractTo() en DOS FASES:
+//    Fase A — todas las páginas/assets MENOS los sitemaps.
+//    Fase B — sitemaps, solo cuando todo lo demás ya está en disco.
+$ok = $zip->extractTo($pubDir . '/', $mainEntries);
+if (!$ok) { $zip->close(); echo "ERROR:zip-extract-main"; exit(1); }
+clearstatcache();
+if (!empty($sitemapEntries)) {
+  $okSitemap = $zip->extractTo($pubDir . '/', $sitemapEntries);
+  if (!$okSitemap) { $zip->close(); echo "ERROR:zip-extract-sitemap"; exit(1); }
+}
+$zip->close();
+
+// 8. Calcular huérfanos = preexistentes - en_zip - preserve
+$orphans = [];
+foreach ($manifestPre as $path) {
+  if (isset($manifestZipSet[$path])) continue;   // sigue en el nuevo build
+  if (isset($preserveSet[$path])) continue;       // protegido
+  $orphans[] = $path;
+}
+
+// 9. Borrar huérfanos
+$deletedCount = 0;
+$deletedFailed = 0;
+foreach ($orphans as $rel) {
+  $full = $pubDir . '/' . $rel;
+  if (is_link($full) || is_file($full)) {
+    if (@unlink($full)) {
+      $deletedCount++;
+    } else {
+      $deletedFailed++;
+    }
+  }
+}
+
+// 10. Borrar dirs vacíos resultantes (post-cleanup de archivos)
+$emptyDirsRemoved = removeEmptyDirs($pubDir);
+
+// 11. Cleanup ZIP staging
+@unlink($zipPath);
+
+// 12. Smoke test loopback (desde base64 → json)
+$smokeDecoded = @base64_decode($SMOKE_URLS_B64, true);
+$smokeUrls = $smokeDecoded ? json_decode($smokeDecoded, true) : null;
+$smokeFailed = false;
+$smokeDetails = [];
+if (!is_array($smokeUrls)) {
+  $smokeFailed = true;
+  $smokeDetails[] = 'invalid-smoke-config:jsonerr=' . json_last_error_msg();
+} else {
+  foreach ($smokeUrls as $check) {
+    $path = $check['url'] ?? '';
+    $url = rtrim($BASE_URL, '/') . $path;
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_TIMEOUT        => 10,
+      CURLOPT_CONNECTTIMEOUT => 5,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_USERAGENT      => 'caletasuites-deploy-smoke/1.0',
+    ]);
+    $body = curl_exec($ch);
+    $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($code !== 200) {
+      $smokeFailed = true;
+      $smokeDetails[] = "$path:HTTP$code";
+      continue;
+    }
+    if (!empty($check['grep']) && (!is_string($body) || strpos($body, $check['grep']) === false)) {
+      $smokeFailed = true;
+      $smokeDetails[] = "$path:grep-fail";
+      continue;
+    }
+    $smokeDetails[] = "$path:OK";
+  }
+}
+
+if ($smokeFailed) {
+  echo "FAIL:smoke:" . implode('|', $smokeDetails) . ":extracted=$count:cleaned=$deletedCount:failed=$deletedFailed:emptydirs=$emptyDirsRemoved";
+  exit(1);
+}
+
+// 13. OK
+echo "OK:extracted=$count:cleaned=$deletedCount:failed=$deletedFailed:emptydirs=$emptyDirsRemoved:smoke=" . implode('|', $smokeDetails);
