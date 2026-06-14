@@ -5,8 +5,6 @@
 ## Prioritario (bloquean producción)
 
 - [ ] Obtener credenciales FTP del panel Hestia (ver `.env.example`) y poblar `.env` raíz — sin esto no hay deploy
-- [x] Contraste del azul de marca: oscurecido global a #37597C (AAA 7.29:1) — todo el texto ≥7:1; declaración actualizada a «AA + contraste AAA». Desviación de réplica registrada en `docs/deviations.md` (2026-06-14)
-- [x] CMP / banner de cookies RGPD/AEPD implementado (`CookieBanner.astro`, bilingüe, revocable, AAA) — conecta Consent Mode + `caletaConsentGranted()` (2026-06-14)
 - [ ] Verificar contenedor GTM-KBCWRTFS (tag GA4 423687681, triggers de eventos) — MCP GTM sin conexión en el entorno actual; ver checklist en `proyecto/api.md` / hacerlo desde máquina con red
 
 ## Antes del cutover

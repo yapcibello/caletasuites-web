@@ -18,9 +18,9 @@ graph LR
 
 ### apps/www
 
-App Astro 5 SSG. i18n nativo: EN en raíz, ES bajo `/es/` (réplica WPML, x-default=en). `trailingSlash: 'always'`. Layout con GTM condicional (`PUBLIC_GTM_ID`), JSON-LD LodgingBusiness, OG/Twitter, canonical. Esqueleto AAA (skip links, focus visible).
+App Astro 5 SSG. i18n nativo: EN en raíz, ES bajo `/es/` (réplica WPML, x-default=en). `trailingSlash: 'always'`. Layout con GTM condicional (`PUBLIC_GTM_ID`), Consent Mode v2 (default `denied`) + banner de cookies (`CookieBanner.astro`, conectado a `caletaConsentGranted()`), JSON-LD LodgingBusiness, OG/Twitter, canonical. AAA: skip links, focus visible y contraste de color ≥7:1 en todo el texto (azul de marca `#37597C`).
 
-**Archivos clave**: `apps/www/astro.config.mjs`, `apps/www/src/layouts/Layout.astro`, `apps/www/src/content/config.ts`, `apps/www/src/utils/siteConfig.ts`
+**Archivos clave**: `apps/www/astro.config.mjs`, `apps/www/src/layouts/Layout.astro`, `apps/www/src/components/{Header,Footer,CookieBanner}.astro`, `apps/www/src/scripts/analytics.ts`, `apps/www/src/content/config.ts`, `apps/www/src/utils/siteConfig.ts`
 
 ### packages/config
 

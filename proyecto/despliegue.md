@@ -11,7 +11,8 @@
 
 1. **Credenciales FTP** del panel Hestia → copiar en `.env` (ver `.env.example`)
 2. Herramientas locales: `lftp`, `curl`, `openssl`, `zip`
-3. `pnpm build:www` completando sin errores
+3. **Fuente Montserrat self-hosteada** (una vez, requiere red): `pnpm fetch:montserrat`. Sin esto, `font-montserrat.css` apunta a woff2 inexistentes y el sitio cae a `system-ui` (ver `scripts/fetch-montserrat.sh`)
+4. `pnpm build:www` completando sin errores
 
 ## Verificar conexión FTP (antes del primer deploy)
 

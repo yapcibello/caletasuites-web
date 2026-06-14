@@ -9,3 +9,5 @@
 - [2026-06-12] - [x] Repo conectado y push inicial a github.com/yapcibello/caletasuites-web (rama main, remoto SSH)
 - [2026-06-12] - [x] Export del contenido WP vía REST API (páginas y posts EN/ES) a tmp/wp-export/
 - [2026-06-14] - [x] Scripts de deploy FTP implementados (deploy-ftp.sh + deploy-swap.php.template + ftp-check.sh, patrón smedialab-web)
+- [2026-06-14] - [x] Contraste de color a AAA: azul de marca #85A6C7 → #37597C (todo el texto ≥7:1); declaración de accesibilidad ES+EN actualizada a «AA + contraste AAA»; desviación de réplica registrada en docs/deviations.md
+- [2026-06-14] - [x] Banner de cookies CMP (RGPD/AEPD): CookieBanner.astro bilingüe, conectado al Consent Mode v2 y a caletaConsentGranted(), revocable

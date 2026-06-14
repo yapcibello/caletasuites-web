@@ -48,7 +48,8 @@ caletasuites-web/
 | `pnpm install` | Instala dependencias del monorepo |
 | `pnpm dev:www` | Desarrollo local de `apps/www` |
 | `pnpm build:www` | Build de producción de `apps/www` |
-| `pnpm deploy:www` | Deploy a Hestia VPS (pendiente de configurar) |
+| `pnpm deploy:www` | Deploy a Hestia VPS vía FTP (requiere `.env` con credenciales) |
+| `pnpm fetch:montserrat` | Descarga y self-hostea la fuente Montserrat (requiere red) |
 | `pnpm verify:html-diff` | Verifica que no hay diferencias de HTML vs producción |
 | `pnpm verify:sitemap-images` | Verifica imágenes del sitemap |
 | `pnpm hero:list` | Lista las fotos hero |
