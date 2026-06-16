@@ -11,3 +11,8 @@ apps/*/.astro/
 .ypc/
 tmp/
 .DS_Store
+
+# Memoria ypc-memory (no debe viajar en el repo del proyecto)
+.engrama/
+# Skills (pertenecen a claude-env)
+.claude/skills/
